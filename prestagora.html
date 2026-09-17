@@ -868,17 +868,14 @@
 
 
 /* =========================================
-   POSIÇÕES
+   POSIÇÕES DOS SERVIÇOS
 ========================================= */
-
-
-/* Tráfego Pago */
 
 .data-trafego {
 
-    top: 18%;
+    top: 20%;
 
-    right: 16%;
+    right: 17%;
 
     animation:
         cardFloatA 6s ease-in-out infinite;
@@ -886,13 +883,11 @@
 }
 
 
-/* SDR */
-
 .data-sdr {
 
-    top: 48%;
+    top: 47%;
 
-    right: 2%;
+    right: 3%;
 
     animation:
         cardFloatB 7s ease-in-out infinite;
@@ -900,13 +895,11 @@
 }
 
 
-/* Web Design */
-
 .data-web {
 
-    bottom: 13%;
+    bottom: 20%;
 
-    right: 18%;
+    right: 19%;
 
     animation:
         cardFloatC 8s ease-in-out infinite;
@@ -914,30 +907,72 @@
 }
 
 
-/* Card original PERFORMANCE */
+.data-design {
 
-.data-1 {
+    bottom: 5%;
 
-    top: 34%;
-
-    right: 25%;
+    right: 43%;
 
     animation:
-        cardFloatB 6.5s ease-in-out infinite reverse;
+        cardFloatA 7s ease-in-out infinite reverse;
 
 }
 
 
-/* Card original GROWTH */
+/* =========================================
+   CORES DOS SERVIÇOS
+========================================= */
 
-.data-2 {
+.data-trafego::before {
 
-    bottom: 24%;
+    background: var(--blue-2);
 
-    right: 5%;
+    box-shadow:
+        0 0 15px var(--blue-2);
 
-    animation:
-        cardFloatA 7.5s ease-in-out infinite reverse;
+}
+
+
+.data-sdr::before {
+
+    background: #35d990;
+
+    box-shadow:
+        0 0 15px #35d990;
+
+}
+
+
+.data-web::before {
+
+    background: #a878ff;
+
+    box-shadow:
+        0 0 15px #a878ff;
+
+}
+
+
+.data-design::before {
+
+    background: #ffb84d;
+
+    box-shadow:
+        0 0 15px #ffb84d;
+
+}
+
+
+.data-web span {
+
+    color: #b28aff;
+
+}
+
+
+.data-design span {
+
+    color: #ffbd63;
 
 }
 
@@ -2071,31 +2106,12 @@
 ===================================================== -->
 
 
-<!-- PERFORMANCE -->
-
-<div class="data-card data-1">
-
-    <small>
-        Performance
-    </small>
-
-    <strong>
-        LIVE
-    </strong>
-
-    <span>
-        ● campanhas ativas
-    </span>
-
-</div>
-
-
 <!-- TRÁFEGO PAGO -->
 
 <div class="data-card data-trafego">
 
     <small>
-        01 / Aquisição
+        Impulsionamento no digital
     </small>
 
     <strong>
@@ -2114,7 +2130,7 @@
 <div class="data-card data-sdr">
 
     <small>
-        02 / Comercial
+        Comercial
     </small>
 
     <strong>
@@ -2133,7 +2149,7 @@
 <div class="data-card data-web">
 
     <small>
-        03 / Digital
+        Site/LP
     </small>
 
     <strong>
@@ -2146,21 +2162,20 @@
 
 </div>
 
+    <!-- DESIGN -->
 
-<!-- GROWTH -->
-
-<div class="data-card data-2">
+<div class="data-card data-design">
 
     <small>
-        Growth System
+        Criativo com IA
     </small>
 
     <strong>
-        +RESULTADO
+        DESIGN
     </strong>
 
     <span>
-        estratégia em movimento
+        ● identidade visual
     </span>
 
 </div>
