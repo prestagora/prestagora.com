@@ -1,1703 +1,1350 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Grupo Melo — Business & Innovation</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --bg:#050607;
+    --surface:#0a0c0e;
+    --surface2:#0f1215;
+    --white:#f5f7f8;
+    --muted:#7d858d;
+    --line:rgba(255,255,255,.09);
+
+    --blue:#2878ff;
+    --blue-light:#6ea1ff;
+
+    --green:#19c879;
+    --green-light:#65f0b1;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:var(--bg);
+    color:var(--white);
+    font-family:"Inter",sans-serif;
+    overflow-x:hidden;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+::selection{
+    background:#fff;
+    color:#000;
+}
+
+/* =========================================
+   BACKGROUND
+========================================= */
+
+.noise{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:999;
+    opacity:.035;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+}
+
+.ambient{
+    position:absolute;
+    width:700px;
+    height:700px;
+    border-radius:50%;
+    filter:blur(100px);
+    opacity:.16;
+    pointer-events:none;
+}
+
+.ambient.blue{
+    background:var(--blue);
+}
+
+.ambient.green{
+    background:var(--green);
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+header{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:100;
+    padding:25px 5vw;
+}
+
+.nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 
-    <meta charset="UTF-8">
+    padding:12px 14px 12px 20px;
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    border:1px solid rgba(255,255,255,.09);
 
-    <title>Grupo Melo — Duas forças. Um grupo.</title>
+    background:rgba(5,6,7,.65);
 
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-    >
+    backdrop-filter:blur(20px);
 
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
+    border-radius:100px;
+}
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Inter:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet"
-    >
+.logo{
+    font-size:14px;
+    font-weight:800;
+    letter-spacing:-.04em;
+}
 
+.logo span{
+    color:#666;
+    font-weight:500;
+}
 
-    <style>
+.nav-links{
+    display:flex;
+    gap:35px;
+    font-size:11px;
+    color:#8b9298;
+}
 
-        /* =====================================================
-           RESET
-        ===================================================== */
+.nav-links a{
+    transition:.3s;
+}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+.nav-links a:hover{
+    color:white;
+}
 
-        html {
-            scroll-behavior: smooth;
-        }
+.nav-contact{
+    display:flex;
+    align-items:center;
+    gap:10px;
 
-        body {
-            background: #e9e9e4;
-            color: #111;
-            font-family: "Inter", sans-serif;
-            overflow-x: hidden;
-        }
+    padding:10px 17px;
 
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
+    border-radius:100px;
 
-        ::selection {
-            background: #111;
-            color: white;
-        }
+    background:white;
+    color:#000;
 
+    font-size:10px;
+    font-weight:700;
+}
 
-        /* =====================================================
-           VARIABLES
-        ===================================================== */
+.nav-contact i{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:#1fd783;
+}
 
-        :root {
 
-            --black: #0d0d0d;
+/* =========================================
+   HERO
+========================================= */
 
-            --paper: #e9e9e4;
+.hero{
+    min-height:100vh;
+    position:relative;
 
-            --blue: #245cff;
+    display:flex;
+    align-items:center;
 
-            --green: #0e8755;
+    padding:150px 8vw 80px;
 
-            --line: rgba(0,0,0,.15);
+    overflow:hidden;
+}
 
-        }
+.hero .ambient{
+    top:-250px;
+    left:50%;
+    transform:translateX(-50%);
+}
 
+.hero-content{
+    width:100%;
+    position:relative;
+    z-index:3;
+}
 
-        /* =====================================================
-           GRAIN
-        ===================================================== */
+.hero-label{
+    display:flex;
+    align-items:center;
+    gap:12px;
 
-        .grain {
+    margin-bottom:35px;
 
-            position: fixed;
+    font-size:10px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:#727a82;
+}
 
-            inset: 0;
+.hero-label i{
+    width:30px;
+    height:1px;
+    background:#555;
+}
 
-            z-index: 999;
+.hero-title{
+    max-width:1100px;
 
-            pointer-events: none;
+    font-size:clamp(65px,10vw,160px);
 
-            opacity: .055;
+    line-height:.82;
 
-            background-image:
-                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    letter-spacing:-.085em;
 
-        }
+    font-weight:800;
+}
 
+.hero-title .outline{
+    color:transparent;
+    -webkit-text-stroke:1px rgba(255,255,255,.65);
+}
 
-        /* =====================================================
-           HEADER
-        ===================================================== */
+.hero-title .gradient{
+    background:linear-gradient(
+        100deg,
+        #fff 0%,
+        #fff 35%,
+        #8eaefb 65%,
+        #49df9c 100%
+    );
 
-        header {
+    -webkit-background-clip:text;
+    color:transparent;
+}
 
-            position: fixed;
+.hero-bottom{
+    margin-top:65px;
 
-            top: 0;
-            left: 0;
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+}
 
-            width: 100%;
+.hero-description{
+    max-width:420px;
 
-            z-index: 100;
+    font-size:13px;
+    line-height:1.8;
 
-            padding: 24px 32px;
+    color:#858d94;
+}
 
-        }
+.hero-scroll{
+    display:flex;
+    align-items:center;
+    gap:12px;
 
+    font-size:9px;
+    text-transform:uppercase;
+    letter-spacing:2px;
 
-        .nav {
+    color:#686f75;
+}
 
-            display: grid;
+.hero-scroll span{
+    width:45px;
+    height:1px;
+    background:#555;
+}
 
-            grid-template-columns:
-                1fr
-                auto
-                1fr;
 
-            align-items: center;
+/* =========================================
+   ORBIT
+========================================= */
 
-        }
+.orbit-system{
+    position:absolute;
 
+    width:620px;
+    height:620px;
 
-        .logo {
+    right:-120px;
+    top:50%;
+    transform:translateY(-50%);
 
-            font-size: 13px;
+    pointer-events:none;
 
-            font-weight: 800;
+    opacity:.7;
+}
 
-            letter-spacing: -.5px;
+.orbit{
+    position:absolute;
+    inset:0;
 
-        }
+    border:1px solid rgba(255,255,255,.07);
 
+    border-radius:50%;
 
-        .logo span {
+    transform:rotate(-20deg) scaleY(.42);
+}
 
-            font-family: "DM Mono";
+.orbit:nth-child(2){
+    inset:70px;
+    transform:rotate(35deg) scaleY(.42);
+}
 
-            font-size: 8px;
+.orbit:nth-child(3){
+    inset:145px;
+    transform:rotate(-55deg) scaleY(.42);
+}
 
-            font-weight: 400;
+.orbit-core{
+    position:absolute;
 
-            margin-left: 8px;
+    top:50%;
+    left:50%;
 
-            color: #777;
+    transform:translate(-50%,-50%);
 
-        }
+    width:85px;
+    height:85px;
 
+    border-radius:50%;
 
-        .nav-center {
+    background:radial-gradient(
+        circle,
+        rgba(255,255,255,.9),
+        rgba(40,120,255,.4) 30%,
+        rgba(40,120,255,0) 70%
+    );
 
-            font-family: "DM Mono";
+    box-shadow:
+        0 0 80px rgba(40,120,255,.5),
+        0 0 150px rgba(40,120,255,.2);
+}
 
-            font-size: 8px;
 
-            letter-spacing: 2px;
+/* =========================================
+   INTRO
+========================================= */
 
-            text-transform: uppercase;
+.intro{
+    position:relative;
 
-            color: #666;
+    padding:180px 8vw;
 
-        }
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
 
+    background:
+        radial-gradient(
+            circle at 80% 50%,
+            rgba(40,120,255,.08),
+            transparent 35%
+        ),
+        var(--surface);
+}
 
-        .menu {
+.intro-grid{
+    display:grid;
 
-            justify-self: end;
+    grid-template-columns:1fr 1.5fr;
 
-            width: 42px;
-            height: 42px;
+    gap:100px;
+}
 
-            border-radius: 50%;
+.section-number{
+    font-size:10px;
+    color:#555;
+    letter-spacing:2px;
+}
 
-            border: 1px solid #aaa;
+.intro-title{
+    font-size:clamp(40px,6vw,85px);
 
-            display: flex;
+    line-height:.92;
 
-            align-items: center;
+    letter-spacing:-.065em;
 
-            justify-content: center;
+    font-weight:700;
+}
 
-            cursor: pointer;
+.intro-title span{
+    color:#4d555c;
+}
 
-        }
+.intro-text{
+    margin-top:45px;
 
+    max-width:540px;
 
-        .menu-lines {
+    color:#80878d;
 
-            width: 13px;
+    font-size:14px;
 
-        }
+    line-height:1.9;
+}
 
 
-        .menu-lines span {
+/* =========================================
+   BUSINESS UNITS
+========================================= */
 
-            display: block;
+.business{
+    padding:150px 5vw;
 
-            height: 1px;
+    background:#050607;
+}
 
-            background: #111;
+.business-head{
+    padding:0 3vw;
 
-            margin: 3px 0;
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
 
-        }
+    margin-bottom:70px;
+}
 
+.business-head h2{
+    font-size:clamp(55px,8vw,120px);
 
-        /* =====================================================
-           HERO
-        ===================================================== */
+    letter-spacing:-.08em;
 
-        .hero {
+    line-height:.8;
+}
 
-            min-height: 100vh;
+.business-head p{
+    max-width:250px;
 
-            position: relative;
+    color:#6e757c;
 
-            padding: 150px 32px 60px;
+    font-size:10px;
 
-            display: flex;
+    line-height:1.7;
+}
 
-            flex-direction: column;
 
-            justify-content: space-between;
+/* =========================================
+   CARDS
+========================================= */
 
-            overflow: hidden;
+.units{
+    display:grid;
 
-        }
+    grid-template-columns:1fr 1fr;
 
+    gap:18px;
+}
 
-        /* GRID */
+.unit{
+    position:relative;
 
-        .grid {
+    min-height:650px;
 
-            position: absolute;
+    overflow:hidden;
 
-            inset: 0;
+    border:1px solid var(--line);
 
-            pointer-events: none;
+    border-radius:30px;
 
-            opacity: .35;
+    background:var(--surface);
 
-            background-image:
+    padding:45px;
 
-                linear-gradient(
-                    to right,
-                    var(--line) 1px,
-                    transparent 1px
-                ),
+    transition:
+        transform .5s ease,
+        border-color .5s ease;
+}
 
-                linear-gradient(
-                    to bottom,
-                    var(--line) 1px,
-                    transparent 1px
-                );
+.unit:hover{
+    transform:translateY(-8px);
+}
 
-            background-size:
-                10vw 100%,
-                100% 120px;
+.unit-blue:hover{
+    border-color:rgba(40,120,255,.45);
+}
 
-        }
+.unit-green:hover{
+    border-color:rgba(25,200,121,.45);
+}
 
+.unit-number{
+    font-size:9px;
+    color:#555;
+    letter-spacing:2px;
+}
 
-        .hero-top {
+.unit-top{
+    margin-top:120px;
+}
 
-            position: relative;
+.unit-name{
+    font-size:clamp(55px,7vw,105px);
 
-            z-index: 2;
+    letter-spacing:-.085em;
 
-            display: flex;
+    line-height:.8;
 
-            justify-content: space-between;
+    font-weight:800;
+}
 
-            align-items: start;
+.unit-name span{
+    color:transparent;
+    -webkit-text-stroke:1px rgba(255,255,255,.5);
+}
 
-        }
+.unit-description{
+    max-width:400px;
 
+    margin-top:45px;
 
-        .hero-index {
+    color:#858c92;
 
-            font-family: "DM Mono";
+    font-size:13px;
 
-            font-size: 10px;
+    line-height:1.8;
+}
 
-            color: #777;
+.unit-footer{
+    position:absolute;
 
-        }
+    left:45px;
+    right:45px;
+    bottom:45px;
 
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+}
 
-        .hero-meta {
+.unit-services{
+    display:flex;
+    gap:7px;
+    flex-wrap:wrap;
 
-            max-width: 220px;
+    max-width:350px;
+}
 
-            font-family: "DM Mono";
+.unit-services span{
+    padding:8px 11px;
 
-            font-size: 9px;
+    border:1px solid rgba(255,255,255,.09);
 
-            line-height: 1.7;
+    border-radius:100px;
 
-            color: #777;
+    font-size:8px;
 
-            text-align: right;
+    color:#858c92;
+}
 
-        }
+.unit-arrow{
+    width:65px;
+    height:65px;
 
+    border:1px solid rgba(255,255,255,.12);
 
-        /* MAIN TITLE */
+    border-radius:50%;
 
-        .hero-title {
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-            position: relative;
+    font-size:18px;
 
-            z-index: 2;
+    transition:.4s;
+}
 
-            margin-left: -8px;
+.unit:hover .unit-arrow{
+    transform:rotate(45deg);
+}
 
-            font-size: clamp(
-                75px,
-                13.8vw,
-                205px
-            );
 
-            font-weight: 900;
+/* BLUE */
 
-            letter-spacing: -.095em;
+.unit-blue .unit-glow{
+    position:absolute;
 
-            line-height: .72;
+    width:400px;
+    height:400px;
 
-            text-transform: uppercase;
+    right:-180px;
+    bottom:-180px;
 
-        }
+    border-radius:50%;
 
+    background:var(--blue);
 
-        .hero-title .outline {
+    filter:blur(120px);
 
-            color: transparent;
+    opacity:.16;
+}
 
-            -webkit-text-stroke:
-                1.5px #111;
+.unit-blue .unit-line{
+    background:var(--blue);
+}
 
-        }
 
+/* GREEN */
 
-        .hero-title .indent {
+.unit-green .unit-glow{
+    position:absolute;
 
-            margin-left: 15vw;
+    width:400px;
+    height:400px;
 
-        }
+    right:-180px;
+    bottom:-180px;
 
+    border-radius:50%;
 
-        .hero-bottom {
+    background:var(--green);
 
-            position: relative;
+    filter:blur(120px);
 
-            z-index: 2;
+    opacity:.16;
+}
 
-            display: flex;
+.unit-green .unit-line{
+    background:var(--green);
+}
 
-            justify-content: space-between;
+.unit-line{
+    position:absolute;
 
-            align-items: end;
+    top:0;
+    left:45px;
 
-        }
+    width:45px;
+    height:2px;
+}
 
 
-        .hero-description {
+/* =========================================
+   CONNECTION
+========================================= */
 
-            max-width: 350px;
+.connection{
+    min-height:80vh;
 
-            font-size: 12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-            line-height: 1.7;
+    position:relative;
 
-            color: #555;
+    padding:100px 8vw;
 
-        }
+    overflow:hidden;
 
+    background:#090b0d;
+}
 
-        .scroll-indicator {
+.connection-bg{
+    position:absolute;
 
-            font-family: "DM Mono";
+    width:900px;
+    height:900px;
 
-            font-size: 8px;
+    border-radius:50%;
 
-            text-transform: uppercase;
+    border:1px solid rgba(255,255,255,.04);
+}
 
-            letter-spacing: 2px;
+.connection-bg::before,
+.connection-bg::after{
+    content:"";
 
-            color: #777;
+    position:absolute;
 
-            display: flex;
+    border-radius:50%;
 
-            align-items: center;
+    border:1px solid rgba(255,255,255,.04);
+}
 
-            gap: 12px;
+.connection-bg::before{
+    inset:100px;
+}
 
-        }
+.connection-bg::after{
+    inset:200px;
+}
 
+.connection-content{
+    position:relative;
+    z-index:2;
 
-        .scroll-indicator i {
+    text-align:center;
+}
 
-            width: 35px;
+.connection-label{
+    font-size:9px;
+    letter-spacing:3px;
+    color:#555;
+    text-transform:uppercase;
 
-            height: 1px;
+    margin-bottom:40px;
+}
 
-            background: #777;
+.connection h2{
+    font-size:clamp(45px,7vw,105px);
 
-        }
+    line-height:.88;
 
+    letter-spacing:-.075em;
+}
 
-        /* =====================================================
-           INTRO
-        ===================================================== */
+.connection h2 span{
+    color:#555;
+}
 
-        .intro {
+.connection-description{
+    max-width:450px;
 
-            min-height: 100vh;
+    margin:35px auto 0;
 
-            background: var(--black);
+    color:#747c83;
 
-            color: white;
+    font-size:13px;
 
-            position: relative;
+    line-height:1.8;
+}
 
-            overflow: hidden;
 
-            display: flex;
+/* =========================================
+   STATS
+========================================= */
 
-            align-items: center;
+.stats{
+    display:grid;
 
-        }
+    grid-template-columns:repeat(3,1fr);
 
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+}
 
-        .intro-grid {
+.stat{
+    padding:80px 5vw;
 
-            width: 100%;
+    border-right:1px solid var(--line);
+}
 
-            padding: 100px 8vw;
+.stat:last-child{
+    border-right:none;
+}
 
-            display: grid;
+.stat-number{
+    font-size:clamp(40px,5vw,70px);
 
-            grid-template-columns: .6fr 1.4fr;
+    letter-spacing:-.07em;
 
-            gap: 80px;
+    font-weight:700;
+}
 
-            align-items: center;
+.stat-label{
+    margin-top:12px;
 
-        }
+    color:#646c73;
 
+    font-size:10px;
 
-        .intro-number {
+    text-transform:uppercase;
 
-            font-family: "DM Mono";
+    letter-spacing:1.5px;
+}
 
-            font-size: 10px;
 
-            color: #666;
+/* =========================================
+   FOOTER
+========================================= */
 
-        }
+footer{
+    padding:130px 8vw 35px;
 
+    background:#030405;
+}
 
-        .intro-title {
+.footer-title{
+    font-size:clamp(65px,12vw,180px);
 
-            font-size: clamp(
-                45px,
-                6vw,
-                90px
-            );
+    line-height:.75;
 
-            line-height: .95;
+    letter-spacing:-.095em;
 
-            letter-spacing: -.06em;
+    font-weight:800;
+}
 
-            font-weight: 700;
+.footer-title span{
+    color:#3e454b;
+}
 
-        }
+.footer-main{
+    margin-top:120px;
 
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+}
 
-        .intro-title span {
+.footer-contact{
+    font-size:15px;
+}
 
-            color: #555;
+.footer-contact small{
+    display:block;
 
-        }
+    margin-bottom:10px;
 
+    color:#555;
 
-        .intro-copy {
+    font-size:8px;
 
-            max-width: 500px;
+    text-transform:uppercase;
 
-            margin-top: 35px;
+    letter-spacing:2px;
+}
 
-            font-size: 14px;
+.footer-info{
+    text-align:right;
 
-            line-height: 1.8;
+    color:#555;
 
-            color: #888;
+    font-size:9px;
 
-        }
+    line-height:1.8;
+}
 
+.footer-bottom{
+    margin-top:100px;
 
-        .intro-circle {
+    padding-top:20px;
 
-            position: absolute;
+    border-top:1px solid var(--line);
 
-            width: 600px;
-            height: 600px;
+    display:flex;
+    justify-content:space-between;
 
-            border: 1px solid rgba(255,255,255,.08);
+    color:#41474c;
 
-            border-radius: 50%;
+    font-size:8px;
+}
 
-            right: -220px;
 
-            bottom: -250px;
+/* =========================================
+   RESPONSIVE
+========================================= */
 
-        }
+@media(max-width:850px){
 
+    header{
+        padding:15px;
+    }
 
-        .intro-circle::before {
+    .nav{
+        padding:11px 12px 11px 17px;
+    }
 
-            content: "";
+    .nav-links{
+        display:none;
+    }
 
-            position: absolute;
+    .hero{
+        padding:140px 25px 70px;
+    }
 
-            inset: 70px;
+    .hero-title{
+        font-size:19vw;
+    }
 
-            border: 1px solid rgba(255,255,255,.06);
+    .hero-bottom{
+        flex-direction:column;
+        align-items:start;
+        gap:35px;
+    }
 
-            border-radius: 50%;
+    .orbit-system{
+        width:420px;
+        height:420px;
 
-        }
+        right:-200px;
 
+        opacity:.4;
+    }
 
-        /* =====================================================
-           COMPANIES
-        ===================================================== */
+    .intro{
+        padding:120px 25px;
+    }
 
-        .companies {
+    .intro-grid{
+        grid-template-columns:1fr;
+        gap:40px;
+    }
 
-            background: var(--paper);
+    .business{
+        padding:100px 18px;
+    }
 
-        }
+    .business-head{
+        padding:0 10px;
 
+        flex-direction:column;
+        align-items:start;
 
-        .companies-header {
+        gap:35px;
+    }
 
-            min-height: 45vh;
+    .units{
+        grid-template-columns:1fr;
+    }
 
-            padding: 100px 8vw;
+    .unit{
+        min-height:580px;
+        padding:30px;
+        border-radius:22px;
+    }
 
-            display: flex;
+    .unit-top{
+        margin-top:100px;
+    }
 
-            align-items: end;
+    .unit-footer{
+        left:30px;
+        right:30px;
+        bottom:30px;
+    }
 
-            justify-content: space-between;
+    .unit-line{
+        left:30px;
+    }
 
-            border-bottom: 1px solid #bbb;
+    .stats{
+        grid-template-columns:1fr;
+    }
 
-        }
+    .stat{
+        border-right:none;
+        border-bottom:1px solid var(--line);
+    }
 
+    .stat:last-child{
+        border-bottom:none;
+    }
 
-        .companies-header h2 {
+    .connection{
+        min-height:70vh;
+    }
 
-            font-size: clamp(
-                60px,
-                10vw,
-                150px
-            );
+    footer{
+        padding:100px 25px 25px;
+    }
 
-            font-weight: 900;
+    .footer-main{
+        flex-direction:column;
+        align-items:start;
+        gap:50px;
+        margin-top:80px;
+    }
 
-            letter-spacing: -.09em;
+    .footer-info{
+        text-align:left;
+    }
 
-            line-height: .75;
+    .footer-bottom{
+        flex-direction:column;
+        gap:10px;
+    }
 
-        }
+}
 
-
-        .companies-header p {
-
-            max-width: 280px;
-
-            font-family: "DM Mono";
-
-            font-size: 9px;
-
-            line-height: 1.8;
-
-            color: #777;
-
-        }
-
-
-        /* COMPANY */
-
-        .company {
-
-            min-height: 100vh;
-
-            display: grid;
-
-            grid-template-columns:
-                120px
-                1fr;
-
-            position: relative;
-
-            overflow: hidden;
-
-        }
-
-
-        .company-number {
-
-            padding: 45px 30px;
-
-            border-right: 1px solid #bbb;
-
-            font-family: "DM Mono";
-
-            font-size: 9px;
-
-            color: #777;
-
-        }
-
-
-        .company-main {
-
-            padding: 70px 7vw;
-
-            position: relative;
-
-        }
-
-
-        .company-name {
-
-            position: relative;
-
-            z-index: 2;
-
-            font-size: clamp(
-                80px,
-                15vw,
-                240px
-            );
-
-            line-height: .72;
-
-            letter-spacing: -.105em;
-
-            font-weight: 900;
-
-            text-transform: uppercase;
-
-        }
-
-
-        .company-name .outline {
-
-            color: transparent;
-
-            -webkit-text-stroke:
-                1px #111;
-
-        }
-
-
-        .company-description {
-
-            position: relative;
-
-            z-index: 3;
-
-            margin-top: 75px;
-
-            max-width: 430px;
-
-            font-size: 15px;
-
-            line-height: 1.8;
-
-            color: #555;
-
-        }
-
-
-        .company-services {
-
-            position: relative;
-
-            z-index: 3;
-
-            margin-top: 40px;
-
-            display: flex;
-
-            gap: 8px;
-
-            flex-wrap: wrap;
-
-        }
-
-
-        .company-services span {
-
-            padding: 9px 13px;
-
-            border: 1px solid #bbb;
-
-            border-radius: 100px;
-
-            font-family: "DM Mono";
-
-            font-size: 8px;
-
-            text-transform: uppercase;
-
-            letter-spacing: 1px;
-
-        }
-
-
-        .company-action {
-
-            position: absolute;
-
-            right: 7vw;
-
-            bottom: 70px;
-
-            z-index: 5;
-
-            width: 110px;
-
-            height: 110px;
-
-            border-radius: 50%;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            font-family: "DM Mono";
-
-            font-size: 8px;
-
-            text-align: center;
-
-            text-transform: uppercase;
-
-            letter-spacing: 1px;
-
-            transition:
-                transform .4s ease;
-
-        }
-
-
-        .company-action:hover {
-
-            transform: rotate(25deg) scale(1.1);
-
-        }
-
-
-        /* BLUE */
-
-        .prest {
-
-            background:
-                linear-gradient(
-                    120deg,
-                    #e9e9e4 0%,
-                    #e9e9e4 60%,
-                    #dce4ff 100%
-                );
-
-        }
-
-
-        .prest .company-action {
-
-            background: var(--blue);
-
-            color: white;
-
-        }
-
-
-        .prest .company-name .accent {
-
-            color: var(--blue);
-
-        }
-
-
-        /* GREEN */
-
-        .urbanis {
-
-            background:
-                linear-gradient(
-                    120deg,
-                    #e9e9e4 0%,
-                    #e9e9e4 60%,
-                    #d9eee3 100%
-                );
-
-        }
-
-
-        .urbanis .company-action {
-
-            background: var(--green);
-
-            color: white;
-
-        }
-
-
-        .urbanis .company-name .accent {
-
-            color: var(--green);
-
-        }
-
-
-        /* =====================================================
-           MANIFESTO
-        ===================================================== */
-
-        .manifesto {
-
-            min-height: 100vh;
-
-            background: #111;
-
-            color: white;
-
-            padding: 150px 8vw;
-
-            display: flex;
-
-            align-items: center;
-
-        }
-
-
-        .manifesto-inner {
-
-            max-width: 1150px;
-
-        }
-
-
-        .manifesto-label {
-
-            font-family: "DM Mono";
-
-            font-size: 9px;
-
-            color: #555;
-
-            letter-spacing: 2px;
-
-            text-transform: uppercase;
-
-            margin-bottom: 50px;
-
-        }
-
-
-        .manifesto h2 {
-
-            font-size: clamp(
-                50px,
-                8vw,
-                120px
-            );
-
-            line-height: .9;
-
-            letter-spacing: -.075em;
-
-            font-weight: 700;
-
-        }
-
-
-        .manifesto h2 span {
-
-            color: #555;
-
-        }
-
-
-        /* =====================================================
-           FOOTER
-        ===================================================== */
-
-        footer {
-
-            background: var(--black);
-
-            color: white;
-
-            padding: 100px 8vw 30px;
-
-        }
-
-
-        .footer-main {
-
-            min-height: 55vh;
-
-            display: flex;
-
-            flex-direction: column;
-
-            justify-content: space-between;
-
-        }
-
-
-        .footer-title {
-
-            font-size: clamp(
-                70px,
-                13vw,
-                190px
-            );
-
-            font-weight: 900;
-
-            letter-spacing: -.1em;
-
-            line-height: .72;
-
-        }
-
-
-        .footer-title span {
-
-            color: #444;
-
-        }
-
-
-        .footer-contact {
-
-            display: flex;
-
-            justify-content: space-between;
-
-            align-items: end;
-
-            margin-top: 80px;
-
-        }
-
-
-        .footer-email {
-
-            font-size: 18px;
-
-        }
-
-
-        .footer-info {
-
-            font-family: "DM Mono";
-
-            font-size: 8px;
-
-            color: #555;
-
-            line-height: 1.8;
-
-            text-align: right;
-
-        }
-
-
-        .footer-bottom {
-
-            border-top: 1px solid #222;
-
-            padding-top: 20px;
-
-            margin-top: 80px;
-
-            display: flex;
-
-            justify-content: space-between;
-
-            font-family: "DM Mono";
-
-            font-size: 8px;
-
-            color: #555;
-
-        }
-
-
-        /* =====================================================
-           RESPONSIVE
-        ===================================================== */
-
-        @media(max-width: 800px) {
-
-            header {
-
-                padding: 20px;
-
-            }
-
-
-            .nav {
-
-                grid-template-columns: 1fr auto;
-
-            }
-
-
-            .nav-center {
-
-                display: none;
-
-            }
-
-
-            .hero {
-
-                padding: 120px 20px 40px;
-
-            }
-
-
-            .hero-title {
-
-                font-size: 20vw;
-
-                letter-spacing: -.08em;
-
-            }
-
-
-            .hero-title .indent {
-
-                margin-left: 8vw;
-
-            }
-
-
-            .hero-bottom {
-
-                flex-direction: column;
-
-                align-items: start;
-
-                gap: 30px;
-
-            }
-
-
-            .intro-grid {
-
-                grid-template-columns: 1fr;
-
-                gap: 30px;
-
-                padding: 100px 25px;
-
-            }
-
-
-            .companies-header {
-
-                min-height: 40vh;
-
-                padding: 80px 25px;
-
-                display: block;
-
-            }
-
-
-            .companies-header p {
-
-                margin-top: 40px;
-
-            }
-
-
-            .company {
-
-                grid-template-columns: 55px 1fr;
-
-            }
-
-
-            .company-number {
-
-                padding: 35px 15px;
-
-            }
-
-
-            .company-main {
-
-                padding: 70px 25px;
-
-            }
-
-
-            .company-name {
-
-                font-size: 20vw;
-
-            }
-
-
-            .company-description {
-
-                margin-top: 55px;
-
-                font-size: 13px;
-
-            }
-
-
-            .company-action {
-
-                right: 25px;
-
-                bottom: 35px;
-
-                width: 80px;
-
-                height: 80px;
-
-            }
-
-
-            .manifesto {
-
-                padding: 100px 25px;
-
-            }
-
-
-            footer {
-
-                padding: 80px 25px 25px;
-
-            }
-
-
-            .footer-contact {
-
-                flex-direction: column;
-
-                align-items: start;
-
-                gap: 40px;
-
-            }
-
-
-            .footer-info {
-
-                text-align: left;
-
-            }
-
-
-            .footer-bottom {
-
-                flex-direction: column;
-
-                gap: 10px;
-
-            }
-
-        }
-
-    </style>
-
+</style>
 </head>
-
 
 <body>
 
-
-    <div class="grain"></div>
-
-
-    <!-- =====================================================
-         HEADER
-    ====================================================== -->
-
-    <header>
-
-        <div class="nav">
+<div class="noise"></div>
 
 
-            <div class="logo">
+<!-- HEADER -->
 
-                GRUPO MELO
+<header>
 
-                <span>
-                    / 001
-                </span>
+    <nav class="nav">
 
-            </div>
-
-
-            <div class="nav-center">
-
-                Strategy / Creation / Engineering
-
-            </div>
-
-
-            <div class="menu">
-
-                <div class="menu-lines">
-
-                    <span></span>
-                    <span></span>
-
-                </div>
-
-            </div>
-
-
+        <div class="logo">
+            GRUPO MELO <span>/ 001</span>
         </div>
 
-    </header>
-
-
-
-    <!-- =====================================================
-         HERO
-    ====================================================== -->
-
-    <section class="hero">
-
-
-        <div class="grid"></div>
-
-
-        <div class="hero-top">
-
-            <div class="hero-index">
-
-                GM — 2026
-
-            </div>
-
-
-            <div class="hero-meta">
-
-                UM GRUPO DE NEGÓCIOS
-                <br>
-                DUAS OPERAÇÕES
-                <br>
-                UMA VISÃO
-
-            </div>
-
+        <div class="nav-links">
+            <a href="#grupo">O Grupo</a>
+            <a href="#empresas">Empresas</a>
+            <a href="#contato">Contato</a>
         </div>
 
+        <a href="#contato" class="nav-contact">
+            <i></i>
+            Fale conosco
+        </a>
+
+    </nav>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero" id="grupo">
+
+    <div class="ambient blue"></div>
+
+    <div class="hero-content">
+
+        <div class="hero-label">
+            <i></i>
+            Grupo Melo — Business & Innovation
+        </div>
 
         <h1 class="hero-title">
 
-            <span>
-                GRUPO
-            </span>
+            CONSTRUÍMOS<br>
 
-            <span class="outline indent">
-                MELO
-            </span>
+            <span class="outline">NEGÓCIOS</span><br>
 
-            <span>
-                /
-            </span>
+            <span class="gradient">PARA O FUTURO.</span>
 
         </h1>
 
-
         <div class="hero-bottom">
 
-
             <p class="hero-description">
-
-                Construímos negócios especializados
-                em diferentes áreas, conectando
-                estratégia, criatividade, tecnologia
-                e engenharia.
-
+                Um grupo empresarial formado por diferentes
+                especialidades, conectando estratégia,
+                tecnologia e engenharia para transformar
+                oportunidades em realidade.
             </p>
 
-
-            <div class="scroll-indicator">
-
-                <i></i>
-
-                Explore
-
+            <div class="hero-scroll">
+                <span></span>
+                Explorar grupo
             </div>
-
 
         </div>
 
-    </section>
+    </div>
 
 
+    <div class="orbit-system">
 
-    <!-- =====================================================
-         INTRO
-    ====================================================== -->
+        <div class="orbit"></div>
+        <div class="orbit"></div>
+        <div class="orbit"></div>
 
-    <section class="intro">
+        <div class="orbit-core"></div>
+
+    </div>
+
+</section>
 
 
-        <div class="intro-grid">
+<!-- INTRO -->
 
+<section class="intro">
 
-            <div>
+    <div class="intro-grid">
 
-                <div class="intro-number">
+        <div>
 
-                    01 — THE GROUP
-
-                </div>
-
+            <div class="section-number">
+                01 / O GRUPO
             </div>
-
-
-            <div>
-
-                <h2 class="intro-title">
-
-                    Duas forças.
-                    <br>
-                    <span>Um mesmo movimento.</span>
-
-                </h2>
-
-
-                <p class="intro-copy">
-
-                    O Grupo Melo reúne empresas com
-                    especialidades distintas e uma visão
-                    compartilhada de crescimento.
-
-                    <br><br>
-
-                    PrestAgora atua no universo do marketing
-                    e da tecnologia.
-
-                    <br>
-
-                    Urbanis atua no universo da engenharia
-                    e dos projetos.
-
-                </p>
-
-            </div>
-
 
         </div>
 
+        <div>
 
-        <div class="intro-circle"></div>
-
-    </section>
-
-
-
-    <!-- =====================================================
-         EMPRESAS
-    ====================================================== -->
-
-    <section
-        class="companies"
-        id="empresas"
-    >
-
-
-        <div class="companies-header">
-
-            <h2>
-                EMPRESAS.
+            <h2 class="intro-title">
+                Diferentes áreas.<br>
+                <span>Uma mesma visão.</span>
             </h2>
 
-
-            <p>
-
-                DUAS OPERAÇÕES.
-                <br>
-                DUAS IDENTIDADES.
-                <br>
-                UM GRUPO.
-
+            <p class="intro-text">
+                O Grupo Melo reúne negócios especializados
+                em diferentes mercados, mantendo uma mesma
+                filosofia: pensar à frente, executar com
+                precisão e construir soluções que gerem
+                valor real.
+                <br><br>
+                Hoje, essa estrutura é representada por
+                duas empresas: PrestAgora e Urbanis.
             </p>
 
         </div>
 
+    </div>
+
+</section>
 
 
-        <!-- =================================================
-             PRESTAGORA
-        ================================================== -->
+<!-- EMPRESAS -->
 
-        <article class="company prest">
+<section class="business" id="empresas">
+
+    <div class="business-head">
+
+        <h2>
+            NOSSOS<br>
+            NEGÓCIOS.
+        </h2>
+
+        <p>
+            DUAS EMPRESAS.<br>
+            DIFERENTES ESPECIALIDADES.<br>
+            UMA ESTRUTURA.
+        </p>
+
+    </div>
 
 
-            <div class="company-number">
+    <div class="units">
 
-                01
 
+        <!-- PRESTAGORA -->
+
+        <article class="unit unit-blue">
+
+            <div class="unit-glow"></div>
+
+            <div class="unit-line"></div>
+
+            <div class="unit-number">
+                BUSINESS UNIT / 01
             </div>
 
+            <div class="unit-top">
 
-            <div class="company-main">
-
-
-                <h3 class="company-name">
-
-                    PRESTA
-                    <span class="outline">
-                        GORA
-                    </span>
-
+                <h3 class="unit-name">
+                    PRESTA<br>
+                    <span>GORA</span>
                 </h3>
 
-
-                <p class="company-description">
-
-                    Marketing que pensa além da campanha.
-
-                    <br><br>
-
-                    A PrestAgora combina estratégia,
-                    performance, tecnologia e design
-                    para construir presença digital
-                    e gerar oportunidades para empresas.
-
+                <p class="unit-description">
+                    Estratégia, marketing e tecnologia
+                    para empresas que querem crescer
+                    no ambiente digital.
                 </p>
-
-
-                <div class="company-services">
-
-                    <span>
-                        Tráfego Pago
-                    </span>
-
-                    <span>
-                        SDR
-                    </span>
-
-                    <span>
-                        Web Design
-                    </span>
-
-                </div>
-
-
-                <a
-                    href="#"
-                    class="company-action"
-                >
-
-                    Explorar
-                    <br>
-                    PrestAgora
-                    <br>
-                    ↗
-
-                </a>
-
 
             </div>
 
+            <div class="unit-footer">
+
+                <div class="unit-services">
+                    <span>Tráfego Pago</span>
+                    <span>SDR</span>
+                    <span>Web Design</span>
+                    <span>Performance</span>
+                </div>
+
+                <a href="#" class="unit-arrow">
+                    ↗
+                </a>
+
+            </div>
 
         </article>
 
 
+        <!-- URBANIS -->
 
-        <!-- =================================================
-             URBANIS
-        ================================================== -->
+        <article class="unit unit-green">
 
-        <article class="company urbanis">
+            <div class="unit-glow"></div>
 
+            <div class="unit-line"></div>
 
-            <div class="company-number">
-
-                02
-
+            <div class="unit-number">
+                BUSINESS UNIT / 02
             </div>
 
+            <div class="unit-top">
 
-            <div class="company-main">
-
-
-                <h3 class="company-name">
-
-                    <span class="accent">
-                        URBAN
-                    </span>
-
-                    <span class="outline">
-                        IS
-                    </span>
-
+                <h3 class="unit-name">
+                    <span>URBAN</span><br>
+                    IS
                 </h3>
 
-
-                <p class="company-description">
-
-                    Engenharia que transforma
+                <p class="unit-description">
+                    Engenharia, projetos e soluções
+                    desenvolvidas para transformar
                     planejamento em realidade.
-
-                    <br><br>
-
-                    A Urbanis desenvolve soluções,
-                    projetos e serviços de engenharia
-                    com precisão, planejamento
-                    e visão de longo prazo.
-
                 </p>
-
-
-                <div class="company-services">
-
-                    <span>
-                        Projetos
-                    </span>
-
-                    <span>
-                        Engenharia
-                    </span>
-
-                    <span>
-                        Consultoria
-                    </span>
-
-                </div>
-
-
-                <a
-                    href="#"
-                    class="company-action"
-                >
-
-                    Explorar
-                    <br>
-                    Urbanis
-                    <br>
-                    ↗
-
-                </a>
-
 
             </div>
 
+            <div class="unit-footer">
+
+                <div class="unit-services">
+                    <span>Engenharia</span>
+                    <span>Projetos</span>
+                    <span>Consultoria</span>
+                    <span>Construção</span>
+                </div>
+
+                <a href="#" class="unit-arrow">
+                    ↗
+                </a>
+
+            </div>
 
         </article>
 
+    </div>
 
-    </section>
-
-
-
-    <!-- =====================================================
-         MANIFESTO
-    ====================================================== -->
-
-    <section class="manifesto">
+</section>
 
 
-        <div class="manifesto-inner">
+<!-- CONNECTION -->
+
+<section class="connection">
+
+    <div class="connection-bg"></div>
+
+    <div class="connection-content">
+
+        <div class="connection-label">
+            Grupo Melo / Estrutura
+        </div>
+
+        <h2>
+            ESTRATÉGIA<br>
+            <span>ENCONTRA</span><br>
+            EXECUÇÃO.
+        </h2>
+
+        <p class="connection-description">
+            Marketing cria oportunidades.
+            Engenharia transforma planos em realidade.
+            O Grupo Melo conecta diferentes competências
+            para construir novos caminhos.
+        </p>
+
+    </div>
+
+</section>
 
 
-            <div class="manifesto-label">
+<!-- STATS -->
 
-                02 — OUR APPROACH
+<section class="stats">
 
-            </div>
+    <div class="stat">
+
+        <div class="stat-number">
+            02
+        </div>
+
+        <div class="stat-label">
+            Empresas
+        </div>
+
+    </div>
 
 
-            <h2>
+    <div class="stat">
 
-                Ideias precisam
-                <span>de estratégia.</span>
+        <div class="stat-number">
+            ∞
+        </div>
 
-                Estratégia precisa
-                <span>de execução.</span>
+        <div class="stat-label">
+            Possibilidades
+        </div>
 
-                Execução cria
-                <span>realidade.</span>
+    </div>
 
-            </h2>
 
+    <div class="stat">
+
+        <div class="stat-number">
+            01
+        </div>
+
+        <div class="stat-label">
+            Visão
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer id="contato">
+
+    <div class="footer-title">
+        VAMOS<br>
+        <span>CONSTRUIR.</span>
+    </div>
+
+
+    <div class="footer-main">
+
+        <div class="footer-contact">
+
+            <small>
+                Entre em contato
+            </small>
+
+            contato@grupomelo.com.br
 
         </div>
 
 
-    </section>
+        <div class="footer-info">
 
-
-
-    <!-- =====================================================
-         FOOTER
-    ====================================================== -->
-
-    <footer>
-
-
-        <div class="footer-main">
-
-
-            <div class="footer-title">
-
-                LET'S
-                <br>
-
-                <span>
-                    CREATE.
-                </span>
-
-            </div>
-
-
-            <div class="footer-contact">
-
-
-                <div class="footer-email">
-
-                    contato@grupomelo.com.br
-
-                </div>
-
-
-                <div class="footer-info">
-
-                    GRUPO MELO
-                    <br>
-                    PRESTAGORA / URBANIS
-                    <br>
-                    SÃO JOSÉ DO RIO PRETO — SP
-
-                </div>
-
-
-            </div>
-
+            GRUPO MELO<br>
+            PRESTAGORA / URBANIS<br>
+            SÃO JOSÉ DO RIO PRETO — SP
 
         </div>
 
-
-        <div class="footer-bottom">
-
-            <span>
-                © 2026 Grupo Melo
-            </span>
-
-            <span>
-                All rights reserved
-            </span>
-
-        </div>
+    </div>
 
 
-    </footer>
+    <div class="footer-bottom">
+
+        <span>
+            © 2026 Grupo Melo
+        </span>
+
+        <span>
+            BUSINESS / TECHNOLOGY / ENGINEERING
+        </span>
+
+    </div>
+
+</footer>
 
 
 </body>
-
 </html>
