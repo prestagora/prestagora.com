@@ -756,98 +756,314 @@
         }
 
 
-        /* =====================================================
-           FLOATING DATA
-        ===================================================== */
+/* =====================================================
+   FLOATING MARKETING CARDS
+===================================================== */
 
-        .data-card {
+.data-card {
 
-            position: absolute;
+    position: absolute;
 
-            z-index: 6;
+    z-index: 6;
 
-            padding: 14px 17px;
+    width: 170px;
 
-            min-width: 150px;
+    padding: 16px 18px;
 
-            border: 1px solid rgba(255,255,255,.09);
+    border: 1px solid rgba(255,255,255,.09);
 
-            background: rgba(6,12,20,.65);
+    background:
+        linear-gradient(
+            145deg,
+            rgba(12,23,38,.82),
+            rgba(4,10,18,.68)
+        );
 
-            backdrop-filter: blur(18px);
+    backdrop-filter: blur(20px);
 
-            border-radius: 12px;
+    border-radius: 13px;
 
-            box-shadow:
-                0 20px 60px rgba(0,0,0,.25);
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.3),
+        inset 0 1px 0 rgba(255,255,255,.04);
 
-        }
+    transition:
+        border-color .4s,
+        transform .4s;
 
-        .data-card small {
+}
 
-            display: block;
 
-            color: #586675;
+/* pequeno ponto luminoso */
 
-            font-size: 7px;
+.data-card::before {
 
-            text-transform: uppercase;
+    content: "";
 
-            letter-spacing: 1.5px;
+    position: absolute;
 
-        }
+    width: 5px;
+    height: 5px;
 
-        .data-card strong {
+    border-radius: 50%;
 
-            display: block;
+    background: var(--blue-2);
 
-            margin-top: 6px;
+    box-shadow:
+        0 0 12px var(--blue-2);
 
-            font-size: 16px;
+    top: 17px;
+    right: 17px;
 
-            letter-spacing: -.04em;
+}
 
-        }
 
-        .data-card span {
+/* título pequeno */
 
-            color: #35d990;
+.data-card small {
 
-            font-size: 8px;
+    display: block;
 
-        }
+    color: #536171;
 
-        .data-1 {
+    font-size: 7px;
 
-            top: 30%;
+    text-transform: uppercase;
 
-            right: 13%;
+    letter-spacing: 1.8px;
 
-            animation: cardFloat 5s ease-in-out infinite;
+}
 
-        }
 
-        .data-2 {
+/* título principal */
 
-            bottom: 24%;
+.data-card strong {
 
-            right: 5%;
+    display: block;
 
-            animation: cardFloat 7s ease-in-out infinite reverse;
+    margin-top: 8px;
 
-        }
+    font-size: 16px;
 
-        @keyframes cardFloat {
+    line-height: 1;
 
-            0%,100% {
-                transform: translateY(0);
-            }
+    letter-spacing: -.05em;
 
-            50% {
-                transform: translateY(-15px);
-            }
+}
 
-        }
+
+/* descrição */
+
+.data-card span {
+
+    display: block;
+
+    margin-top: 7px;
+
+    color: #3fdd9a;
+
+    font-size: 8px;
+
+}
+
+
+/* =========================================
+   POSIÇÕES
+========================================= */
+
+
+/* Tráfego Pago */
+
+.data-trafego {
+
+    top: 18%;
+
+    right: 16%;
+
+    animation:
+        cardFloatA 6s ease-in-out infinite;
+
+}
+
+
+/* SDR */
+
+.data-sdr {
+
+    top: 48%;
+
+    right: 2%;
+
+    animation:
+        cardFloatB 7s ease-in-out infinite;
+
+}
+
+
+/* Web Design */
+
+.data-web {
+
+    bottom: 13%;
+
+    right: 18%;
+
+    animation:
+        cardFloatC 8s ease-in-out infinite;
+
+}
+
+
+/* Card original PERFORMANCE */
+
+.data-1 {
+
+    top: 34%;
+
+    right: 25%;
+
+    animation:
+        cardFloatB 6.5s ease-in-out infinite reverse;
+
+}
+
+
+/* Card original GROWTH */
+
+.data-2 {
+
+    bottom: 24%;
+
+    right: 5%;
+
+    animation:
+        cardFloatA 7.5s ease-in-out infinite reverse;
+
+}
+
+
+/* =========================================
+   ANIMAÇÕES
+========================================= */
+
+@keyframes cardFloatA {
+
+    0%,100% {
+
+        transform:
+            translate3d(0,0,0)
+            rotate(0deg);
+
+    }
+
+    50% {
+
+        transform:
+            translate3d(-12px,-18px,0)
+            rotate(-1deg);
+
+    }
+
+}
+
+
+@keyframes cardFloatB {
+
+    0%,100% {
+
+        transform:
+            translate3d(0,0,0)
+            rotate(0deg);
+
+    }
+
+    50% {
+
+        transform:
+            translate3d(14px,12px,0)
+            rotate(1deg);
+
+    }
+
+}
+
+
+@keyframes cardFloatC {
+
+    0%,100% {
+
+        transform:
+            translate3d(0,0,0)
+            rotate(0deg);
+
+    }
+
+    50% {
+
+        transform:
+            translate3d(-15px,14px,0)
+            rotate(-1deg);
+
+    }
+
+}
+
+
+/* =========================================
+   CORES DOS SERVIÇOS
+========================================= */
+
+.data-trafego::before {
+
+    background: var(--blue-2);
+
+    box-shadow:
+        0 0 15px var(--blue-2);
+
+}
+
+
+.data-sdr::before {
+
+    background: #35d990;
+
+    box-shadow:
+        0 0 15px #35d990;
+
+}
+
+
+.data-web::before {
+
+    background: #a878ff;
+
+    box-shadow:
+        0 0 15px #a878ff;
+
+}
+
+
+.data-web span {
+
+    color: #b28aff;
+
+}
+
+
+/* =========================================
+   HOVER
+========================================= */
+
+.data-card:hover {
+
+    border-color:
+        rgba(75,150,255,.35);
+
+    transform:
+        translateY(-6px)
+        scale(1.03);
+
+}
 
 
         /* =====================================================
@@ -1850,49 +2066,104 @@
     </div>
 
 
-    <!-- DATA CARDS -->
-
-    <div class="data-card data-1">
-
-        <small>
-            Performance
-        </small>
-
-        <strong>
-            LIVE
-        </strong>
-
-        <span>
-            ● campanhas ativas
-        </span>
-
-    </div>
+<!-- =====================================================
+     FLOATING MARKETING CARDS
+===================================================== -->
 
 
-    <div class="data-card data-2">
+<!-- PERFORMANCE -->
 
-        <small>
-            Growth System
-        </small>
+<div class="data-card data-1">
 
-        <strong>
-            +RESULTADO
-        </strong>
+    <small>
+        Performance
+    </small>
 
-        <span>
-            estratégia em movimento
-        </span>
+    <strong>
+        LIVE
+    </strong>
 
-    </div>
+    <span>
+        ● campanhas ativas
+    </span>
+
+</div>
 
 
-    <div class="scroll">
+<!-- TRÁFEGO PAGO -->
 
-        <span></span>
+<div class="data-card data-trafego">
 
-        Scroll para explorar
+    <small>
+        01 / Aquisição
+    </small>
 
-    </div>
+    <strong>
+        TRÁFEGO PAGO
+    </strong>
+
+    <span>
+        ● mídia em movimento
+    </span>
+
+</div>
+
+
+<!-- SDR -->
+
+<div class="data-card data-sdr">
+
+    <small>
+        02 / Comercial
+    </small>
+
+    <strong>
+        SDR
+    </strong>
+
+    <span>
+        ● leads em contato
+    </span>
+
+</div>
+
+
+<!-- WEB DESIGN -->
+
+<div class="data-card data-web">
+
+    <small>
+        03 / Digital
+    </small>
+
+    <strong>
+        WEB DESIGN
+    </strong>
+
+    <span>
+        ● experiências digitais
+    </span>
+
+</div>
+
+
+<!-- GROWTH -->
+
+<div class="data-card data-2">
+
+    <small>
+        Growth System
+    </small>
+
+    <strong>
+        +RESULTADO
+    </strong>
+
+    <span>
+        estratégia em movimento
+    </span>
+
+</div>
 
 </section>
 
