@@ -586,25 +586,12 @@ header{
 
 @keyframes corePulse {
 
-    0% {
+    0%,
+    100% {
 
         transform:
             translate(-50%, -50%)
             scale(.95);
-
-        background:
-            radial-gradient(
-                circle,
-                #e8f1ff 0%,
-                #7fa4df 8%,
-                #315b91 25%,
-                #08192e 58%,
-                transparent 72%
-            );
-
-        box-shadow:
-            0 0 25px rgba(61,135,255,.55),
-            0 0 80px rgba(61,135,255,.25);
 
     }
 
@@ -614,22 +601,10 @@ header{
             translate(-50%, -50%)
             scale(1.08);
 
-        background:
-            radial-gradient(
-                circle,
-                #e8fff4 0%,
-                #8de8bd 8%,
-                #218a61 25%,
-                #062a1d 58%,
-                transparent 72%
-            );
-
-        box-shadow:
-            0 0 25px rgba(53,217,144,.60),
-            0 0 80px rgba(53,217,144,.28);
-
     }
 
+}
+    
     100% {
 
         transform:
@@ -676,6 +651,54 @@ header{
         );
 
     filter: blur(12px);
+
+}
+
+    .orbit-core::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #e8fff4 0%,
+            #8de8bd 8%,
+            #218a61 25%,
+            #062a1d 58%,
+            transparent 72%
+        );
+
+    opacity: 0;
+
+    animation:
+        coreColor
+        4s
+        ease-in-out
+        infinite;
+
+}
+
+
+@keyframes coreColor {
+
+    0%,
+    100% {
+
+        opacity: 0;
+
+    }
+
+    50% {
+
+        opacity: 1;
+
+    }
 
 }
 
