@@ -1,1481 +1,1350 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Grupo Melo — Business & Innovation</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --bg:#050607;
+    --surface:#0a0c0e;
+    --surface2:#0f1215;
+    --white:#f5f7f8;
+    --muted:#7d858d;
+    --line:rgba(255,255,255,.09);
+
+    --blue:#2878ff;
+    --blue-light:#6ea1ff;
+
+    --green:#19c879;
+    --green-light:#65f0b1;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:var(--bg);
+    color:var(--white);
+    font-family:"Inter",sans-serif;
+    overflow-x:hidden;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+::selection{
+    background:#fff;
+    color:#000;
+}
+
+/* =========================================
+   BACKGROUND
+========================================= */
+
+.noise{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:999;
+    opacity:.035;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+}
+
+.ambient{
+    position:absolute;
+    width:700px;
+    height:700px;
+    border-radius:50%;
+    filter:blur(100px);
+    opacity:.16;
+    pointer-events:none;
+}
+
+.ambient.blue{
+    background:var(--blue);
+}
+
+.ambient.green{
+    background:var(--green);
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+header{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:100;
+    padding:25px 5vw;
+}
+
+.nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 
-    <meta charset="UTF-8">
+    padding:12px 14px 12px 20px;
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    border:1px solid rgba(255,255,255,.09);
 
-    <title>Grupo Melo — Building What's Next</title>
+    background:rgba(5,6,7,.65);
 
-    <meta
-        name="description"
-        content="Grupo Melo. PrestAgora Marketing e Urbanis Engenharia."
-    >
+    backdrop-filter:blur(20px);
 
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-    >
+    border-radius:100px;
+}
 
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
+.logo{
+    font-size:14px;
+    font-weight:800;
+    letter-spacing:-.04em;
+}
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet"
-    >
+.logo span{
+    color:#666;
+    font-weight:500;
+}
 
-    <style>
+.nav-links{
+    display:flex;
+    gap:35px;
+    font-size:11px;
+    color:#8b9298;
+}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+.nav-links a{
+    transition:.3s;
+}
 
-        :root {
-            --bg: #050505;
-            --white: #f5f5f2;
-            --muted: #777;
-            --blue: #2563ff;
-            --green: #16a66a;
-        }
+.nav-links a:hover{
+    color:white;
+}
 
-        html {
-            scroll-behavior: smooth;
-        }
+.nav-contact{
+    display:flex;
+    align-items:center;
+    gap:10px;
 
-        body {
-            background: var(--bg);
-            color: var(--white);
-            font-family: "Inter", sans-serif;
-            overflow-x: hidden;
-        }
+    padding:10px 17px;
 
-        body::selection {
-            background: white;
-            color: black;
-        }
+    border-radius:100px;
 
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
+    background:white;
+    color:#000;
 
+    font-size:10px;
+    font-weight:700;
+}
 
-        /* ================================================
-           CURSOR
-        ================================================ */
+.nav-contact i{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:#1fd783;
+}
 
-        .cursor {
-            position: fixed;
 
-            width: 12px;
-            height: 12px;
+/* =========================================
+   HERO
+========================================= */
 
-            border-radius: 50%;
+.hero{
+    min-height:100vh;
+    position:relative;
 
-            background: white;
+    display:flex;
+    align-items:center;
 
-            pointer-events: none;
+    padding:150px 8vw 80px;
 
-            z-index: 9999;
+    overflow:hidden;
+}
 
-            transform: translate(-50%, -50%);
+.hero .ambient{
+    top:-250px;
+    left:50%;
+    transform:translateX(-50%);
+}
 
-            mix-blend-mode: difference;
+.hero-content{
+    width:100%;
+    position:relative;
+    z-index:3;
+}
 
-            transition:
-                width .25s ease,
-                height .25s ease;
-        }
+.hero-label{
+    display:flex;
+    align-items:center;
+    gap:12px;
 
-        .cursor.big {
-            width: 70px;
-            height: 70px;
-        }
+    margin-bottom:35px;
 
+    font-size:10px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:#727a82;
+}
 
-        /* ================================================
-           NOISE
-        ================================================ */
+.hero-label i{
+    width:30px;
+    height:1px;
+    background:#555;
+}
 
-        .noise {
-            position: fixed;
+.hero-title{
+    max-width:1100px;
 
-            inset: 0;
+    font-size:clamp(65px,10vw,160px);
 
-            pointer-events: none;
+    line-height:.82;
 
-            z-index: 999;
+    letter-spacing:-.085em;
 
-            opacity: .045;
+    font-weight:800;
+}
 
-            background-image:
-                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
-        }
+.hero-title .outline{
+    color:transparent;
+    -webkit-text-stroke:1px rgba(255,255,255,.65);
+}
 
+.hero-title .gradient{
+    background:linear-gradient(
+        100deg,
+        #fff 0%,
+        #fff 35%,
+        #8eaefb 65%,
+        #49df9c 100%
+    );
 
-        /* ================================================
-           HEADER
-        ================================================ */
+    -webkit-background-clip:text;
+    color:transparent;
+}
 
-        header {
+.hero-bottom{
+    margin-top:65px;
 
-            position: fixed;
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+}
 
-            top: 0;
-            left: 0;
+.hero-description{
+    max-width:420px;
 
-            width: 100%;
+    font-size:13px;
+    line-height:1.8;
 
-            z-index: 100;
+    color:#858d94;
+}
 
-            padding: 26px 40px;
+.hero-scroll{
+    display:flex;
+    align-items:center;
+    gap:12px;
 
-            mix-blend-mode: difference;
+    font-size:9px;
+    text-transform:uppercase;
+    letter-spacing:2px;
 
-        }
+    color:#686f75;
+}
 
-        .header-inner {
+.hero-scroll span{
+    width:45px;
+    height:1px;
+    background:#555;
+}
 
-            display: flex;
 
-            align-items: center;
+/* =========================================
+   ORBIT
+========================================= */
 
-            justify-content: space-between;
+.orbit-system{
+    position:absolute;
 
-        }
+    width:620px;
+    height:620px;
 
-        .brand {
+    right:-120px;
+    top:50%;
+    transform:translateY(-50%);
 
-            font-size: 16px;
+    pointer-events:none;
 
-            font-weight: 800;
+    opacity:.7;
+}
 
-            letter-spacing: -0.5px;
+.orbit{
+    position:absolute;
+    inset:0;
 
-        }
+    border:1px solid rgba(255,255,255,.07);
 
-        .brand span {
+    border-radius:50%;
 
-            display: block;
+    transform:rotate(-20deg) scaleY(.42);
+}
 
-            margin-top: 3px;
+.orbit:nth-child(2){
+    inset:70px;
+    transform:rotate(35deg) scaleY(.42);
+}
 
-            font-size: 7px;
+.orbit:nth-child(3){
+    inset:145px;
+    transform:rotate(-55deg) scaleY(.42);
+}
 
-            font-weight: 500;
+.orbit-core{
+    position:absolute;
 
-            letter-spacing: 2px;
+    top:50%;
+    left:50%;
 
-            opacity: .6;
+    transform:translate(-50%,-50%);
 
-        }
+    width:85px;
+    height:85px;
 
-        .header-menu {
+    border-radius:50%;
 
-            display: flex;
+    background:radial-gradient(
+        circle,
+        rgba(255,255,255,.9),
+        rgba(40,120,255,.4) 30%,
+        rgba(40,120,255,0) 70%
+    );
 
-            align-items: center;
+    box-shadow:
+        0 0 80px rgba(40,120,255,.5),
+        0 0 150px rgba(40,120,255,.2);
+}
 
-            gap: 35px;
 
-            font-size: 10px;
+/* =========================================
+   INTRO
+========================================= */
 
-            text-transform: uppercase;
+.intro{
+    position:relative;
 
-            letter-spacing: 1.5px;
+    padding:180px 8vw;
 
-        }
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
 
-        .header-menu a {
+    background:
+        radial-gradient(
+            circle at 80% 50%,
+            rgba(40,120,255,.08),
+            transparent 35%
+        ),
+        var(--surface);
+}
 
-            opacity: .65;
+.intro-grid{
+    display:grid;
 
-            transition: opacity .25s ease;
+    grid-template-columns:1fr 1.5fr;
 
-        }
+    gap:100px;
+}
 
-        .header-menu a:hover {
+.section-number{
+    font-size:10px;
+    color:#555;
+    letter-spacing:2px;
+}
 
-            opacity: 1;
+.intro-title{
+    font-size:clamp(40px,6vw,85px);
 
-        }
+    line-height:.92;
 
+    letter-spacing:-.065em;
 
-        /* ================================================
-           HERO
-        ================================================ */
+    font-weight:700;
+}
 
-        .hero {
+.intro-title span{
+    color:#4d555c;
+}
 
-            position: relative;
+.intro-text{
+    margin-top:45px;
 
-            min-height: 100vh;
+    max-width:540px;
 
-            display: flex;
+    color:#80878d;
 
-            align-items: center;
+    font-size:14px;
 
-            justify-content: center;
+    line-height:1.9;
+}
 
-            overflow: hidden;
 
-        }
+/* =========================================
+   BUSINESS UNITS
+========================================= */
 
+.business{
+    padding:150px 5vw;
 
-        /* ambient light */
+    background:#050607;
+}
 
-        .light {
+.business-head{
+    padding:0 3vw;
 
-            position: absolute;
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
 
-            width: 650px;
-            height: 650px;
+    margin-bottom:70px;
+}
 
-            border-radius: 50%;
+.business-head h2{
+    font-size:clamp(55px,8vw,120px);
 
-            filter: blur(120px);
+    letter-spacing:-.08em;
 
-            opacity: .12;
+    line-height:.8;
+}
 
-            background: #315dff;
+.business-head p{
+    max-width:250px;
 
-            top: 5%;
-            left: 50%;
+    color:#6e757c;
 
-            transform: translateX(-50%);
+    font-size:10px;
 
-            animation:
-                lightMove 8s ease-in-out infinite alternate;
+    line-height:1.7;
+}
 
-        }
 
-        @keyframes lightMove {
+/* =========================================
+   CARDS
+========================================= */
 
-            from {
-                transform: translateX(-50%) scale(.85);
-            }
+.units{
+    display:grid;
 
-            to {
-                transform: translateX(-50%) scale(1.2);
-            }
+    grid-template-columns:1fr 1fr;
 
-        }
+    gap:18px;
+}
 
+.unit{
+    position:relative;
 
-        .hero-content {
+    min-height:650px;
 
-            position: relative;
+    overflow:hidden;
 
-            z-index: 5;
+    border:1px solid var(--line);
 
-            width: min(1250px, calc(100% - 60px));
+    border-radius:30px;
 
-            text-align: center;
+    background:var(--surface);
 
-        }
+    padding:45px;
 
+    transition:
+        transform .5s ease,
+        border-color .5s ease;
+}
 
-        .eyebrow {
+.unit:hover{
+    transform:translateY(-8px);
+}
 
-            font-size: 9px;
+.unit-blue:hover{
+    border-color:rgba(40,120,255,.45);
+}
 
-            letter-spacing: 4px;
+.unit-green:hover{
+    border-color:rgba(25,200,121,.45);
+}
 
-            text-transform: uppercase;
+.unit-number{
+    font-size:9px;
+    color:#555;
+    letter-spacing:2px;
+}
 
-            color: #777;
+.unit-top{
+    margin-top:120px;
+}
 
-            margin-bottom: 35px;
+.unit-name{
+    font-size:clamp(55px,7vw,105px);
 
-            animation: reveal .9s ease forwards;
+    letter-spacing:-.085em;
 
-        }
+    line-height:.8;
 
+    font-weight:800;
+}
 
-        .hero-title {
+.unit-name span{
+    color:transparent;
+    -webkit-text-stroke:1px rgba(255,255,255,.5);
+}
 
-            font-size: clamp(70px, 12vw, 175px);
+.unit-description{
+    max-width:400px;
 
-            font-weight: 900;
+    margin-top:45px;
 
-            line-height: .78;
+    color:#858c92;
 
-            letter-spacing: -10px;
+    font-size:13px;
 
-            text-transform: uppercase;
+    line-height:1.8;
+}
 
-            animation: titleReveal 1.2s cubic-bezier(.2,.8,.2,1) forwards;
+.unit-footer{
+    position:absolute;
 
-        }
+    left:45px;
+    right:45px;
+    bottom:45px;
 
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+}
 
-        .hero-title span {
+.unit-services{
+    display:flex;
+    gap:7px;
+    flex-wrap:wrap;
 
-            display: block;
+    max-width:350px;
+}
 
-        }
+.unit-services span{
+    padding:8px 11px;
 
+    border:1px solid rgba(255,255,255,.09);
 
-        .hero-title .outline {
+    border-radius:100px;
 
-            color: transparent;
+    font-size:8px;
 
-            -webkit-text-stroke: 1px rgba(255,255,255,.55);
+    color:#858c92;
+}
 
-        }
+.unit-arrow{
+    width:65px;
+    height:65px;
 
+    border:1px solid rgba(255,255,255,.12);
 
-        @keyframes titleReveal {
+    border-radius:50%;
 
-            from {
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-                opacity: 0;
+    font-size:18px;
 
-                transform:
-                    translateY(80px)
-                    scale(.96);
+    transition:.4s;
+}
 
-            }
+.unit:hover .unit-arrow{
+    transform:rotate(45deg);
+}
 
-            to {
 
-                opacity: 1;
+/* BLUE */
 
-                transform:
-                    translateY(0)
-                    scale(1);
+.unit-blue .unit-glow{
+    position:absolute;
 
-            }
+    width:400px;
+    height:400px;
 
-        }
+    right:-180px;
+    bottom:-180px;
 
+    border-radius:50%;
 
-        .hero-subtitle {
+    background:var(--blue);
 
-            max-width: 440px;
+    filter:blur(120px);
 
-            margin: 55px auto 0;
+    opacity:.16;
+}
 
-            color: #777;
+.unit-blue .unit-line{
+    background:var(--blue);
+}
 
-            font-size: 13px;
 
-            line-height: 1.7;
+/* GREEN */
 
-        }
+.unit-green .unit-glow{
+    position:absolute;
 
+    width:400px;
+    height:400px;
 
-        /* ================================================
-           ORBIT
-        ================================================ */
+    right:-180px;
+    bottom:-180px;
 
-        .orbit {
+    border-radius:50%;
 
-            position: absolute;
+    background:var(--green);
 
-            width: 580px;
-            height: 580px;
+    filter:blur(120px);
 
-            border: 1px solid rgba(255,255,255,.08);
+    opacity:.16;
+}
 
-            border-radius: 50%;
+.unit-green .unit-line{
+    background:var(--green);
+}
 
-            animation: rotate 25s linear infinite;
+.unit-line{
+    position:absolute;
 
-        }
+    top:0;
+    left:45px;
 
-        .orbit::before {
+    width:45px;
+    height:2px;
+}
 
-            content: "";
 
-            position: absolute;
+/* =========================================
+   CONNECTION
+========================================= */
 
-            inset: 60px;
+.connection{
+    min-height:80vh;
 
-            border: 1px dashed rgba(255,255,255,.07);
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-            border-radius: 50%;
+    position:relative;
 
-        }
+    padding:100px 8vw;
 
-        .orbit::after {
+    overflow:hidden;
 
-            content: "";
+    background:#090b0d;
+}
 
-            position: absolute;
+.connection-bg{
+    position:absolute;
 
-            width: 8px;
-            height: 8px;
+    width:900px;
+    height:900px;
 
-            border-radius: 50%;
+    border-radius:50%;
 
-            background: white;
+    border:1px solid rgba(255,255,255,.04);
+}
 
-            top: 0;
-            left: 50%;
+.connection-bg::before,
+.connection-bg::after{
+    content:"";
 
-            transform: translate(-50%, -50%);
+    position:absolute;
 
-            box-shadow:
-                0 0 25px white;
+    border-radius:50%;
 
-        }
+    border:1px solid rgba(255,255,255,.04);
+}
 
-        @keyframes rotate {
+.connection-bg::before{
+    inset:100px;
+}
 
-            to {
-                transform: rotate(360deg);
-            }
+.connection-bg::after{
+    inset:200px;
+}
 
-        }
+.connection-content{
+    position:relative;
+    z-index:2;
 
+    text-align:center;
+}
 
-        /* ================================================
-           SCROLL
-        ================================================ */
+.connection-label{
+    font-size:9px;
+    letter-spacing:3px;
+    color:#555;
+    text-transform:uppercase;
 
-        .scroll {
+    margin-bottom:40px;
+}
 
-            position: absolute;
+.connection h2{
+    font-size:clamp(45px,7vw,105px);
 
-            bottom: 35px;
-            left: 40px;
+    line-height:.88;
 
-            display: flex;
+    letter-spacing:-.075em;
+}
 
-            align-items: center;
+.connection h2 span{
+    color:#555;
+}
 
-            gap: 15px;
+.connection-description{
+    max-width:450px;
 
-            font-size: 8px;
+    margin:35px auto 0;
 
-            text-transform: uppercase;
+    color:#747c83;
 
-            letter-spacing: 2px;
+    font-size:13px;
 
-            color: #666;
+    line-height:1.8;
+}
 
-        }
 
-        .scroll-line {
+/* =========================================
+   STATS
+========================================= */
 
-            width: 55px;
+.stats{
+    display:grid;
 
-            height: 1px;
+    grid-template-columns:repeat(3,1fr);
 
-            background: #555;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+}
 
-        }
+.stat{
+    padding:80px 5vw;
 
+    border-right:1px solid var(--line);
+}
 
-        /* ================================================
-           BUSINESS SECTION
-        ================================================ */
+.stat:last-child{
+    border-right:none;
+}
 
-        .businesses {
+.stat-number{
+    font-size:clamp(40px,5vw,70px);
 
-            position: relative;
+    letter-spacing:-.07em;
 
-            min-height: 100vh;
+    font-weight:700;
+}
 
-            display: grid;
+.stat-label{
+    margin-top:12px;
 
-            grid-template-columns: 1fr 1fr;
+    color:#646c73;
 
-        }
+    font-size:10px;
 
+    text-transform:uppercase;
 
-        .business {
+    letter-spacing:1.5px;
+}
 
-            position: relative;
 
-            min-height: 100vh;
+/* =========================================
+   FOOTER
+========================================= */
 
-            padding: 70px;
+footer{
+    padding:130px 8vw 35px;
 
-            display: flex;
+    background:#030405;
+}
 
-            flex-direction: column;
+.footer-title{
+    font-size:clamp(65px,12vw,180px);
 
-            justify-content: space-between;
+    line-height:.75;
 
-            overflow: hidden;
+    letter-spacing:-.095em;
 
-            transition:
-                flex .6s cubic-bezier(.2,.8,.2,1);
+    font-weight:800;
+}
 
-        }
+.footer-title span{
+    color:#3e454b;
+}
 
+.footer-main{
+    margin-top:120px;
 
-        .business::before {
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+}
 
-            content: "";
+.footer-contact{
+    font-size:15px;
+}
 
-            position: absolute;
+.footer-contact small{
+    display:block;
 
-            inset: 0;
+    margin-bottom:10px;
 
-            opacity: 0;
+    color:#555;
 
-            transition: opacity .5s ease;
+    font-size:8px;
 
-        }
+    text-transform:uppercase;
 
+    letter-spacing:2px;
+}
 
-        .business:hover::before {
+.footer-info{
+    text-align:right;
 
-            opacity: 1;
+    color:#555;
 
-        }
+    font-size:9px;
 
+    line-height:1.8;
+}
 
-        .business.marketing::before {
+.footer-bottom{
+    margin-top:100px;
 
-            background:
-                radial-gradient(
-                    circle at 70% 50%,
-                    rgba(37,99,255,.25),
-                    transparent 50%
-                );
+    padding-top:20px;
 
-        }
+    border-top:1px solid var(--line);
 
+    display:flex;
+    justify-content:space-between;
 
-        .business.engineering::before {
+    color:#41474c;
 
-            background:
-                radial-gradient(
-                    circle at 30% 50%,
-                    rgba(22,166,106,.23),
-                    transparent 50%
-                );
+    font-size:8px;
+}
 
-        }
 
+/* =========================================
+   RESPONSIVE
+========================================= */
 
-        .business:hover {
+@media(max-width:850px){
 
-            flex: 1.15;
+    header{
+        padding:15px;
+    }
 
-        }
+    .nav{
+        padding:11px 12px 11px 17px;
+    }
 
+    .nav-links{
+        display:none;
+    }
 
-        .business + .business {
+    .hero{
+        padding:140px 25px 70px;
+    }
 
-            border-left: 1px solid rgba(255,255,255,.08);
+    .hero-title{
+        font-size:19vw;
+    }
 
-        }
+    .hero-bottom{
+        flex-direction:column;
+        align-items:start;
+        gap:35px;
+    }
 
+    .orbit-system{
+        width:420px;
+        height:420px;
 
-        .business-top {
+        right:-200px;
 
-            position: relative;
+        opacity:.4;
+    }
 
-            z-index: 2;
+    .intro{
+        padding:120px 25px;
+    }
 
-            display: flex;
+    .intro-grid{
+        grid-template-columns:1fr;
+        gap:40px;
+    }
 
-            justify-content: space-between;
+    .business{
+        padding:100px 18px;
+    }
 
-            align-items: center;
+    .business-head{
+        padding:0 10px;
 
-        }
+        flex-direction:column;
+        align-items:start;
 
+        gap:35px;
+    }
 
-        .number {
+    .units{
+        grid-template-columns:1fr;
+    }
 
-            font-size: 9px;
+    .unit{
+        min-height:580px;
+        padding:30px;
+        border-radius:22px;
+    }
 
-            letter-spacing: 2px;
+    .unit-top{
+        margin-top:100px;
+    }
 
-            color: #555;
+    .unit-footer{
+        left:30px;
+        right:30px;
+        bottom:30px;
+    }
 
-        }
+    .unit-line{
+        left:30px;
+    }
 
+    .stats{
+        grid-template-columns:1fr;
+    }
 
-        .business-type {
+    .stat{
+        border-right:none;
+        border-bottom:1px solid var(--line);
+    }
 
-            font-size: 9px;
+    .stat:last-child{
+        border-bottom:none;
+    }
 
-            text-transform: uppercase;
+    .connection{
+        min-height:70vh;
+    }
 
-            letter-spacing: 2px;
+    footer{
+        padding:100px 25px 25px;
+    }
 
-            color: #666;
+    .footer-main{
+        flex-direction:column;
+        align-items:start;
+        gap:50px;
+        margin-top:80px;
+    }
 
-        }
+    .footer-info{
+        text-align:left;
+    }
 
+    .footer-bottom{
+        flex-direction:column;
+        gap:10px;
+    }
 
-        .business-center {
+}
 
-            position: relative;
-
-            z-index: 2;
-
-        }
-
-
-        .business-name {
-
-            font-size: clamp(55px, 8vw, 115px);
-
-            font-weight: 900;
-
-            letter-spacing: -7px;
-
-            line-height: .8;
-
-            text-transform: uppercase;
-
-        }
-
-
-        .business-name span {
-
-            color: transparent;
-
-            -webkit-text-stroke: 1px rgba(255,255,255,.3);
-
-            transition:
-                color .4s ease,
-                -webkit-text-stroke .4s ease;
-
-        }
-
-
-        .business:hover .business-name span {
-
-            color: white;
-
-            -webkit-text-stroke: 0;
-
-        }
-
-
-        .marketing:hover .business-name span {
-
-            color: var(--blue);
-
-        }
-
-
-        .engineering:hover .business-name span {
-
-            color: var(--green);
-
-        }
-
-
-        .business-description {
-
-            max-width: 360px;
-
-            margin-top: 35px;
-
-            font-size: 13px;
-
-            line-height: 1.7;
-
-            color: #777;
-
-        }
-
-
-        .business-bottom {
-
-            position: relative;
-
-            z-index: 2;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: space-between;
-
-        }
-
-
-        .services {
-
-            display: flex;
-
-            gap: 8px;
-
-            flex-wrap: wrap;
-
-        }
-
-
-        .services span {
-
-            padding: 9px 13px;
-
-            border: 1px solid rgba(255,255,255,.1);
-
-            border-radius: 100px;
-
-            font-size: 8px;
-
-            text-transform: uppercase;
-
-            letter-spacing: 1px;
-
-            color: #777;
-
-        }
-
-
-        .explore {
-
-            width: 58px;
-            height: 58px;
-
-            border-radius: 50%;
-
-            border: 1px solid rgba(255,255,255,.15);
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            font-size: 20px;
-
-            transition:
-                transform .35s ease,
-                background .35s ease;
-
-        }
-
-
-        .business:hover .explore {
-
-            transform: rotate(45deg);
-
-            background: white;
-
-            color: black;
-
-        }
-
-
-        /* ================================================
-           STATEMENT
-        ================================================ */
-
-        .statement {
-
-            min-height: 90vh;
-
-            padding: 160px 60px;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            background: #f2f2ee;
-
-            color: #080808;
-
-        }
-
-
-        .statement-inner {
-
-            width: min(1050px, 100%);
-
-        }
-
-
-        .statement-label {
-
-            font-size: 9px;
-
-            text-transform: uppercase;
-
-            letter-spacing: 3px;
-
-            color: #999;
-
-            margin-bottom: 45px;
-
-        }
-
-
-        .statement h2 {
-
-            font-size: clamp(45px, 7vw, 100px);
-
-            line-height: .95;
-
-            letter-spacing: -5px;
-
-            font-weight: 800;
-
-        }
-
-
-        .statement h2 span {
-
-            color: #aaa;
-
-        }
-
-
-        /* ================================================
-           FOOTER
-        ================================================ */
-
-        footer {
-
-            padding: 70px 50px 35px;
-
-            background: #050505;
-
-        }
-
-
-        .footer-top {
-
-            display: flex;
-
-            justify-content: space-between;
-
-            gap: 40px;
-
-            padding-bottom: 100px;
-
-        }
-
-
-        .footer-title {
-
-            font-size: clamp(45px, 7vw, 90px);
-
-            font-weight: 800;
-
-            letter-spacing: -5px;
-
-            line-height: .9;
-
-        }
-
-
-        .footer-title span {
-
-            color: #555;
-
-        }
-
-
-        .footer-contact {
-
-            max-width: 250px;
-
-            font-size: 11px;
-
-            line-height: 1.8;
-
-            color: #777;
-
-        }
-
-
-        .footer-bottom {
-
-            padding-top: 20px;
-
-            border-top: 1px solid rgba(255,255,255,.08);
-
-            display: flex;
-
-            justify-content: space-between;
-
-            color: #555;
-
-            font-size: 8px;
-
-            text-transform: uppercase;
-
-            letter-spacing: 1.5px;
-
-        }
-
-
-        /* ================================================
-           MOBILE
-        ================================================ */
-
-        @media (max-width: 800px) {
-
-            .cursor {
-                display: none;
-            }
-
-            header {
-                padding: 22px 20px;
-            }
-
-            .header-menu {
-                display: none;
-            }
-
-            .hero-content {
-                width: calc(100% - 35px);
-            }
-
-            .hero-title {
-
-                font-size: 20vw;
-
-                letter-spacing: -5px;
-
-            }
-
-            .orbit {
-
-                width: 350px;
-                height: 350px;
-
-            }
-
-            .scroll {
-                left: 20px;
-            }
-
-            .businesses {
-
-                grid-template-columns: 1fr;
-
-            }
-
-            .business {
-
-                min-height: 80vh;
-
-                padding: 40px 25px;
-
-            }
-
-            .business + .business {
-
-                border-left: 0;
-
-                border-top: 1px solid rgba(255,255,255,.08);
-
-            }
-
-            .business-name {
-
-                font-size: 18vw;
-
-                letter-spacing: -4px;
-
-            }
-
-            .statement {
-
-                padding: 100px 25px;
-
-            }
-
-            .statement h2 {
-
-                letter-spacing: -3px;
-
-            }
-
-            .footer-top {
-
-                flex-direction: column;
-
-                padding-bottom: 70px;
-
-            }
-
-            footer {
-
-                padding: 60px 25px 30px;
-
-            }
-
-            .footer-bottom {
-
-                flex-direction: column;
-
-                gap: 12px;
-
-            }
-
-        }
-
-    </style>
-
+</style>
 </head>
-
 
 <body>
 
-
-    <div class="noise"></div>
-
-    <div class="cursor"></div>
+<div class="noise"></div>
 
 
-    <!-- ==================================================
-         HEADER
-    =================================================== -->
+<!-- HEADER -->
 
-    <header>
+<header>
 
-        <div class="header-inner">
+    <nav class="nav">
 
-            <a href="#" class="brand">
+        <div class="logo">
+            GRUPO MELO <span>/ 001</span>
+        </div>
 
-                GRUPO MELO
+        <div class="nav-links">
+            <a href="#grupo">O Grupo</a>
+            <a href="#empresas">Empresas</a>
+            <a href="#contato">Contato</a>
+        </div>
 
-                <span>
-                    GROUP / 001
-                </span>
+        <a href="#contato" class="nav-contact">
+            <i></i>
+            Fale conosco
+        </a>
 
-            </a>
+    </nav>
+
+</header>
 
 
-            <nav class="header-menu">
+<!-- HERO -->
 
-                <a href="#empresas">
-                    Empresas
-                </a>
+<section class="hero" id="grupo">
 
-                <a href="#visao">
-                    Visão
-                </a>
+    <div class="ambient blue"></div>
 
-                <a href="#contato">
-                    Contato
-                </a>
+    <div class="hero-content">
 
-            </nav>
+        <div class="hero-label">
+            <i></i>
+            Grupo Melo — Business & Innovation
+        </div>
+
+        <h1 class="hero-title">
+
+            CONSTRUÍMOS<br>
+
+            <span class="outline">NEGÓCIOS</span><br>
+
+            <span class="gradient">PARA O FUTURO.</span>
+
+        </h1>
+
+        <div class="hero-bottom">
+
+            <p class="hero-description">
+                Um grupo empresarial formado por diferentes
+                especialidades, conectando estratégia,
+                tecnologia e engenharia para transformar
+                oportunidades em realidade.
+            </p>
+
+            <div class="hero-scroll">
+                <span></span>
+                Explorar grupo
+            </div>
 
         </div>
 
-    </header>
+    </div>
 
 
-
-    <!-- ==================================================
-         HERO
-    =================================================== -->
-
-    <section class="hero">
-
-        <div class="light"></div>
+    <div class="orbit-system">
 
         <div class="orbit"></div>
+        <div class="orbit"></div>
+        <div class="orbit"></div>
+
+        <div class="orbit-core"></div>
+
+    </div>
+
+</section>
 
 
-        <div class="hero-content">
+<!-- INTRO -->
 
-            <div class="eyebrow">
-                Grupo de negócios
+<section class="intro">
+
+    <div class="intro-grid">
+
+        <div>
+
+            <div class="section-number">
+                01 / O GRUPO
             </div>
 
+        </div>
 
-            <h1 class="hero-title">
+        <div>
 
-                <span>
-                    THINK
-                </span>
+            <h2 class="intro-title">
+                Diferentes áreas.<br>
+                <span>Uma mesma visão.</span>
+            </h2>
 
-                <span class="outline">
-                    BUILD
-                </span>
-
-                <span>
-                    FUTURE.
-                </span>
-
-            </h1>
-
-
-            <p class="hero-subtitle">
-
-                Estratégia, criatividade, tecnologia e engenharia
-                reunidas em um grupo construído para criar
-                o que vem depois.
-
+            <p class="intro-text">
+                O Grupo Melo reúne negócios especializados
+                em diferentes mercados, mantendo uma mesma
+                filosofia: pensar à frente, executar com
+                precisão e construir soluções que gerem
+                valor real.
+                <br><br>
+                Hoje, essa estrutura é representada por
+                duas empresas: PrestAgora e Urbanis.
             </p>
 
         </div>
 
+    </div>
 
-        <div class="scroll">
-
-            <div class="scroll-line"></div>
-
-            Scroll to explore
-
-        </div>
-
-    </section>
+</section>
 
 
+<!-- EMPRESAS -->
 
-    <!-- ==================================================
-         EMPRESAS
-    =================================================== -->
+<section class="business" id="empresas">
 
-    <section
-        class="businesses"
-        id="empresas"
-    >
+    <div class="business-head">
+
+        <h2>
+            NOSSOS<br>
+            NEGÓCIOS.
+        </h2>
+
+        <p>
+            DUAS EMPRESAS.<br>
+            DIFERENTES ESPECIALIDADES.<br>
+            UMA ESTRUTURA.
+        </p>
+
+    </div>
 
 
-        <!-- ==============================================
-             MARKETING
-        =============================================== -->
+    <div class="units">
 
-        <a
-            href="#"
-            class="business marketing"
-        >
 
-            <div class="business-top">
+        <!-- PRESTAGORA -->
 
-                <span class="number">
-                    01 / 02
-                </span>
+        <article class="unit unit-blue">
 
-                <span class="business-type">
-                    Marketing
-                </span>
+            <div class="unit-glow"></div>
 
+            <div class="unit-line"></div>
+
+            <div class="unit-number">
+                BUSINESS UNIT / 01
             </div>
 
+            <div class="unit-top">
 
-            <div class="business-center">
-
-                <h2 class="business-name">
-
-                    PRESTA
+                <h3 class="unit-name">
+                    PRESTA<br>
                     <span>GORA</span>
+                </h3>
 
-                </h2>
-
-
-                <p class="business-description">
-
-                    Marketing, tecnologia e geração de negócios.
-                    Criamos estratégias digitais, experiências
-                    e sistemas que conectam marcas às pessoas.
-
+                <p class="unit-description">
+                    Estratégia, marketing e tecnologia
+                    para empresas que querem crescer
+                    no ambiente digital.
                 </p>
 
             </div>
 
+            <div class="unit-footer">
 
-            <div class="business-bottom">
-
-                <div class="services">
-
-                    <span>
-                        Tráfego Pago
-                    </span>
-
-                    <span>
-                        SDR
-                    </span>
-
-                    <span>
-                        Web Design
-                    </span>
-
+                <div class="unit-services">
+                    <span>Tráfego Pago</span>
+                    <span>SDR</span>
+                    <span>Web Design</span>
+                    <span>Performance</span>
                 </div>
 
-
-                <div class="explore">
+                <a href="#" class="unit-arrow">
                     ↗
-                </div>
+                </a>
 
             </div>
 
-        </a>
+        </article>
 
 
+        <!-- URBANIS -->
 
-        <!-- ==============================================
-             URBANIS
-        =============================================== -->
+        <article class="unit unit-green">
 
-        <a
-            href="#"
-            class="business engineering"
-        >
+            <div class="unit-glow"></div>
 
-            <div class="business-top">
+            <div class="unit-line"></div>
 
-                <span class="number">
-                    02 / 02
-                </span>
-
-                <span class="business-type">
-                    Engenharia
-                </span>
-
+            <div class="unit-number">
+                BUSINESS UNIT / 02
             </div>
 
+            <div class="unit-top">
 
-            <div class="business-center">
+                <h3 class="unit-name">
+                    <span>URBAN</span><br>
+                    IS
+                </h3>
 
-                <h2 class="business-name">
-
-                    URBAN
-                    <span>IS</span>
-
-                </h2>
-
-
-                <p class="business-description">
-
-                    Engenharia, projetos e soluções técnicas
-                    para transformar conceitos em estruturas,
-                    espaços e resultados concretos.
-
+                <p class="unit-description">
+                    Engenharia, projetos e soluções
+                    desenvolvidas para transformar
+                    planejamento em realidade.
                 </p>
 
             </div>
 
+            <div class="unit-footer">
 
-            <div class="business-bottom">
-
-                <div class="services">
-
-                    <span>
-                        Projetos
-                    </span>
-
-                    <span>
-                        Engenharia
-                    </span>
-
-                    <span>
-                        Consultoria
-                    </span>
-
+                <div class="unit-services">
+                    <span>Engenharia</span>
+                    <span>Projetos</span>
+                    <span>Consultoria</span>
+                    <span>Construção</span>
                 </div>
 
-
-                <div class="explore">
+                <a href="#" class="unit-arrow">
                     ↗
-                </div>
+                </a>
 
             </div>
 
-        </a>
+        </article>
+
+    </div>
+
+</section>
 
 
-    </section>
+<!-- CONNECTION -->
+
+<section class="connection">
+
+    <div class="connection-bg"></div>
+
+    <div class="connection-content">
+
+        <div class="connection-label">
+            Grupo Melo / Estrutura
+        </div>
+
+        <h2>
+            ESTRATÉGIA<br>
+            <span>ENCONTRA</span><br>
+            EXECUÇÃO.
+        </h2>
+
+        <p class="connection-description">
+            Marketing cria oportunidades.
+            Engenharia transforma planos em realidade.
+            O Grupo Melo conecta diferentes competências
+            para construir novos caminhos.
+        </p>
+
+    </div>
+
+</section>
 
 
+<!-- STATS -->
 
-    <!-- ==================================================
-         STATEMENT
-    =================================================== -->
+<section class="stats">
 
-    <section
-        class="statement"
-        id="visao"
-    >
+    <div class="stat">
 
-        <div class="statement-inner">
+        <div class="stat-number">
+            02
+        </div>
 
-            <div class="statement-label">
-                A visão do Grupo Melo
-            </div>
+        <div class="stat-label">
+            Empresas
+        </div>
+
+    </div>
 
 
-            <h2>
+    <div class="stat">
 
-                Não criamos apenas
-                <span>empresas.</span>
+        <div class="stat-number">
+            ∞
+        </div>
 
-                Criamos
-                <span>possibilidades.</span>
+        <div class="stat-label">
+            Possibilidades
+        </div>
 
-            </h2>
+    </div>
+
+
+    <div class="stat">
+
+        <div class="stat-number">
+            01
+        </div>
+
+        <div class="stat-label">
+            Visão
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer id="contato">
+
+    <div class="footer-title">
+        VAMOS<br>
+        <span>CONSTRUIR.</span>
+    </div>
+
+
+    <div class="footer-main">
+
+        <div class="footer-contact">
+
+            <small>
+                Entre em contato
+            </small>
+
+            contato@grupomelo.com.br
 
         </div>
 
-    </section>
 
+        <div class="footer-info">
 
-
-    <!-- ==================================================
-         FOOTER
-    =================================================== -->
-
-    <footer id="contato">
-
-        <div class="footer-top">
-
-            <div class="footer-title">
-
-                LET'S
-
-                <br>
-
-                <span>
-                    BUILD.
-                </span>
-
-            </div>
-
-
-            <div class="footer-contact">
-
-                <p>
-
-                    Grupo Melo
-
-                    <br><br>
-
-                    PrestAgora — Marketing
-
-                    <br>
-
-                    Urbanis — Engenharia
-
-                    <br><br>
-
-                    Entre em contato para
-                    iniciar um novo projeto.
-
-                </p>
-
-            </div>
+            GRUPO MELO<br>
+            PRESTAGORA / URBANIS<br>
+            SÃO JOSÉ DO RIO PRETO — SP
 
         </div>
 
-
-        <div class="footer-bottom">
-
-            <span>
-                © 2026 Grupo Melo
-            </span>
-
-            <span>
-                All rights reserved
-            </span>
-
-        </div>
-
-    </footer>
+    </div>
 
 
+    <div class="footer-bottom">
 
-    <!-- ==================================================
-         JAVASCRIPT
-    =================================================== -->
+        <span>
+            © 2026 Grupo Melo
+        </span>
 
-    <script>
+        <span>
+            BUSINESS / TECHNOLOGY / ENGINEERING
+        </span>
 
-        const cursor =
-            document.querySelector(".cursor");
+    </div>
 
-        document.addEventListener(
-            "mousemove",
-            (e) => {
-
-                cursor.style.left =
-                    e.clientX + "px";
-
-                cursor.style.top =
-                    e.clientY + "px";
-
-            }
-        );
-
-
-        const interactive =
-            document.querySelectorAll(
-                "a, .business"
-            );
-
-
-        interactive.forEach((element) => {
-
-            element.addEventListener(
-                "mouseenter",
-                () => {
-
-                    cursor.classList.add("big");
-
-                }
-            );
-
-
-            element.addEventListener(
-                "mouseleave",
-                () => {
-
-                    cursor.classList.remove("big");
-
-                }
-            );
-
-        });
-
-
-        /*
-         * Parallax suave no orbit
-         */
-
-        const orbit =
-            document.querySelector(".orbit");
-
-
-        document.addEventListener(
-            "mousemove",
-            (e) => {
-
-                const x =
-                    (e.clientX /
-                        window.innerWidth -
-                        .5) * 20;
-
-                const y =
-                    (e.clientY /
-                        window.innerHeight -
-                        .5) * 20;
-
-
-                orbit.style.marginLeft =
-                    x + "px";
-
-                orbit.style.marginTop =
-                    y + "px";
-
-            }
-        );
-
-    </script>
+</footer>
 
 
 </body>
-
 </html>
