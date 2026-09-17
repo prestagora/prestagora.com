@@ -1,0 +1,1526 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>PrestAgora | Grupo de Negócios</title>
+
+    <meta
+        name="description"
+        content="PrestAgora é um grupo de negócios formado por empresas especializadas em marketing, tecnologia e engenharia."
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background: #f8f9fb;
+            color: #101828;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+
+        /* =====================================================
+           CONTAINER
+        ===================================================== */
+
+        .container {
+            width: min(1180px, calc(100% - 48px));
+            margin: 0 auto;
+        }
+
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+
+            background: rgba(248, 249, 251, 0.82);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+
+            border-bottom: 1px solid rgba(16, 24, 40, 0.06);
+        }
+
+        .navbar {
+            height: 82px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+
+        /* LOGO */
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-mark {
+            width: 36px;
+            height: 36px;
+
+            border-radius: 10px;
+
+            background: #1258d6;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: white;
+            font-weight: 800;
+            font-size: 15px;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1;
+        }
+
+        .logo-name {
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-subtitle {
+            margin-top: 4px;
+
+            font-size: 8px;
+            font-weight: 600;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+
+            color: #667085;
+        }
+
+
+        /* MENU */
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 34px;
+
+            font-size: 13px;
+            font-weight: 500;
+            color: #475467;
+        }
+
+        .nav-menu a {
+            transition: color 0.25s ease;
+        }
+
+        .nav-menu a:hover {
+            color: #1258d6;
+        }
+
+
+        /* HEADER BUTTON */
+
+        .nav-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            height: 42px;
+            padding: 0 20px;
+
+            border-radius: 10px;
+
+            background: #101828;
+            color: white;
+
+            font-size: 12px;
+            font-weight: 600;
+
+            transition:
+                transform 0.25s ease,
+                background 0.25s ease;
+        }
+
+        .nav-button:hover {
+            background: #1258d6;
+            transform: translateY(-2px);
+        }
+
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .hero {
+            min-height: 100vh;
+
+            padding-top: 82px;
+
+            display: flex;
+            align-items: center;
+
+            position: relative;
+            overflow: hidden;
+        }
+
+
+        /* BACKGROUND */
+
+        .hero::before {
+            content: "";
+
+            position: absolute;
+
+            width: 650px;
+            height: 650px;
+
+            right: -300px;
+            top: 80px;
+
+            background: rgba(18, 88, 214, 0.07);
+
+            border-radius: 50%;
+
+            filter: blur(10px);
+        }
+
+        .hero::after {
+            content: "";
+
+            position: absolute;
+
+            width: 450px;
+            height: 450px;
+
+            left: -250px;
+            bottom: -180px;
+
+            background: rgba(16, 24, 40, 0.035);
+
+            border-radius: 50%;
+        }
+
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+
+            gap: 80px;
+
+            align-items: center;
+        }
+
+
+        /* HERO TEXT */
+
+        .hero-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+
+            margin-bottom: 26px;
+
+            font-size: 11px;
+            font-weight: 700;
+
+            text-transform: uppercase;
+            letter-spacing: 1.8px;
+
+            color: #1258d6;
+        }
+
+        .hero-label span {
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: #1258d6;
+        }
+
+        .hero h1 {
+            max-width: 700px;
+
+            font-size: clamp(48px, 6vw, 78px);
+
+            line-height: 0.98;
+
+            letter-spacing: -4px;
+
+            font-weight: 800;
+
+            color: #101828;
+        }
+
+        .hero h1 strong {
+            color: #1258d6;
+            font-weight: 800;
+        }
+
+        .hero-description {
+            max-width: 570px;
+
+            margin-top: 30px;
+
+            font-size: 17px;
+            line-height: 1.7;
+
+            color: #667085;
+        }
+
+
+        /* HERO BUTTONS */
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            margin-top: 38px;
+        }
+
+        .button-primary,
+        .button-secondary {
+            height: 52px;
+
+            padding: 0 25px;
+
+            border-radius: 11px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 13px;
+            font-weight: 600;
+
+            transition:
+                transform 0.25s ease,
+                background 0.25s ease;
+        }
+
+        .button-primary {
+            background: #1258d6;
+            color: white;
+        }
+
+        .button-primary:hover {
+            background: #0d47ad;
+            transform: translateY(-3px);
+        }
+
+        .button-secondary {
+            background: white;
+            border: 1px solid #e4e7ec;
+            color: #344054;
+        }
+
+        .button-secondary:hover {
+            border-color: #cfd4dc;
+            transform: translateY(-3px);
+        }
+
+
+        /* =====================================================
+           HERO VISUAL
+        ===================================================== */
+
+        .hero-visual {
+            position: relative;
+
+            min-height: 510px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .visual-circle {
+            position: absolute;
+
+            width: 420px;
+            height: 420px;
+
+            border-radius: 50%;
+
+            border: 1px solid rgba(18, 88, 214, 0.12);
+        }
+
+        .visual-circle::before {
+            content: "";
+
+            position: absolute;
+
+            inset: 35px;
+
+            border-radius: 50%;
+
+            border: 1px dashed rgba(18, 88, 214, 0.14);
+        }
+
+
+        /* CENTER */
+
+        .visual-center {
+            position: relative;
+            z-index: 5;
+
+            width: 150px;
+            height: 150px;
+
+            border-radius: 50%;
+
+            background: #101828;
+
+            color: white;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            box-shadow:
+                0 30px 70px rgba(16, 24, 40, 0.18);
+        }
+
+        .visual-center strong {
+            font-size: 25px;
+            letter-spacing: -1px;
+        }
+
+        .visual-center span {
+            margin-top: 7px;
+
+            font-size: 8px;
+            font-weight: 600;
+
+            letter-spacing: 1.6px;
+            text-transform: uppercase;
+
+            color: #98a2b3;
+        }
+
+
+        /* COMPANY CARDS */
+
+        .company-card {
+            position: absolute;
+
+            width: 230px;
+
+            padding: 22px;
+
+            background: rgba(255, 255, 255, 0.88);
+
+            border: 1px solid rgba(16, 24, 40, 0.08);
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 25px 60px rgba(16, 24, 40, 0.08);
+
+            backdrop-filter: blur(12px);
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .company-card:hover {
+            transform: translateY(-7px);
+            box-shadow:
+                0 30px 70px rgba(16, 24, 40, 0.13);
+        }
+
+        .company-card.marketing {
+            top: 55px;
+            right: 0;
+        }
+
+        .company-card.engineering {
+            bottom: 45px;
+            left: 0;
+        }
+
+
+        .card-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin-bottom: 20px;
+        }
+
+        .card-icon {
+            width: 38px;
+            height: 38px;
+
+            border-radius: 10px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .marketing .card-icon {
+            background: #e9f0ff;
+            color: #1258d6;
+        }
+
+        .engineering .card-icon {
+            background: #e9f7ef;
+            color: #15803d;
+        }
+
+        .card-arrow {
+            font-size: 18px;
+            color: #98a2b3;
+        }
+
+        .company-card h3 {
+            font-size: 18px;
+            letter-spacing: -0.5px;
+        }
+
+        .company-card p {
+            margin-top: 8px;
+
+            font-size: 12px;
+            line-height: 1.6;
+
+            color: #667085;
+        }
+
+
+        /* =====================================================
+           INTRO
+        ===================================================== */
+
+        .intro {
+            padding: 145px 0;
+            background: white;
+        }
+
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+
+            gap: 100px;
+        }
+
+        .section-label {
+            font-size: 10px;
+            font-weight: 700;
+
+            letter-spacing: 2px;
+            text-transform: uppercase;
+
+            color: #1258d6;
+        }
+
+        .intro h2 {
+            margin-top: 18px;
+
+            font-size: clamp(35px, 4vw, 52px);
+
+            line-height: 1.05;
+            letter-spacing: -2.5px;
+        }
+
+        .intro-text {
+            padding-top: 8px;
+        }
+
+        .intro-text p {
+            font-size: 18px;
+            line-height: 1.75;
+
+            color: #667085;
+        }
+
+        .intro-text p + p {
+            margin-top: 20px;
+        }
+
+
+        /* =====================================================
+           EMPRESAS
+        ===================================================== */
+
+        .companies {
+            padding: 130px 0;
+
+            background: #f8f9fb;
+        }
+
+        .companies-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+
+            margin-bottom: 60px;
+        }
+
+        .companies-header h2 {
+            margin-top: 18px;
+
+            font-size: clamp(35px, 4vw, 52px);
+
+            letter-spacing: -2.5px;
+            line-height: 1;
+        }
+
+        .companies-header p {
+            max-width: 370px;
+
+            font-size: 14px;
+            line-height: 1.7;
+
+            color: #667085;
+        }
+
+
+        /* COMPANY GRID */
+
+        .companies-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            gap: 20px;
+        }
+
+        .company-large-card {
+            min-height: 480px;
+
+            padding: 42px;
+
+            border-radius: 24px;
+
+            position: relative;
+
+            overflow: hidden;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            transition:
+                transform 0.35s ease;
+        }
+
+        .company-large-card:hover {
+            transform: translateY(-8px);
+        }
+
+
+        /* MARKETING */
+
+        .marketing-card {
+            background: #1258d6;
+            color: white;
+        }
+
+        .marketing-card::after {
+            content: "";
+
+            position: absolute;
+
+            width: 330px;
+            height: 330px;
+
+            right: -130px;
+            bottom: -130px;
+
+            border: 1px solid rgba(255,255,255,0.18);
+
+            border-radius: 50%;
+        }
+
+        .marketing-card::before {
+            content: "";
+
+            position: absolute;
+
+            width: 230px;
+            height: 230px;
+
+            right: -80px;
+            bottom: -80px;
+
+            border: 1px dashed rgba(255,255,255,0.16);
+
+            border-radius: 50%;
+        }
+
+
+        /* URBANIS */
+
+        .urbanis-card {
+            background: #126b3f;
+            color: white;
+        }
+
+        .urbanis-card::after {
+            content: "";
+
+            position: absolute;
+
+            width: 330px;
+            height: 330px;
+
+            right: -130px;
+            bottom: -130px;
+
+            border: 1px solid rgba(255,255,255,0.18);
+
+            border-radius: 50%;
+        }
+
+        .urbanis-card::before {
+            content: "";
+
+            position: absolute;
+
+            width: 230px;
+            height: 230px;
+
+            right: -80px;
+            bottom: -80px;
+
+            border: 1px dashed rgba(255,255,255,0.16);
+
+            border-radius: 50%;
+        }
+
+
+        .company-large-content {
+            position: relative;
+            z-index: 3;
+        }
+
+        .company-tag {
+            display: inline-block;
+
+            margin-bottom: 35px;
+
+            padding: 7px 11px;
+
+            border: 1px solid rgba(255,255,255,0.25);
+
+            border-radius: 100px;
+
+            font-size: 9px;
+            font-weight: 700;
+
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .company-large-card h3 {
+            max-width: 400px;
+
+            font-size: clamp(32px, 4vw, 48px);
+
+            line-height: 1;
+            letter-spacing: -2px;
+        }
+
+        .company-large-card p {
+            max-width: 390px;
+
+            margin-top: 20px;
+
+            font-size: 14px;
+            line-height: 1.7;
+
+            opacity: 0.82;
+        }
+
+        .services-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+
+            margin-top: 28px;
+        }
+
+        .services-list span {
+            padding: 8px 12px;
+
+            border: 1px solid rgba(255,255,255,0.2);
+
+            border-radius: 100px;
+
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+
+        .company-large-bottom {
+            position: relative;
+            z-index: 3;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .company-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .company-link span {
+            font-size: 18px;
+
+            transition: transform 0.25s ease;
+        }
+
+        .company-large-card:hover .company-link span {
+            transform: translateX(5px);
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 900px) {
+
+            .nav-menu {
+                display: none;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+
+                gap: 40px;
+            }
+
+            .hero {
+                padding-top: 130px;
+                padding-bottom: 80px;
+            }
+
+            .hero-visual {
+                min-height: 430px;
+            }
+
+            .intro-grid {
+                grid-template-columns: 1fr;
+
+                gap: 40px;
+            }
+
+            .companies-header {
+                display: block;
+            }
+
+            .companies-header p {
+                margin-top: 25px;
+            }
+
+            .companies-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+        @media (max-width: 600px) {
+
+            .container {
+                width: min(100% - 32px, 1180px);
+            }
+
+            .navbar {
+                height: 72px;
+            }
+
+            .nav-button {
+                display: none;
+            }
+
+            .hero {
+                padding-top: 105px;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+                letter-spacing: -2.5px;
+            }
+
+            .hero-description {
+                font-size: 15px;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .button-primary,
+            .button-secondary {
+                width: 100%;
+            }
+
+            .hero-visual {
+                min-height: 370px;
+            }
+
+            .visual-circle {
+                width: 300px;
+                height: 300px;
+            }
+
+            .visual-center {
+                width: 110px;
+                height: 110px;
+            }
+
+            .visual-center strong {
+                font-size: 20px;
+            }
+
+            .company-card {
+                width: 175px;
+                padding: 17px;
+            }
+
+            .company-card.marketing {
+                top: 15px;
+            }
+
+            .company-card.engineering {
+                bottom: 10px;
+            }
+
+            .company-card h3 {
+                font-size: 15px;
+            }
+
+            .company-card p {
+                font-size: 10px;
+            }
+
+            .intro {
+                padding: 90px 0;
+            }
+
+            .companies {
+                padding: 90px 0;
+            }
+
+            .company-large-card {
+                min-height: 430px;
+
+                padding: 28px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header>
+
+        <div class="container">
+
+            <nav class="navbar">
+
+                <a href="#" class="logo">
+
+                    <div class="logo-mark">
+                        P
+                    </div>
+
+                    <div class="logo-text">
+
+                        <span class="logo-name">
+                            PrestAgora
+                        </span>
+
+                        <span class="logo-subtitle">
+                            Grupo de Negócios
+                        </span>
+
+                    </div>
+
+                </a>
+
+
+                <div class="nav-menu">
+
+                    <a href="#grupo">
+                        O Grupo
+                    </a>
+
+                    <a href="#empresas">
+                        Empresas
+                    </a>
+
+                    <a href="#">
+                        Projetos
+                    </a>
+
+                    <a href="#">
+                        Sobre
+                    </a>
+
+                </div>
+
+
+                <a href="#contato" class="nav-button">
+                    Falar conosco
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <main>
+
+        <section class="hero">
+
+            <div class="container">
+
+                <div class="hero-content">
+
+
+                    <!-- TEXT -->
+
+                    <div>
+
+                        <div class="hero-label">
+
+                            <span></span>
+
+                            Grupo PrestAgora
+
+                        </div>
+
+
+                        <h1>
+
+                            Diferentes
+                            negócios.
+                            <strong>Uma visão.</strong>
+
+                        </h1>
+
+
+                        <p class="hero-description">
+
+                            Um grupo formado por empresas especializadas
+                            em diferentes áreas, conectando estratégia,
+                            tecnologia e engenharia para transformar
+                            ideias em resultados.
+
+                        </p>
+
+
+                        <div class="hero-actions">
+
+                            <a
+                                href="#empresas"
+                                class="button-primary"
+                            >
+                                Conheça nossas empresas
+                            </a>
+
+                            <a
+                                href="#grupo"
+                                class="button-secondary"
+                            >
+                                Conheça o grupo
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- VISUAL -->
+
+                    <div class="hero-visual">
+
+                        <div class="visual-circle"></div>
+
+
+                        <div class="visual-center">
+
+                            <strong>
+                                PG
+                            </strong>
+
+                            <span>
+                                Grupo PrestAgora
+                            </span>
+
+                        </div>
+
+
+                        <!-- MARKETING -->
+
+                        <div class="company-card marketing">
+
+                            <div class="card-top">
+
+                                <div class="card-icon">
+                                    M
+                                </div>
+
+                                <div class="card-arrow">
+                                    ↗
+                                </div>
+
+                            </div>
+
+                            <h3>
+                                Marketing
+                            </h3>
+
+                            <p>
+                                Estratégia, tecnologia e
+                                geração de negócios.
+                            </p>
+
+                        </div>
+
+
+                        <!-- URBANIS -->
+
+                        <div class="company-card engineering">
+
+                            <div class="card-top">
+
+                                <div class="card-icon">
+                                    U
+                                </div>
+
+                                <div class="card-arrow">
+                                    ↗
+                                </div>
+
+                            </div>
+
+                            <h3>
+                                Urbanis
+                            </h3>
+
+                            <p>
+                                Engenharia, projetos e
+                                soluções para transformar.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             O GRUPO
+        ================================================== -->
+
+        <section
+            class="intro"
+            id="grupo"
+        >
+
+            <div class="container">
+
+                <div class="intro-grid">
+
+
+                    <div>
+
+                        <span class="section-label">
+                            O Grupo
+                        </span>
+
+                        <h2>
+                            Especialização
+                            em diferentes
+                            frentes.
+                        </h2>
+
+                    </div>
+
+
+                    <div class="intro-text">
+
+                        <p>
+
+                            A PrestAgora é um grupo de negócios
+                            criado para reunir empresas especializadas
+                            em diferentes setores.
+
+                        </p>
+
+                        <p>
+
+                            Cada empresa possui sua própria expertise,
+                            identidade e operação, mas todas compartilham
+                            a mesma visão: entregar soluções com estratégia,
+                            profissionalismo e resultado.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             EMPRESAS
+        ================================================== -->
+
+        <section
+            class="companies"
+            id="empresas"
+        >
+
+            <div class="container">
+
+
+                <div class="companies-header">
+
+                    <div>
+
+                        <span class="section-label">
+                            Nossas empresas
+                        </span>
+
+                        <h2>
+                            Duas especialidades.
+                        </h2>
+
+                    </div>
+
+
+                    <p>
+
+                        Conheça as empresas que fazem parte
+                        do Grupo PrestAgora e suas respectivas
+                        áreas de atuação.
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="companies-grid">
+
+
+                    <!-- =================================================
+                         PRESTAGORA MARKETING
+                    ================================================== -->
+
+                    <article class="company-large-card marketing-card">
+
+                        <div class="company-large-content">
+
+                            <span class="company-tag">
+                                PrestAgora
+                            </span>
+
+                            <h3>
+                                Marketing
+                                & Tecnologia
+                            </h3>
+
+                            <p>
+
+                                Estratégias digitais para empresas
+                                que querem crescer, vender mais e
+                                construir uma presença digital forte.
+
+                            </p>
+
+
+                            <div class="services-list">
+
+                                <span>
+                                    Tráfego Pago
+                                </span>
+
+                                <span>
+                                    SDR
+                                </span>
+
+                                <span>
+                                    Web Design
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="company-large-bottom">
+
+                            <span>
+                                01
+                            </span>
+
+                            <a
+                                href="#"
+                                class="company-link"
+                            >
+
+                                Conhecer empresa
+
+                                <span>
+                                    →
+                                </span>
+
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- =================================================
+                         URBANIS
+                    ================================================== -->
+
+                    <article class="company-large-card urbanis-card">
+
+                        <div class="company-large-content">
+
+                            <span class="company-tag">
+                                Urbanis
+                            </span>
+
+                            <h3>
+                                Engenharia
+                                & Projetos
+                            </h3>
+
+                            <p>
+
+                                Soluções de engenharia desenvolvidas
+                                com planejamento, precisão e visão
+                                para transformar projetos em realidade.
+
+                            </p>
+
+
+                            <div class="services-list">
+
+                                <span>
+                                    Projetos
+                                </span>
+
+                                <span>
+                                    Engenharia
+                                </span>
+
+                                <span>
+                                    Consultoria
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="company-large-bottom">
+
+                            <span>
+                                02
+                            </span>
+
+                            <a
+                                href="#"
+                                class="company-link"
+                            >
+
+                                Conhecer empresa
+
+                                <span>
+                                    →
+                                </span>
+
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER TEMPORÁRIO
+    ====================================================== -->
+
+    <footer
+        id="contato"
+        style="
+            padding: 70px 0;
+            background: #101828;
+            color: white;
+        "
+    >
+
+        <div class="container">
+
+            <div
+                style="
+                    display:flex;
+                    justify-content:space-between;
+                    align-items:center;
+                    gap:30px;
+                    flex-wrap:wrap;
+                "
+            >
+
+                <div>
+
+                    <strong
+                        style="
+                            font-size:24px;
+                            letter-spacing:-1px;
+                        "
+                    >
+                        PrestAgora
+                    </strong>
+
+                    <p
+                        style="
+                            margin-top:8px;
+                            font-size:12px;
+                            color:#98a2b3;
+                        "
+                    >
+                        Grupo de Negócios
+                    </p>
+
+                </div>
+
+
+                <p
+                    style="
+                        font-size:11px;
+                        color:#98a2b3;
+                    "
+                >
+                    © 2026 PrestAgora. Todos os direitos reservados.
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+</body>
+
+</html>
