@@ -1,0 +1,2861 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Urbanis — Engenharia & Construção</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        :root {
+
+            --bg: #050806;
+            --bg-2: #080d0a;
+            --surface: #0b120e;
+
+            --white: #f4f8f5;
+
+            --muted: #7b887f;
+            --muted-2: #505d54;
+
+            --green: #16b86d;
+            --green-2: #42e596;
+            --green-dark: #0b7545;
+
+            --line: rgba(255,255,255,.085);
+
+        }
+
+
+        * {
+
+            margin: 0;
+            padding: 0;
+
+            box-sizing: border-box;
+
+        }
+
+
+        html {
+
+            scroll-behavior: smooth;
+
+        }
+
+
+        body {
+
+            background: var(--bg);
+
+            color: var(--white);
+
+            font-family: "Inter", sans-serif;
+
+            overflow-x: hidden;
+
+        }
+
+
+        a {
+
+            color: inherit;
+
+            text-decoration: none;
+
+        }
+
+
+        ::selection {
+
+            background: var(--green);
+
+            color: #031009;
+
+        }
+
+
+        /* =====================================================
+           NOISE
+        ===================================================== */
+
+        .noise {
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 999;
+
+            pointer-events: none;
+
+            opacity: .025;
+
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+
+        }
+
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        header {
+
+            position: fixed;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+
+            padding: 22px 5vw;
+
+            z-index: 100;
+
+        }
+
+
+        .nav {
+
+            height: 64px;
+
+            padding: 0 10px 0 22px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            border: 1px solid var(--line);
+
+            border-radius: 100px;
+
+            background: rgba(5,8,6,.72);
+
+            backdrop-filter: blur(22px);
+
+            box-shadow:
+                0 20px 70px rgba(0,0,0,.25);
+
+        }
+
+
+        .logo {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            font-size: 14px;
+
+            font-weight: 800;
+
+            letter-spacing: -.05em;
+
+        }
+
+
+        .logo-dot {
+
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: var(--green-2);
+
+            box-shadow:
+                0 0 15px var(--green);
+
+            animation: pulse 2s infinite;
+
+        }
+
+
+        @keyframes pulse {
+
+            0%,100% {
+
+                opacity: .5;
+
+                transform: scale(.8);
+
+            }
+
+            50% {
+
+                opacity: 1;
+
+                transform: scale(1.15);
+
+            }
+
+        }
+
+
+        .logo small {
+
+            color: #566158;
+
+            font-size: 8px;
+
+            font-weight: 500;
+
+            letter-spacing: 1px;
+
+        }
+
+
+        .nav-links {
+
+            display: flex;
+
+            gap: 32px;
+
+            font-size: 10px;
+
+            color: #7d8981;
+
+        }
+
+
+        .nav-links a {
+
+            transition: .3s;
+
+        }
+
+
+        .nav-links a:hover {
+
+            color: white;
+
+        }
+
+
+        .nav-button {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 11px 18px;
+
+            border-radius: 100px;
+
+            background: white;
+
+            color: #050806;
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+            transition: .3s;
+
+        }
+
+
+        .nav-button:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 10px 35px rgba(255,255,255,.12);
+
+        }
+
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .hero {
+
+            min-height: 100vh;
+
+            position: relative;
+
+            display: flex;
+
+            align-items: center;
+
+            overflow: hidden;
+
+            padding: 150px 8vw 100px;
+
+            background:
+
+                radial-gradient(
+                    circle at 75% 45%,
+                    rgba(22,184,109,.11),
+                    transparent 30%
+                ),
+
+                radial-gradient(
+                    circle at 90% 10%,
+                    rgba(66,229,150,.06),
+                    transparent 25%
+                ),
+
+                var(--bg);
+
+        }
+
+
+        /* =====================================================
+           ARCHITECTURAL GRID
+        ===================================================== */
+
+        .architectural-grid {
+
+            position: absolute;
+
+            inset: 0;
+
+            opacity: .22;
+
+            pointer-events: none;
+
+            background-image:
+
+                linear-gradient(
+                    rgba(92,177,128,.08) 1px,
+                    transparent 1px
+                ),
+
+                linear-gradient(
+                    90deg,
+                    rgba(92,177,128,.08) 1px,
+                    transparent 1px
+                );
+
+            background-size: 80px 80px;
+
+            mask-image:
+                radial-gradient(
+                    ellipse at 65% 50%,
+                    black 0%,
+                    transparent 70%
+                );
+
+            animation: gridMove 20s linear infinite;
+
+        }
+
+
+        @keyframes gridMove {
+
+            from {
+
+                transform:
+                    translateY(0);
+
+            }
+
+            to {
+
+                transform:
+                    translateY(80px);
+
+            }
+
+        }
+
+
+        /* =====================================================
+           HERO CONTENT
+        ===================================================== */
+
+        .hero-content {
+
+            position: relative;
+
+            z-index: 10;
+
+            max-width: 820px;
+
+        }
+
+
+        .hero-label {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            margin-bottom: 35px;
+
+            color: #68756d;
+
+            font-size: 9px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 2.5px;
+
+        }
+
+
+        .hero-label i {
+
+            width: 30px;
+
+            height: 1px;
+
+            background: var(--green);
+
+            box-shadow:
+                0 0 10px rgba(22,184,109,.7);
+
+        }
+
+
+        .hero-title {
+
+            font-size:
+                clamp(
+                    65px,
+                    10vw,
+                    155px
+                );
+
+            line-height: .81;
+
+            letter-spacing: -.09em;
+
+            font-weight: 800;
+
+        }
+
+
+        .hero-title .outline {
+
+            color: transparent;
+
+            -webkit-text-stroke:
+                1px rgba(255,255,255,.58);
+
+        }
+
+
+        .hero-title .green {
+
+            color: var(--green-2);
+
+            text-shadow:
+                0 0 50px rgba(22,184,109,.15);
+
+        }
+
+
+        .hero-description {
+
+            max-width: 470px;
+
+            margin-top: 50px;
+
+            color: #7c8981;
+
+            font-size: 13px;
+
+            line-height: 1.9;
+
+        }
+
+
+        .hero-actions {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 14px;
+
+            margin-top: 40px;
+
+        }
+
+
+        .primary-button {
+
+            padding: 15px 22px;
+
+            border-radius: 100px;
+
+            background: var(--green);
+
+            color: #031009;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            transition: .35s;
+
+        }
+
+
+        .primary-button:hover {
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 15px 40px rgba(22,184,109,.25);
+
+        }
+
+
+        .secondary-button {
+
+            padding: 15px 22px;
+
+            border: 1px solid var(--line);
+
+            border-radius: 100px;
+
+            color: #829087;
+
+            font-size: 10px;
+
+            transition: .3s;
+
+        }
+
+
+        .secondary-button:hover {
+
+            color: white;
+
+            border-color:
+                rgba(255,255,255,.2);
+
+        }
+
+
+        /* =====================================================
+           BLUEPRINT SYSTEM
+        ===================================================== */
+
+        .blueprint {
+
+            position: absolute;
+
+            width: 700px;
+            height: 700px;
+
+            right: -40px;
+
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            pointer-events: none;
+
+            opacity: .72;
+
+        }
+
+
+        .blueprint-circle {
+
+            position: absolute;
+
+            inset: 0;
+
+            border:
+
+                1px solid
+                rgba(66,229,150,.13);
+
+            border-radius: 50%;
+
+            animation:
+                blueprintRotate
+                30s
+                linear
+                infinite;
+
+        }
+
+
+        .blueprint-circle:nth-child(2) {
+
+            inset: 75px;
+
+            border-color:
+                rgba(66,229,150,.09);
+
+            animation-direction: reverse;
+
+            animation-duration: 22s;
+
+        }
+
+
+        .blueprint-circle:nth-child(3) {
+
+            inset: 165px;
+
+            border-color:
+                rgba(66,229,150,.07);
+
+            animation-duration: 35s;
+
+        }
+
+
+        @keyframes blueprintRotate {
+
+            from {
+
+                transform:
+                    rotate(0deg);
+
+            }
+
+            to {
+
+                transform:
+                    rotate(360deg);
+
+            }
+
+        }
+
+
+        /* =====================================================
+           BUILDING WIREFRAME
+        ===================================================== */
+
+        .building {
+
+            position: absolute;
+
+            width: 250px;
+
+            height: 360px;
+
+            left: 50%;
+            top: 50%;
+
+            transform:
+                translate(-50%,-50%)
+                perspective(700px)
+                rotateY(-22deg)
+                rotateX(8deg);
+
+            border:
+                1px solid
+                rgba(66,229,150,.35);
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    transparent 49%,
+                    rgba(66,229,150,.08) 50%,
+                    transparent 51%
+                ),
+
+                linear-gradient(
+                    0deg,
+                    transparent 49%,
+                    rgba(66,229,150,.08) 50%,
+                    transparent 51%
+                );
+
+            background-size:
+                50px 50px;
+
+            box-shadow:
+                0 0 80px rgba(22,184,109,.06);
+
+        }
+
+
+        .building::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: -60px;
+
+            left: -1px;
+
+            width: 250px;
+
+            height: 60px;
+
+            border:
+
+                1px solid
+                rgba(66,229,150,.3);
+
+            transform:
+                skewX(-45deg);
+
+            transform-origin:
+                bottom left;
+
+            background:
+                rgba(22,184,109,.025);
+
+        }
+
+
+        .building::after {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+
+            right: -60px;
+
+            width: 60px;
+
+            height: 360px;
+
+            border-right:
+                1px solid
+                rgba(66,229,150,.2);
+
+            border-top:
+                1px solid
+                rgba(66,229,150,.2);
+
+            transform:
+                skewY(-45deg);
+
+            transform-origin:
+                left top;
+
+        }
+
+
+        .building-floor {
+
+            position: absolute;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 1px;
+
+            background:
+                rgba(66,229,150,.16);
+
+        }
+
+
+        .floor-1 { top: 55px; }
+        .floor-2 { top: 110px; }
+        .floor-3 { top: 165px; }
+        .floor-4 { top: 220px; }
+        .floor-5 { top: 275px; }
+
+
+        .building-window {
+
+            position: absolute;
+
+            width: 28px;
+            height: 35px;
+
+            border:
+                1px solid
+                rgba(66,229,150,.25);
+
+        }
+
+
+        .window-1 {
+
+            top: 18px;
+            left: 30px;
+
+        }
+
+
+        .window-2 {
+
+            top: 18px;
+            right: 30px;
+
+        }
+
+
+        .window-3 {
+
+            top: 73px;
+            left: 30px;
+
+        }
+
+
+        .window-4 {
+
+            top: 73px;
+            right: 30px;
+
+        }
+
+
+        .window-5 {
+
+            top: 128px;
+            left: 30px;
+
+        }
+
+
+        .window-6 {
+
+            top: 128px;
+            right: 30px;
+
+        }
+
+
+        .window-7 {
+
+            top: 183px;
+            left: 30px;
+
+        }
+
+
+        .window-8 {
+
+            top: 183px;
+            right: 30px;
+
+        }
+
+
+        .window-9 {
+
+            top: 238px;
+            left: 30px;
+
+        }
+
+
+        .window-10 {
+
+            top: 238px;
+            right: 30px;
+
+        }
+
+
+        .window-11 {
+
+            top: 293px;
+            left: 30px;
+
+        }
+
+
+        .window-12 {
+
+            top: 293px;
+            right: 30px;
+
+        }
+
+
+        /* =====================================================
+           MEASUREMENTS
+        ===================================================== */
+
+        .measurement {
+
+            position: absolute;
+
+            color: #718078;
+
+            font-size: 8px;
+
+            letter-spacing: 1px;
+
+        }
+
+
+        .measurement::before {
+
+            content: "";
+
+            position: absolute;
+
+            background:
+                rgba(66,229,150,.25);
+
+        }
+
+
+        .measure-height {
+
+            top: 28%;
+
+            right: 10%;
+
+            padding-left: 25px;
+
+        }
+
+
+        .measure-height::before {
+
+            left: 0;
+
+            top: -80px;
+
+            width: 1px;
+
+            height: 100px;
+
+        }
+
+
+        .measure-width {
+
+            bottom: 23%;
+
+            left: 51%;
+
+            padding-top: 20px;
+
+        }
+
+
+        .measure-width::before {
+
+            left: -60px;
+
+            top: 0;
+
+            width: 100px;
+
+            height: 1px;
+
+        }
+
+
+        /* =====================================================
+           FLOATING INFO
+        ===================================================== */
+
+        .floating-card {
+
+            position: absolute;
+
+            z-index: 20;
+
+            padding: 14px 17px;
+
+            width: 165px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.08);
+
+            border-radius: 12px;
+
+            background:
+                rgba(7,15,10,.75);
+
+            backdrop-filter:
+                blur(18px);
+
+            box-shadow:
+                0 20px 60px rgba(0,0,0,.25);
+
+        }
+
+
+        .floating-card small {
+
+            display: block;
+
+            color: #59665e;
+
+            font-size: 7px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1.5px;
+
+        }
+
+
+        .floating-card strong {
+
+            display: block;
+
+            margin-top: 7px;
+
+            font-size: 14px;
+
+            letter-spacing: -.04em;
+
+        }
+
+
+        .floating-card span {
+
+            display: block;
+
+            margin-top: 6px;
+
+            color: var(--green-2);
+
+            font-size: 8px;
+
+        }
+
+
+        .floating-card::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 16px;
+
+            right: 16px;
+
+            width: 5px;
+            height: 5px;
+
+            border-radius: 50%;
+
+            background: var(--green-2);
+
+            box-shadow:
+                0 0 12px var(--green);
+
+        }
+
+
+        .card-project {
+
+            top: 25%;
+
+            right: 10%;
+
+            animation:
+                floating1
+                6s
+                ease-in-out
+                infinite;
+
+        }
+
+
+        .card-control {
+
+            bottom: 20%;
+
+            right: 5%;
+
+            animation:
+                floating2
+                7s
+                ease-in-out
+                infinite;
+
+        }
+
+
+        @keyframes floating1 {
+
+            0%,100% {
+
+                transform:
+                    translateY(0);
+
+            }
+
+            50% {
+
+                transform:
+                    translateY(-14px);
+
+            }
+
+        }
+
+
+        @keyframes floating2 {
+
+            0%,100% {
+
+                transform:
+                    translateY(0);
+
+            }
+
+            50% {
+
+                transform:
+                    translateY(13px);
+
+            }
+
+        }
+
+
+        /* =====================================================
+           SCROLL
+        ===================================================== */
+
+        .scroll {
+
+            position: absolute;
+
+            bottom: 35px;
+
+            left: 8vw;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            color: #4d5b52;
+
+            font-size: 8px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 2px;
+
+        }
+
+
+        .scroll span {
+
+            width: 35px;
+
+            height: 1px;
+
+            background: #405047;
+
+        }
+
+
+        /* =====================================================
+           INTRO
+        ===================================================== */
+
+        .intro {
+
+            position: relative;
+
+            padding: 170px 8vw;
+
+            border-top:
+                1px solid var(--line);
+
+            background:
+
+                radial-gradient(
+                    circle at 85% 50%,
+                    rgba(22,184,109,.07),
+                    transparent 30%
+                ),
+
+                var(--bg-2);
+
+        }
+
+
+        .intro-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                .6fr
+                1.4fr;
+
+            gap: 100px;
+
+        }
+
+
+        .section-number {
+
+            color: #4d5b52;
+
+            font-size: 9px;
+
+            letter-spacing: 2px;
+
+        }
+
+
+        .intro h2 {
+
+            max-width: 900px;
+
+            font-size:
+                clamp(
+                    45px,
+                    6vw,
+                    90px
+                );
+
+            line-height: .92;
+
+            letter-spacing: -.075em;
+
+        }
+
+
+        .intro h2 span {
+
+            color: #4c5a51;
+
+        }
+
+
+        .intro p {
+
+            max-width: 550px;
+
+            margin-top: 42px;
+
+            color: #78857d;
+
+            font-size: 13px;
+
+            line-height: 1.9;
+
+        }
+
+
+        /* =====================================================
+           SERVICES
+        ===================================================== */
+
+        .services {
+
+            padding: 150px 5vw;
+
+            background: #040706;
+
+        }
+
+
+        .services-header {
+
+            padding: 0 3vw;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: end;
+
+            margin-bottom: 65px;
+
+        }
+
+
+        .services-header h2 {
+
+            font-size:
+                clamp(
+                    55px,
+                    8vw,
+                    120px
+                );
+
+            line-height: .78;
+
+            letter-spacing: -.085em;
+
+        }
+
+
+        .services-header p {
+
+            max-width: 250px;
+
+            color: #59665f;
+
+            font-size: 9px;
+
+            line-height: 1.8;
+
+        }
+
+
+        .service-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2,1fr);
+
+            gap: 15px;
+
+        }
+
+
+        .service {
+
+            min-height: 380px;
+
+            position: relative;
+
+            overflow: hidden;
+
+            padding: 35px;
+
+            border:
+                1px solid var(--line);
+
+            border-radius: 22px;
+
+            background:
+
+                linear-gradient(
+                    145deg,
+                    #0a120e,
+                    #050907
+                );
+
+            transition:
+                transform .45s,
+                border-color .45s;
+
+        }
+
+
+        .service:hover {
+
+            transform:
+                translateY(-7px);
+
+            border-color:
+                rgba(22,184,109,.35);
+
+        }
+
+
+        .service-number {
+
+            color: #526057;
+
+            font-size: 9px;
+
+            letter-spacing: 2px;
+
+        }
+
+
+        .service-icon {
+
+            position: absolute;
+
+            top: 30px;
+
+            right: 30px;
+
+            width: 48px;
+            height: 48px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border:
+                1px solid
+                rgba(255,255,255,.08);
+
+            border-radius: 50%;
+
+            color: var(--green-2);
+
+            font-size: 17px;
+
+        }
+
+
+        .service h3 {
+
+            position: absolute;
+
+            left: 35px;
+
+            bottom: 105px;
+
+            font-size: 29px;
+
+            line-height: .9;
+
+            letter-spacing: -.06em;
+
+        }
+
+
+        .service p {
+
+            position: absolute;
+
+            left: 35px;
+
+            right: 35px;
+
+            bottom: 35px;
+
+            max-width: 450px;
+
+            color: #69766e;
+
+            font-size: 10px;
+
+            line-height: 1.7;
+
+        }
+
+
+        .service-glow {
+
+            position: absolute;
+
+            width: 250px;
+            height: 250px;
+
+            right: -130px;
+
+            bottom: -130px;
+
+            border-radius: 50%;
+
+            background:
+                var(--green);
+
+            filter:
+                blur(80px);
+
+            opacity: .07;
+
+            transition: .5s;
+
+        }
+
+
+        .service:hover .service-glow {
+
+            opacity: .17;
+
+        }
+
+
+        /* =====================================================
+           PROCESS
+        ===================================================== */
+
+        .process {
+
+            padding: 160px 8vw;
+
+            background: var(--bg);
+
+        }
+
+
+        .process-header {
+
+            max-width: 850px;
+
+        }
+
+
+        .process-header h2 {
+
+            font-size:
+                clamp(
+                    45px,
+                    6vw,
+                    90px
+                );
+
+            line-height: .9;
+
+            letter-spacing: -.075em;
+
+        }
+
+
+        .process-header h2 span {
+
+            color: #4d5b52;
+
+        }
+
+
+        .process-list {
+
+            margin-top: 90px;
+
+            border-top:
+                1px solid var(--line);
+
+        }
+
+
+        .process-item {
+
+            display: grid;
+
+            grid-template-columns:
+                100px
+                1fr
+                1fr;
+
+            align-items: center;
+
+            min-height: 125px;
+
+            border-bottom:
+                1px solid var(--line);
+
+        }
+
+
+        .process-number {
+
+            color: #4e5b53;
+
+            font-size: 9px;
+
+            letter-spacing: 2px;
+
+        }
+
+
+        .process-item h3 {
+
+            font-size: 23px;
+
+            letter-spacing: -.05em;
+
+        }
+
+
+        .process-item p {
+
+            max-width: 350px;
+
+            color: #68756d;
+
+            font-size: 10px;
+
+            line-height: 1.7;
+
+        }
+
+
+        /* =====================================================
+           CTA
+        ===================================================== */
+
+        .cta {
+
+            position: relative;
+
+            overflow: hidden;
+
+            padding: 170px 8vw;
+
+            background:
+
+                radial-gradient(
+                    circle at 50% 100%,
+                    rgba(22,184,109,.16),
+                    transparent 40%
+                ),
+
+                #040706;
+
+        }
+
+
+        .cta-grid {
+
+            position: absolute;
+
+            inset: 0;
+
+            opacity: .15;
+
+            background-image:
+
+                linear-gradient(
+                    rgba(66,229,150,.08) 1px,
+                    transparent 1px
+                ),
+
+                linear-gradient(
+                    90deg,
+                    rgba(66,229,150,.08) 1px,
+                    transparent 1px
+                );
+
+            background-size: 80px 80px;
+
+        }
+
+
+        .cta-content {
+
+            position: relative;
+
+            z-index: 3;
+
+        }
+
+
+        .cta-label {
+
+            color: #59665e;
+
+            font-size: 9px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 40px;
+
+        }
+
+
+        .cta h2 {
+
+            max-width: 1000px;
+
+            font-size:
+                clamp(
+                    60px,
+                    10vw,
+                    150px
+                );
+
+            line-height: .78;
+
+            letter-spacing: -.095em;
+
+        }
+
+
+        .cta h2 span {
+
+            color: transparent;
+
+            -webkit-text-stroke:
+                1px rgba(255,255,255,.5);
+
+        }
+
+
+        .cta-button {
+
+            display: inline-flex;
+
+            margin-top: 55px;
+
+            padding: 17px 25px;
+
+            border-radius: 100px;
+
+            background: white;
+
+            color: #050806;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            transition: .35s;
+
+        }
+
+
+        .cta-button:hover {
+
+            transform:
+                translateY(-4px);
+
+            box-shadow:
+                0 15px 50px
+                rgba(255,255,255,.12);
+
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        footer {
+
+            padding: 35px 8vw;
+
+            border-top:
+                1px solid var(--line);
+
+            background: #020403;
+
+        }
+
+
+        .footer {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+        }
+
+
+        .footer-brand {
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            letter-spacing: -.05em;
+
+        }
+
+
+        .footer-left {
+
+            color: #4d5a52;
+
+            font-size: 8px;
+
+            line-height: 1.8;
+
+        }
+
+
+        .footer-right {
+
+            color: #4d5a52;
+
+            font-size: 8px;
+
+            text-align: right;
+
+            line-height: 1.8;
+
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media(max-width: 900px) {
+
+            header {
+
+                padding: 15px;
+
+            }
+
+
+            .nav {
+
+                height: 58px;
+
+            }
+
+
+            .nav-links {
+
+                display: none;
+
+            }
+
+
+            .hero {
+
+                padding:
+                    140px
+                    25px
+                    100px;
+
+            }
+
+
+            .hero-title {
+
+                font-size: 19vw;
+
+            }
+
+
+            .hero-description {
+
+                margin-top: 40px;
+
+            }
+
+
+            .blueprint {
+
+                width: 480px;
+                height: 480px;
+
+                right: -230px;
+
+                opacity: .45;
+
+            }
+
+
+            .building {
+
+                width: 170px;
+
+                height: 260px;
+
+            }
+
+
+            .building::before {
+
+                width: 170px;
+
+            }
+
+
+            .building::after {
+
+                height: 260px;
+
+            }
+
+
+            .floating-card {
+
+                display: none;
+
+            }
+
+
+            .measurement {
+
+                display: none;
+
+            }
+
+
+            .scroll {
+
+                left: 25px;
+
+            }
+
+
+            .intro {
+
+                padding:
+                    120px
+                    25px;
+
+            }
+
+
+            .intro-grid {
+
+                grid-template-columns: 1fr;
+
+                gap: 40px;
+
+            }
+
+
+            .services {
+
+                padding:
+                    110px
+                    18px;
+
+            }
+
+
+            .services-header {
+
+                padding: 0 8px;
+
+                flex-direction: column;
+
+                align-items: start;
+
+                gap: 30px;
+
+            }
+
+
+            .service-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .service {
+
+                min-height: 350px;
+
+            }
+
+
+            .process {
+
+                padding:
+                    110px
+                    25px;
+
+            }
+
+
+            .process-list {
+
+                margin-top: 60px;
+
+            }
+
+
+            .process-item {
+
+                grid-template-columns:
+                    50px
+                    1fr;
+
+                gap: 20px;
+
+                padding:
+                    30px
+                    0;
+
+            }
+
+
+            .process-item p {
+
+                grid-column: 2;
+
+            }
+
+
+            .cta {
+
+                padding:
+                    120px
+                    25px;
+
+            }
+
+
+            footer {
+
+                padding:
+                    30px
+                    25px;
+
+            }
+
+
+            .footer {
+
+                flex-direction: column;
+
+                align-items: start;
+
+                gap: 25px;
+
+            }
+
+
+            .footer-right {
+
+                text-align: left;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="noise"></div>
+
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header>
+
+    <nav class="nav">
+
+
+        <a
+            href="index.html"
+            class="logo"
+        >
+
+            <span class="logo-dot"></span>
+
+            URBANIS
+
+            <small>
+                / GRUPO MELO
+            </small>
+
+        </a>
+
+
+        <div class="nav-links">
+
+            <a href="#sobre">
+                Sobre
+            </a>
+
+            <a href="#servicos">
+                Serviços
+            </a>
+
+            <a href="#processo">
+                Processo
+            </a>
+
+        </div>
+
+
+        <a
+            href="#contato"
+            class="nav-button"
+        >
+
+            Falar com a Urbanis
+
+        </a>
+
+
+    </nav>
+
+</header>
+
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+
+    <div class="architectural-grid"></div>
+
+
+    <div class="hero-content">
+
+
+        <div class="hero-label">
+
+            <i></i>
+
+            Engenharia / Projetos / Construção
+
+        </div>
+
+
+        <h1 class="hero-title">
+
+            PROJETAMOS<br>
+
+            <span class="outline">
+                CONSTRUÍMOS
+            </span>
+
+            <br>
+
+            <span class="green">
+                REALIDADE.
+            </span>
+
+        </h1>
+
+
+        <p class="hero-description">
+
+            Engenharia, projetos e acompanhamento
+            para transformar ideias em obras bem
+            planejadas, executadas e entregues.
+
+        </p>
+
+
+        <div class="hero-actions">
+
+
+            <a
+                href="#servicos"
+                class="primary-button"
+            >
+
+                Conheça nossos serviços
+
+            </a>
+
+
+            <a
+                href="#contato"
+                class="secondary-button"
+            >
+
+                Fale conosco
+
+            </a>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =================================================
+         BLUEPRINT
+    ================================================= -->
+
+    <div class="blueprint">
+
+
+        <div class="blueprint-circle"></div>
+
+        <div class="blueprint-circle"></div>
+
+        <div class="blueprint-circle"></div>
+
+
+
+        <div class="building">
+
+
+            <div class="building-floor floor-1"></div>
+
+            <div class="building-floor floor-2"></div>
+
+            <div class="building-floor floor-3"></div>
+
+            <div class="building-floor floor-4"></div>
+
+            <div class="building-floor floor-5"></div>
+
+
+            <div class="building-window window-1"></div>
+
+            <div class="building-window window-2"></div>
+
+            <div class="building-window window-3"></div>
+
+            <div class="building-window window-4"></div>
+
+            <div class="building-window window-5"></div>
+
+            <div class="building-window window-6"></div>
+
+            <div class="building-window window-7"></div>
+
+            <div class="building-window window-8"></div>
+
+            <div class="building-window window-9"></div>
+
+            <div class="building-window window-10"></div>
+
+            <div class="building-window window-11"></div>
+
+            <div class="building-window window-12"></div>
+
+
+        </div>
+
+
+        <div class="measurement measure-height">
+
+            ALTURA / 12.40M
+
+        </div>
+
+
+        <div class="measurement measure-width">
+
+            EIXO / A-04
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =================================================
+         FLOATING CARDS
+    ================================================= -->
+
+
+    <div class="floating-card card-project">
+
+
+        <small>
+            Projeto
+        </small>
+
+
+        <strong>
+            ARQUITETURA
+        </strong>
+
+
+        <span>
+            ● em desenvolvimento
+        </span>
+
+
+    </div>
+
+
+
+    <div class="floating-card card-control">
+
+
+        <small>
+            Engenharia
+        </small>
+
+
+        <strong>
+            OBRA  /  CONTROLE
+        </strong>
+
+
+        <span>
+            ● acompanhamento ativo
+        </span>
+
+
+    </div>
+
+
+
+    <div class="scroll">
+
+        <span></span>
+
+        Explorar Urbanis
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     SOBRE
+===================================================== -->
+
+<section
+    class="intro"
+    id="sobre"
+>
+
+
+    <div class="intro-grid">
+
+
+        <div>
+
+            <div class="section-number">
+
+                01 / URBANIS
+
+            </div>
+
+        </div>
+
+
+        <div>
+
+
+            <h2>
+
+                ENGENHARIA
+                <span>SEM COMPLICAÇÃO.</span>
+
+            </h2>
+
+
+            <p>
+
+                Na Urbanis, cada projeto começa com
+                planejamento e termina com uma solução
+                construída para funcionar.
+                <br><br>
+                Atuamos desde o desenvolvimento de
+                projetos até o acompanhamento e execução
+                da obra, com uma visão integrada de cada
+                etapa.
+
+            </p>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     SERVIÇOS
+===================================================== -->
+
+<section
+    class="services"
+    id="servicos"
+>
+
+
+    <div class="services-header">
+
+
+        <h2>
+
+            NOSSOS<br>
+            SERVIÇOS.
+
+        </h2>
+
+
+        <p>
+
+            SOLUÇÕES DE ENGENHARIA
+            PARA CADA ETAPA
+            DA SUA OBRA.
+
+        </p>
+
+
+    </div>
+
+
+
+    <div class="service-grid">
+
+
+        <!-- =================================================
+             VISTORIA
+        ================================================= -->
+
+        <article class="service">
+
+
+            <div class="service-glow"></div>
+
+
+            <div class="service-number">
+
+                01 / INSPEÇÃO
+
+            </div>
+
+
+            <div class="service-icon">
+
+                ✓
+
+            </div>
+
+
+            <h3>
+
+                VISTORIA<br>
+                PÓS-OBRA
+
+            </h3>
+
+
+            <p>
+
+                Avaliação técnica da obra após
+                a execução, identificando
+                possíveis falhas, inconformidades
+                e pontos que precisam de atenção.
+
+            </p>
+
+
+        </article>
+
+
+
+        <!-- =================================================
+             PROJETO
+        ================================================= -->
+
+        <article class="service">
+
+
+            <div class="service-glow"></div>
+
+
+            <div class="service-number">
+
+                02 / PROJETO
+
+            </div>
+
+
+            <div class="service-icon">
+
+                ◇
+
+            </div>
+
+
+            <h3>
+
+                PROJETOS<br>
+                ARQUITETÔNICOS
+
+            </h3>
+
+
+            <p>
+
+                Desenvolvimento de projetos
+                arquitetônicos pensando em
+                funcionalidade, estética,
+                aproveitamento e execução.
+
+            </p>
+
+
+        </article>
+
+
+
+        <!-- =================================================
+             ACOMPANHAMENTO
+        ================================================= -->
+
+        <article class="service">
+
+
+            <div class="service-glow"></div>
+
+
+            <div class="service-number">
+
+                03 / GESTÃO
+
+            </div>
+
+
+            <div class="service-icon">
+
+                ↗
+
+            </div>
+
+
+            <h3>
+
+                ACOMPANHAMENTO<br>
+                DE OBRA
+
+            </h3>
+
+
+            <p>
+
+                Acompanhamento técnico das
+                etapas da obra para garantir
+                planejamento, qualidade e
+                controle da execução.
+
+            </p>
+
+
+        </article>
+
+
+
+        <!-- =================================================
+             CONSTRUÇÃO
+        ================================================= -->
+
+        <article class="service">
+
+
+            <div class="service-glow"></div>
+
+
+            <div class="service-number">
+
+                04 / EXECUÇÃO
+
+            </div>
+
+
+            <div class="service-icon">
+
+                +
+
+            </div>
+
+
+            <h3>
+
+                CONSTRUÇÃO
+
+            </h3>
+
+
+            <p>
+
+                Execução de obras com
+                planejamento, organização e
+                acompanhamento técnico
+                em todas as etapas.
+
+            </p>
+
+
+        </article>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     PROCESSO
+===================================================== -->
+
+<section
+    class="process"
+    id="processo"
+>
+
+
+    <div class="process-header">
+
+
+        <h2>
+
+            DO PRIMEIRO
+            <span>TRAÇO À ENTREGA.</span>
+
+        </h2>
+
+
+    </div>
+
+
+
+    <div class="process-list">
+
+
+        <div class="process-item">
+
+
+            <div class="process-number">
+
+                01
+
+            </div>
+
+
+            <h3>
+
+                Planejamento
+
+            </h3>
+
+
+            <p>
+
+                Entendemos o objetivo,
+                necessidades, terreno,
+                orçamento e possibilidades.
+
+            </p>
+
+
+        </div>
+
+
+
+        <div class="process-item">
+
+
+            <div class="process-number">
+
+                02
+
+            </div>
+
+
+            <h3>
+
+                Projeto
+
+            </h3>
+
+
+            <p>
+
+                Transformamos as ideias
+                em projetos claros,
+                detalhados e executáveis.
+
+            </p>
+
+
+        </div>
+
+
+
+        <div class="process-item">
+
+
+            <div class="process-number">
+
+                03
+
+            </div>
+
+
+            <h3>
+
+                Execução
+
+            </h3>
+
+
+            <p>
+
+                A obra avança com
+                acompanhamento, organização
+                e controle técnico.
+
+            </p>
+
+
+        </div>
+
+
+
+        <div class="process-item">
+
+
+            <div class="process-number">
+
+                04
+
+            </div>
+
+
+            <h3>
+
+                Entrega
+
+            </h3>
+
+
+            <p>
+
+                Finalizamos cada etapa
+                buscando qualidade,
+                segurança e conformidade.
+
+            </p>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     CTA
+===================================================== -->
+
+<section
+    class="cta"
+    id="contato"
+>
+
+
+    <div class="cta-grid"></div>
+
+
+    <div class="cta-content">
+
+
+        <div class="cta-label">
+
+            Urbanis / Engenharia & Construção
+
+        </div>
+
+
+        <h2>
+
+            VAMOS TIRAR<br>
+
+            <span>SEU PROJETO</span>
+
+            DO PAPEL.
+
+        </h2>
+
+
+        <a
+            href="#"
+            class="cta-button"
+        >
+
+            Falar com a Urbanis ↗
+
+        </a>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+
+    <div class="footer">
+
+
+        <div class="footer-left">
+
+
+            <div class="footer-brand">
+
+                URBANIS
+
+            </div>
+
+
+            Engenharia & Construção
+
+            <br>
+
+            Uma empresa Grupo Melo
+
+
+        </div>
+
+
+
+        <div class="footer-right">
+
+            SÃO JOSÉ DO RIO PRETO — SP
+
+            <br>
+
+            © 2026 Grupo Melo
+
+        </div>
+
+
+    </div>
+
+
+</footer>
+
+
+
+</body>
+
+</html>
