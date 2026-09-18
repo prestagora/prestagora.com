@@ -1280,7 +1280,7 @@
 
             position: relative;
 
-            overflow: hidden;
+            overflow: visible;
 
             padding: 35px;
 
@@ -1303,11 +1303,11 @@
 
         .service.service-selected {
 
-          transform: scale(.94);
+          transform: scale(.98);
 
-          opacity: .75;
+          opacity: 1;
 
-          border-color: transparent;
+          border-color: var(--line);
 
         }
 
@@ -1354,7 +1354,23 @@
 
             font-size: 17px;
 
+            cursor: pointer;
+
+            animation: handPulse 1.8s ease-in-out infinite;
+
         }
+
+        @keyframes handPulse {
+
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(4px);
+    }
+
+}
 
         .service h3 {
 
@@ -1460,6 +1476,10 @@
         max-height .55s ease;
 
 }
+
+.service-detail {
+    grid-column: auto;
+} 
 
 
 /* PAINEL ABERTO */
@@ -2192,6 +2212,32 @@
 
         }
 
+
+        .service-packages {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+    margin-top: 28px;
+
+    opacity: 0;
+
+    max-height: 0;
+
+    overflow: hidden;
+
+    transform: translateY(15px);
+
+    transition:
+        opacity .4s ease,
+        max-height .5s ease,
+        transform .4s ease;
+
+}
+
     </style>
 
 </head>
@@ -2505,7 +2551,7 @@
 
 
             <div class="service-icon">
-                ↗
+                👆
             </div>
 
 
@@ -2526,6 +2572,48 @@
 
             </p>
 
+            <div class="service-packages">
+
+    <div class="package">
+
+        <span>PLANO ESSENCIAL</span>
+
+        <strong>R$ 1.200</strong>
+
+        <small>
+            Gestão de campanhas e otimização.
+        </small>
+
+    </div>
+
+
+    <div class="package">
+
+        <span>PLANO PERFORMANCE</span>
+
+        <strong>R$ 1.800</strong>
+
+        <small>
+            Estratégia completa de mídia e performance.
+        </small>
+
+    </div>
+
+
+    <div class="package">
+
+        <span>PLANO PREMIUM</span>
+
+        <strong>R$ 2.500</strong>
+
+        <small>
+            Gestão avançada e acompanhamento estratégico.
+        </small>
+
+    </div>
+
+</div>
+
         </article>
 
 
@@ -2542,7 +2630,7 @@
 
 
             <div class="service-icon">
-                +
+                👆
             </div>
 
 
@@ -2563,6 +2651,46 @@
 
             </p>
 
+            <div class="service-packages">
+
+    <div class="package">
+
+        <span>PLANO ESSENCIAL</span>
+
+        <strong>R$ 1.500</strong>
+
+        <small>
+            Estruturação e acompanhamento comercial.
+        </small>
+
+    </div>
+
+    <div class="package">
+
+        <span>PLANO PERFORMANCE</span>
+
+        <strong>R$ 2.000</strong>
+
+        <small>
+            SDR, processos e gestão de oportunidades.
+        </small>
+
+    </div>
+
+    <div class="package">
+
+        <span>PLANO PREMIUM</span>
+
+        <strong>R$ 2.800</strong>
+
+        <small>
+            Operação comercial completa e estratégica.
+        </small>
+
+    </div>
+
+</div>
+
         </article>
 
 
@@ -2579,7 +2707,7 @@
 
 
             <div class="service-icon">
-                ◇
+                👆
             </div>
 
 
@@ -2600,47 +2728,47 @@
 
             </p>
 
-        </article>
+            <div class="service-packages">
 
-        <!-- JANELA DE DETALHES -->
-        
-        <div class="service-detail" id="serviceDetail">
+    <div class="package">
 
-    <button
-        class="service-detail-close"
-        type="button"
-        aria-label="Fechar"
-    >
-        ×
-    </button>
+        <span>LANDING PAGE</span>
 
-    <div class="service-detail-line"></div>
+        <strong>R$ 1.500</strong>
 
-    <div class="service-detail-category">
-        01 / MEDIA
+        <small>
+            Página estratégica focada em conversão.
+        </small>
+
     </div>
 
-    <h4>
-        TRÁFEGO PAGO
-    </h4>
+    <div class="package">
 
-    <p>
-        Estratégias de mídia paga desenvolvidas para
-        alcançar o público certo, gerar oportunidades
-        e transformar investimento em crescimento.
-    </p>
+        <span>SITE INSTITUCIONAL</span>
 
-    <div class="service-detail-list">
+        <strong>R$ 2.500</strong>
 
-        <span>Meta Ads</span>
-        <span>Google Ads</span>
-        <span>Estratégia</span>
-        <span>Otimização</span>
+        <small>
+            Site completo com estrutura profissional.
+        </small>
+
+    </div>
+
+    <div class="package">
+
+        <span>PROJETO PERSONALIZADO</span>
+
+        <strong>SOB CONSULTA</strong>
+
+        <small>
+            Desenvolvimento de acordo com a necessidade.
+        </small>
 
     </div>
 
 </div>
 
+        </article>
 
     </div>
 
@@ -2868,35 +2996,29 @@
 
 <script>
 
+<script>
+
 const serviceCards = document.querySelectorAll('.service');
-const serviceDetail = document.getElementById('serviceDetail');
-const serviceClose = document.querySelector('.service-detail-close');
 
 serviceCards.forEach(card => {
 
     card.addEventListener('click', () => {
 
+        const isSelected =
+            card.classList.contains('service-selected');
+
         serviceCards.forEach(item => {
+
             item.classList.remove('service-selected');
+
         });
 
-        card.classList.add('service-selected');
+        if (!isSelected) {
 
-        serviceDetail.classList.add('active');
+            card.classList.add('service-selected');
 
-    });
+        }
 
-});
-
-
-serviceClose.addEventListener('click', (event) => {
-
-    event.stopPropagation();
-
-    serviceDetail.classList.remove('active');
-
-    serviceCards.forEach(card => {
-        card.classList.remove('service-selected');
     });
 
 });
