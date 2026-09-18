@@ -542,7 +542,7 @@
             border-right: 1px solid var(--line);
         }
 
-        .metric:last-child {
+        .metric:nth-child(3n) {
             border-right: 0;
         }
 
@@ -1037,14 +1037,13 @@
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            .metric:nth-child(2) {
-                border-right: 0;
+            ..metric:nth-child(2n) {
+              border-right: 0;
             }
 
-            .metric:nth-child(-n+2) {
-                border-bottom: 1px solid var(--line);
+            .metric:nth-child(-n+4) {
+              border-bottom: 1px solid var(--line);
             }
-
             .dashboard-grid {
                 grid-template-columns: 1fr;
             }
