@@ -527,36 +527,28 @@
 .metrics {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    grid-template-rows: repeat(2, minmax(130px, auto));
-
     border: 1px solid var(--line);
-
     margin-bottom: 38px;
 }
 
 .metric {
     min-width: 0;
-    min-height: 0;
-
+    min-height: 130px;
     padding: 22px 24px;
 
     border-right: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
 }
 
+/* Remove a borda direita da última coluna */
 .metric:nth-child(3n) {
     border-right: 0;
 }
 
-.metric:nth-child(3n + 1),
-.metric:nth-child(3n + 2) {
-    border-right: 1px solid var(--line);
-}
-
+/* Remove a borda inferior da última linha */
 .metric:nth-child(n+4) {
     border-bottom: 0;
 }
-
         .metric-label {
             color: #596574;
 
