@@ -526,7 +526,7 @@
 
         .metrics {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
 
             border-top: 1px solid var(--line);
             border-bottom: 1px solid var(--line);
@@ -1516,11 +1516,11 @@
 
 
 
-                <!-- INDICADORES -->
+ <!-- INDICADORES -->
 
                 <div class="metrics">
 
-
+               <!-- 1º indicador -->
                     <div class="metric">
 
                         <div class="metric-label">
@@ -1535,9 +1535,7 @@
                             Período atual
                         </div>
 
-                    </div>
-
-
+                   <!-- 2º indicador -->
                     <div class="metric">
 
                         <div class="metric-label">
@@ -1552,9 +1550,7 @@
                             +18,4% vs. período anterior
                         </div>
 
-                    </div>
-
-
+                      <!-- 3º indicador -->
                     <div class="metric">
 
                         <div class="metric-label">
@@ -1569,27 +1565,64 @@
                             -8,2% vs. período anterior
                         </div>
 
-                    </div>
 
+    <!-- 4º indicador -->
+    <div class="metric">
 
-                    <div class="metric">
+<div class="metric-label">
+          Campanhas ativas
+</div>
 
-                        <div class="metric-label">
-                            Campanhas ativas
-                        </div>
+<div class="metric-value">
+                     04
+</div>
 
-                        <div class="metric-value">
-                            04
-                        </div>
+ <div class="metric-detail">
+          Em acompanhamento 
+ </div>
 
-                        <div class="metric-detail">
-                            Em acompanhamento
-                        </div>
+                    
+    <!-- 5º indicador -->
+    <div class="metric">
 
-                    </div>
+    <div class="metric-label">
+        Orçamento finalizará
+    </div>
 
+    <div class="metric-value">
+        12 dias
+    </div>
 
-                </div>
+    <div class="metric-detail">
+        Previsão de término
+    </div>
+
+<div class="metric">
+    <span class="metric-label">PLATAFORMA</span>
+    <strong class="metric-value">Meta Ads</strong>
+    <span class="metric-detail">Publicidade ativa</span>
+</div>
+        
+   
+
+  <!-- 6º indicador -->
+<div class="metric">
+
+    <div class="metric-label">
+        Plataforma
+    </div>
+
+    <div class="metric-value">
+        Meta Ads
+    </div>
+
+    <div class="metric-detail">
+        Publicidade ativa
+    </div>
+
+</div>
+
+</div>
 
 
 
@@ -2321,12 +2354,21 @@
         ],
 
         metrics: {
-            mediaInvestment: 4820,
-            leads: 186,
-            cpl: 25.91,
-            activeCampaigns: 4
-        },
+    mediaInvestment: 4820,
+    leads: 186,
+    cpl: 25.91,
+    activeCampaigns: 4,
 
+    budget: {
+        daysRemaining: 12,
+        endDate: "22/09/2026"
+    },
+
+    platform: {
+        name: "Meta Ads",
+        status: "Publicidade ativa"
+    }
+},
         payments: [
             {
                 reference: "Mensalidade — Setembro 2026",
