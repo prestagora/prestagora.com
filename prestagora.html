@@ -3004,6 +3004,15 @@ serviceCards.forEach(card => {
 
     card.addEventListener('click', () => {
 
+    console.log('CARD CLICADO:', card.dataset.service);
+
+    const isSelected =
+        card.classList.contains('service-selected');
+
+    card.classList.toggle('service-selected', !isSelected);
+
+});
+
         const isSelected =
             card.classList.contains('service-selected');
 
