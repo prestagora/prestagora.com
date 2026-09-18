@@ -257,6 +257,35 @@
 
         }
 
+ /* =====================================================
+          Botão SOU CLIENTE
+===================================================== */
+        
+.client-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 11px 18px;
+
+    border-radius: 100px;
+
+    background: white;
+    color: #03070d;
+
+    font-size: 9px;
+    font-weight: 800;
+
+    transition: .3s;
+}
+
+.client-button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 30px rgba(255,255,255,.12);
+}
+
 
         /* =====================================================
            HERO
@@ -2448,11 +2477,13 @@
 
         </div>
 
+        <a href="#login-cliente" class="client-button">
+             Sou Cliente
+        </a>
+
 
         <a href="#contato" class="nav-button">
-
             Falar com a PrestAgora
-
         </a>
 
     </nav>
