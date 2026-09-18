@@ -1037,13 +1037,17 @@
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            ..metric:nth-child(2n) {
-              border-right: 0;
-            }
+            .metric:nth-child(2n) {
+    border-right: 0;
+}
 
-            .metric:nth-child(-n+4) {
-              border-bottom: 1px solid var(--line);
-            }
+.metric:nth-child(-n+4) {
+    border-bottom: 1px solid var(--line);
+}
+
+.metric:nth-child(n+5) {
+    border-bottom: 0;
+}
             .dashboard-grid {
                 grid-template-columns: 1fr;
             }
