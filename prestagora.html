@@ -1295,8 +1295,19 @@
             );
 
             transition:
-                transform .45s,
-                border-color .45s;
+              transform .45s,
+              border-color .45s,
+              opacity .45s;
+
+        }
+
+        .service.service-selected {
+
+          transform: scale(.94);
+
+          opacity: .75;
+
+          border-color: transparent;
 
         }
 
@@ -1403,6 +1414,233 @@
             opacity: .2;
 
         }
+
+        /* =========================================
+           PAINEL DE DETALHES DO SERVIÇO
+         ========================================= */
+
+.service-detail {
+
+    position: relative;
+
+    grid-column: 1 / -1;
+
+    width: 100%;
+
+    margin-top: 18px;
+
+    padding: 38px;
+
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    border-radius: 18px;
+
+    color: #071018;
+
+    border: 1px solid #e5e9ed;
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.25);
+
+    overflow: hidden;
+
+    opacity: 0;
+
+    transform:
+        translateY(-15px)
+        scale(.98);
+
+    max-height: 0;
+
+    transition:
+        opacity .45s ease,
+        transform .45s ease,
+        max-height .55s ease;
+
+}
+
+
+/* PAINEL ABERTO */
+
+.service-detail.active {
+
+    opacity: 1;
+
+    transform:
+        translateY(0)
+        scale(1);
+
+    max-height: 500px;
+
+}
+
+
+/* LINHA DE DESTAQUE */
+
+.service-detail-line {
+
+    width: 100%;
+
+    height: 1px;
+
+    margin-bottom: 24px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #3184ff,
+            rgba(49,132,255,0)
+        );
+
+}
+
+
+/* CATEGORIA */
+
+.service-detail-category {
+
+    margin-bottom: 14px;
+
+    color: #3184ff;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+}
+
+
+/* TÍTULO */
+
+.service-detail h4 {
+
+    margin: 0 0 14px;
+
+    font-size: 30px;
+
+    line-height: 1;
+
+    letter-spacing: -.05em;
+
+    text-transform: uppercase;
+
+}
+
+
+/* DESCRIÇÃO */
+
+.service-detail p {
+
+    max-width: 650px;
+
+    margin: 0;
+
+    color: #59636d;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+}
+
+
+/* LISTA DE INFORMAÇÕES */
+
+.service-detail-list {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-top: 28px;
+
+}
+
+
+.service-detail-list span {
+
+    padding: 9px 13px;
+
+    border: 1px solid #e1e5e8;
+
+    border-radius: 100px;
+
+    color: #303942;
+
+    font-size: 10px;
+
+    letter-spacing: .5px;
+
+}
+
+
+/* BOTÃO FECHAR */
+
+.service-detail-close {
+
+    position: absolute;
+
+    top: 22px;
+
+    right: 22px;
+
+    width: 34px;
+
+    height: 34px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: 1px solid #dfe4e8;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    color: #071018;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+    transition:
+        background .25s ease,
+        color .25s ease,
+        transform .25s ease;
+
+}
+
+
+.service-detail-close:hover {
+
+    background: #071018;
+
+    color: #ffffff;
+
+    transform: rotate(90deg);
+
+}
+
+/* =========================================
+   SERVIÇO SELECIONADO
+========================================= */
+
+.service.service-selected {
+
+    transform: scale(.94);
+
+    opacity: .75;
+
+}
 
 
         /* =====================================================
@@ -2257,7 +2495,7 @@
 
         <!-- CARD 01 -->
 
-        <article class="service">
+        <article class="service" data-service="trafego">
 
             <div class="service-glow"></div>
 
@@ -2294,7 +2532,7 @@
 
         <!-- CARD 02 -->
 
-        <article class="service">
+        <article class="service" data-service="sdr">
 
             <div class="service-glow"></div>
 
@@ -2331,7 +2569,7 @@
 
         <!-- CARD 03 -->
 
-        <article class="service">
+        <article class="service" data-service="web">
 
             <div class="service-glow"></div>
 
@@ -2363,6 +2601,45 @@
             </p>
 
         </article>
+
+        <!-- JANELA DE DETALHES -->
+        
+        <div class="service-detail" id="serviceDetail">
+
+    <button
+        class="service-detail-close"
+        type="button"
+        aria-label="Fechar"
+    >
+        ×
+    </button>
+
+    <div class="service-detail-line"></div>
+
+    <div class="service-detail-category">
+        01 / MEDIA
+    </div>
+
+    <h4>
+        TRÁFEGO PAGO
+    </h4>
+
+    <p>
+        Estratégias de mídia paga desenvolvidas para
+        alcançar o público certo, gerar oportunidades
+        e transformar investimento em crescimento.
+    </p>
+
+    <div class="service-detail-list">
+
+        <span>Meta Ads</span>
+        <span>Google Ads</span>
+        <span>Estratégia</span>
+        <span>Otimização</span>
+
+    </div>
+
+</div>
 
 
     </div>
@@ -2589,7 +2866,42 @@
 
 </footer>
 
+<script>
 
+const serviceCards = document.querySelectorAll('.service');
+const serviceDetail = document.getElementById('serviceDetail');
+const serviceClose = document.querySelector('.service-detail-close');
+
+serviceCards.forEach(card => {
+
+    card.addEventListener('click', () => {
+
+        serviceCards.forEach(item => {
+            item.classList.remove('service-selected');
+        });
+
+        card.classList.add('service-selected');
+
+        serviceDetail.classList.add('active');
+
+    });
+
+});
+
+
+serviceClose.addEventListener('click', (event) => {
+
+    event.stopPropagation();
+
+    serviceDetail.classList.remove('active');
+
+    serviceCards.forEach(card => {
+        card.classList.remove('service-selected');
+    });
+
+});
+
+</script>
 
 </body>
 
