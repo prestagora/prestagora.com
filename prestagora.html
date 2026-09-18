@@ -2996,37 +2996,35 @@
 
 <script>
 
-<script>
+document.addEventListener('DOMContentLoaded', function () {
 
-const serviceCards = document.querySelectorAll('.service');
+    const serviceCards = document.querySelectorAll('.service');
 
-serviceCards.forEach(card => {
+    if (!serviceCards.length) {
+        console.log('Nenhum card .service encontrado.');
+        return;
+    }
 
-    card.addEventListener('click', () => {
+    serviceCards.forEach(function (card) {
 
-    console.log('CARD CLICADO:', card.dataset.service);
+        card.style.cursor = 'pointer';
 
-    const isSelected =
-        card.classList.contains('service-selected');
+        card.addEventListener('click', function () {
 
-    card.classList.toggle('service-selected', !isSelected);
+            console.log('Clique detectado:', card.dataset.service);
 
-});
+            const alreadyOpen =
+                card.classList.contains('service-selected');
 
-        const isSelected =
-            card.classList.contains('service-selected');
+            serviceCards.forEach(function (item) {
+                item.classList.remove('service-selected');
+            });
 
-        serviceCards.forEach(item => {
-
-            item.classList.remove('service-selected');
+            if (!alreadyOpen) {
+                card.classList.add('service-selected');
+            }
 
         });
-
-        if (!isSelected) {
-
-            card.classList.add('service-selected');
-
-        }
 
     });
 
