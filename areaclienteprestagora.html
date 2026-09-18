@@ -1,0 +1,2426 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Área do Cliente | PrestAgora</title>
+
+    <meta
+        name="description"
+        content="Área exclusiva do cliente PrestAgora."
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #05080d;
+            color: #ffffff;
+            font-family: "Inter", sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        button,
+        input {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+
+        /* =====================================================
+           VARIÁVEIS
+        ===================================================== */
+
+        :root {
+
+            --bg: #05080d;
+            --bg-soft: #080d14;
+            --panel: #0a1018;
+            --panel-light: #0d141e;
+
+            --line: rgba(255,255,255,.08);
+            --line-soft: rgba(255,255,255,.05);
+
+            --text: #ffffff;
+            --text-soft: #a2acb9;
+            --text-muted: #657080;
+
+            --blue: #1769ff;
+            --blue-soft: rgba(23,105,255,.12);
+
+            --green: #32c48d;
+            --green-soft: rgba(50,196,141,.10);
+
+            --yellow: #e6b84b;
+            --yellow-soft: rgba(230,184,75,.10);
+
+            --red: #e45c5c;
+            --red-soft: rgba(228,92,92,.10);
+
+            --sidebar-width: 240px;
+        }
+
+
+        /* =====================================================
+           LAYOUT PRINCIPAL
+        ===================================================== */
+
+        .app {
+            min-height: 100vh;
+            display: flex;
+        }
+
+
+        /* =====================================================
+           SIDEBAR
+        ===================================================== */
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+
+            width: var(--sidebar-width);
+
+            display: flex;
+            flex-direction: column;
+
+            padding: 28px 18px;
+
+            background: #070b11;
+            border-right: 1px solid var(--line);
+
+            z-index: 100;
+        }
+
+
+        /* LOGO */
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+
+            padding: 0 10px;
+            margin-bottom: 48px;
+        }
+
+        .brand-mark {
+            width: 29px;
+            height: 29px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 8px;
+
+            background: #ffffff;
+            color: #05080d;
+
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: -.05em;
+        }
+
+        .brand-name {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: -.02em;
+        }
+
+        .brand-name span {
+            color: #697584;
+            font-weight: 500;
+        }
+
+
+        /* NAVEGAÇÃO */
+
+        .nav-label {
+            padding: 0 10px;
+            margin-bottom: 10px;
+
+            color: #4e5968;
+
+            font-family: "DM Mono", monospace;
+            font-size: 8px;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+        }
+
+        .nav {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .nav-item {
+            position: relative;
+
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            min-height: 44px;
+            padding: 0 12px;
+
+            border-radius: 8px;
+
+            color: #7d8998;
+
+            font-size: 11px;
+            font-weight: 500;
+
+            transition:
+                background .2s ease,
+                color .2s ease;
+        }
+
+        .nav-item:hover {
+            color: #ffffff;
+            background: rgba(255,255,255,.035);
+        }
+
+        .nav-item.active {
+            color: #ffffff;
+            background: rgba(255,255,255,.055);
+        }
+
+        .nav-item.active::before {
+            content: "";
+
+            position: absolute;
+            left: 0;
+            top: 50%;
+
+            width: 2px;
+            height: 18px;
+
+            transform: translateY(-50%);
+
+            border-radius: 10px;
+
+            background: var(--blue);
+        }
+
+        .nav-icon {
+            width: 16px;
+            height: 16px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: currentColor;
+        }
+
+        .nav-icon svg {
+            width: 15px;
+            height: 15px;
+        }
+
+
+        /* SIDEBAR RODAPÉ */
+
+        .sidebar-bottom {
+            margin-top: auto;
+        }
+
+        .support {
+            padding: 16px 12px;
+
+            border-top: 1px solid var(--line-soft);
+        }
+
+        .support-label {
+            margin-bottom: 6px;
+
+            color: #4e5968;
+
+            font-family: "DM Mono", monospace;
+            font-size: 8px;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+        }
+
+        .support-text {
+            color: #7d8998;
+            font-size: 10px;
+            line-height: 1.6;
+        }
+
+
+        /* =====================================================
+           CONTEÚDO
+        ===================================================== */
+
+        .main {
+            width: calc(100% - var(--sidebar-width));
+            margin-left: var(--sidebar-width);
+        }
+
+
+        /* =====================================================
+           TOPBAR
+        ===================================================== */
+
+        .topbar {
+            height: 82px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 42px;
+
+            border-bottom: 1px solid var(--line);
+
+            background: rgba(5,8,13,.88);
+
+            position: sticky;
+            top: 0;
+
+            z-index: 50;
+
+            backdrop-filter: blur(18px);
+        }
+
+        .topbar-left {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .page-label {
+            color: #687483;
+
+            font-family: "DM Mono", monospace;
+            font-size: 8px;
+            letter-spacing: .13em;
+            text-transform: uppercase;
+        }
+
+        .topbar-divider {
+            width: 1px;
+            height: 18px;
+
+            background: var(--line);
+        }
+
+        .page-title {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: -.02em;
+        }
+
+
+        /* CLIENTE */
+
+        .client-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .client-info {
+            text-align: right;
+        }
+
+        .client-name {
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .client-role {
+            margin-top: 3px;
+
+            color: #626e7c;
+
+            font-family: "DM Mono", monospace;
+            font-size: 7px;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        .client-avatar {
+            width: 35px;
+            height: 35px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border: 1px solid rgba(255,255,255,.10);
+            border-radius: 50%;
+
+            background: #101721;
+
+            color: #ffffff;
+
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+
+        /* =====================================================
+           CONTENT WRAPPER
+        ===================================================== */
+
+        .content {
+            max-width: 1450px;
+            margin: 0 auto;
+
+            padding: 46px 42px 70px;
+        }
+
+
+        /* =====================================================
+           DASHBOARD HEADER
+        ===================================================== */
+
+        .dashboard-heading {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+
+            gap: 30px;
+
+            margin-bottom: 34px;
+        }
+
+        .eyebrow {
+            margin-bottom: 9px;
+
+            color: var(--blue);
+
+            font-family: "DM Mono", monospace;
+            font-size: 8px;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+        }
+
+        .dashboard-title {
+            font-size: clamp(25px, 3vw, 36px);
+            font-weight: 600;
+            letter-spacing: -.045em;
+            line-height: 1.05;
+        }
+
+        .dashboard-description {
+            max-width: 450px;
+
+            color: #687483;
+
+            font-size: 11px;
+            line-height: 1.7;
+        }
+
+
+        /* =====================================================
+           PACOTE ATIVO
+        ===================================================== */
+
+        .active-package {
+            display: grid;
+            grid-template-columns: 150px 1fr auto;
+            align-items: center;
+
+            min-height: 92px;
+
+            margin-bottom: 38px;
+
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .package-label {
+            color: #5d6978;
+
+            font-family: "DM Mono", monospace;
+            font-size: 8px;
+            letter-spacing: .13em;
+            text-transform: uppercase;
+        }
+
+        .package-name {
+            padding-left: 24px;
+
+            border-left: 1px solid var(--line);
+
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: -.025em;
+        }
+
+        .package-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            color: var(--green);
+
+            font-family: "DM Mono", monospace;
+            font-size: 8px;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+
+            border-radius: 50%;
+            background: currentColor;
+        }
+
+
+        /* =====================================================
+           INDICADORES
+        ===================================================== */
+
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+
+            margin-bottom: 38px;
+        }
+
+        .metric {
+            min-height: 130px;
+
+            padding: 22px 24px;
+
+            border-right: 1px solid var(--line);
+        }
+
+        .metric:last-child {
+            border-right: 0;
+        }
+
+        .metric-label {
+            color: #596574;
+
+            font-family: "DM Mono", monospace;
+            font-size: 8px;
+            letter-spacing: .10em;
+            text-transform: uppercase;
+        }
+
+        .metric-value {
+            margin-top: 18px;
+
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: -.045em;
+        }
+
+        .metric-detail {
+            margin-top: 7px;
+
+            color: #657080;
+
+            font-size: 9px;
+        }
+
+        .metric-detail.positive {
+            color: var(--green);
+        }
+
+
+        /* =====================================================
+           GRID PRINCIPAL
+        ===================================================== */
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.65fr) minmax(300px, .85fr);
+
+            gap: 18px;
+
+            margin-bottom: 18px;
+        }
+
+
+        /* =====================================================
+           PAINÉIS
+        ===================================================== */
+
+        .panel {
+            background: var(--panel);
+            border: 1px solid var(--line);
+
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .panel-header {
+            min-height: 66px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 22px;
+
+            border-bottom: 1px solid var(--line);
+        }
+
+        .panel-title {
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .panel-subtitle {
+            margin-top: 4px;
+
+            color: #5e6977;
+
+            font-size: 8px;
+        }
+
+        .period {
+            color: #697584;
+
+            font-family: "DM Mono", monospace;
+            font-size: 8px;
+            letter-spacing: .07em;
+        }
+
+
+        /* =====================================================
+           GRÁFICO
+        ===================================================== */
+
+        .chart-area {
+            height: 310px;
+
+            position: relative;
+
+            padding: 28px 22px 20px;
+        }
+
+        .chart-grid {
+            position: absolute;
+            inset: 28px 22px 40px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .chart-grid-line {
+            width: 100%;
+            height: 1px;
+
+            background: rgba(255,255,255,.045);
+        }
+
+        .chart {
+            position: absolute;
+
+            left: 48px;
+            right: 25px;
+            top: 36px;
+            bottom: 42px;
+        }
+
+        .chart svg {
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+        }
+
+        .chart-labels {
+            position: absolute;
+
+            left: 48px;
+            right: 25px;
+            bottom: 16px;
+
+            display: flex;
+            justify-content: space-between;
+
+            color: #4f5a68;
+
+            font-family: "DM Mono", monospace;
+            font-size: 7px;
+        }
+
+
+        /* =====================================================
+           STATUS DOS SERVIÇOS
+        ===================================================== */
+
+        .services-panel {
+            padding-bottom: 4px;
+        }
+
+        .service-status {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 19px 22px;
+
+            border-bottom: 1px solid var(--line-soft);
+        }
+
+        .service-status:last-child {
+            border-bottom: 0;
+        }
+
+        .service-name {
+            font-size: 10px;
+            font-weight: 500;
+        }
+
+        .service-description {
+            margin-top: 5px;
+
+            color: #596574;
+
+            font-size: 8px;
+        }
+
+        .service-badge {
+            padding: 6px 8px;
+
+            border: 1px solid rgba(50,196,141,.18);
+            border-radius: 5px;
+
+            background: var(--green-soft);
+
+            color: var(--green);
+
+            font-family: "DM Mono", monospace;
+            font-size: 7px;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+        }
+
+
+        /* =====================================================
+           CAMPANHA
+        ===================================================== */
+
+        .campaign-panel {
+            margin-bottom: 18px;
+        }
+
+        .campaign-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .campaign-table th {
+            padding: 15px 22px;
+
+            border-bottom: 1px solid var(--line);
+
+            color: #4f5a68;
+
+            font-family: "DM Mono", monospace;
+            font-size: 7px;
+            font-weight: 400;
+            letter-spacing: .10em;
+            text-align: left;
+            text-transform: uppercase;
+        }
+
+        .campaign-table td {
+            padding: 18px 22px;
+
+            border-bottom: 1px solid var(--line-soft);
+
+            color: #a4adba;
+
+            font-size: 9px;
+        }
+
+        .campaign-table tr:last-child td {
+            border-bottom: 0;
+        }
+
+        .campaign-name {
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        .campaign-result {
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        .campaign-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+
+            color: #8994a2;
+
+            font-size: 8px;
+        }
+
+        .campaign-status::before {
+            content: "";
+
+            width: 5px;
+            height: 5px;
+
+            border-radius: 50%;
+
+            background: var(--green);
+        }
+
+
+        /* =====================================================
+           PAGAMENTO
+        ===================================================== */
+
+        .payment-section {
+            display: none;
+        }
+
+        .payment-section.active {
+            display: block;
+        }
+
+        .dashboard-section.hidden {
+            display: none;
+        }
+
+        .section-heading {
+            margin-bottom: 34px;
+        }
+
+        .section-heading h1 {
+            font-size: clamp(25px, 3vw, 36px);
+            font-weight: 600;
+            letter-spacing: -.045em;
+        }
+
+        .section-heading p {
+            max-width: 560px;
+
+            margin-top: 10px;
+
+            color: #687483;
+
+            font-size: 11px;
+            line-height: 1.7;
+        }
+
+
+        /* RESUMO PAGAMENTO */
+
+        .payment-summary {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr;
+
+            margin-bottom: 28px;
+
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .payment-summary-item {
+            min-height: 120px;
+
+            padding: 22px;
+
+            border-right: 1px solid var(--line);
+        }
+
+        .payment-summary-item:last-child {
+            border-right: 0;
+        }
+
+        .summary-label {
+            color: #596574;
+
+            font-family: "DM Mono", monospace;
+            font-size: 8px;
+            letter-spacing: .10em;
+            text-transform: uppercase;
+        }
+
+        .summary-value {
+            margin-top: 17px;
+
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: -.035em;
+        }
+
+
+        /* LISTA PAGAMENTOS */
+
+        .payments-list {
+            border: 1px solid var(--line);
+            border-radius: 12px;
+
+            background: var(--panel);
+
+            overflow: hidden;
+        }
+
+        .payment-row {
+            display: grid;
+            grid-template-columns: 1.6fr .8fr .8fr .8fr;
+
+            align-items: center;
+
+            min-height: 92px;
+
+            padding: 0 22px;
+
+            border-bottom: 1px solid var(--line-soft);
+        }
+
+        .payment-row:last-child {
+            border-bottom: 0;
+        }
+
+        .payment-reference {
+            color: #ffffff;
+
+            font-size: 10px;
+            font-weight: 500;
+        }
+
+        .payment-description {
+            margin-top: 5px;
+
+            color: #596574;
+
+            font-size: 8px;
+        }
+
+        .payment-info-label {
+            margin-bottom: 6px;
+
+            color: #4f5a68;
+
+            font-family: "DM Mono", monospace;
+            font-size: 7px;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        .payment-info-value {
+            color: #a4adba;
+            font-size: 9px;
+        }
+
+        .payment-value {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+
+        /* BADGES */
+
+        .payment-status {
+            display: inline-flex;
+            align-items: center;
+
+            width: fit-content;
+
+            padding: 6px 9px;
+
+            border-radius: 5px;
+
+            font-family: "DM Mono", monospace;
+            font-size: 7px;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+        }
+
+        .payment-status.paid {
+            border: 1px solid rgba(50,196,141,.18);
+            background: var(--green-soft);
+            color: var(--green);
+        }
+
+        .payment-status.pending {
+            border: 1px solid rgba(230,184,75,.18);
+            background: var(--yellow-soft);
+            color: var(--yellow);
+        }
+
+        .payment-status.overdue {
+            border: 1px solid rgba(228,92,92,.18);
+            background: var(--red-soft);
+            color: var(--red);
+        }
+
+
+        /* =====================================================
+           MOBILE HEADER
+        ===================================================== */
+
+        .mobile-topbar {
+            display: none;
+        }
+
+
+        /* =====================================================
+           RESPONSIVIDADE
+        ===================================================== */
+
+        @media (max-width: 1100px) {
+
+            :root {
+                --sidebar-width: 210px;
+            }
+
+            .content {
+                padding-left: 30px;
+                padding-right: 30px;
+            }
+
+            .topbar {
+                padding-left: 30px;
+                padding-right: 30px;
+            }
+
+            .metrics {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .metric:nth-child(2) {
+                border-right: 0;
+            }
+
+            .metric:nth-child(-n+2) {
+                border-bottom: 1px solid var(--line);
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+        @media (max-width: 760px) {
+
+            .sidebar {
+                position: fixed;
+
+                width: 100%;
+                height: 64px;
+
+                top: auto;
+                bottom: 0;
+
+                left: 0;
+
+                padding: 0 10px;
+
+                border-top: 1px solid var(--line);
+                border-right: 0;
+
+                flex-direction: row;
+                align-items: center;
+
+                background: rgba(7,11,17,.96);
+
+                backdrop-filter: blur(20px);
+            }
+
+            .brand,
+            .nav-label,
+            .sidebar-bottom {
+                display: none;
+            }
+
+            .nav {
+                width: 100%;
+
+                flex-direction: row;
+                justify-content: center;
+
+                gap: 5px;
+            }
+
+            .nav-item {
+                flex: 1;
+
+                max-width: 150px;
+
+                justify-content: center;
+                flex-direction: column;
+
+                gap: 4px;
+
+                min-height: 52px;
+
+                padding: 5px;
+            }
+
+            .nav-item.active::before {
+                left: 50%;
+                top: auto;
+                bottom: 2px;
+
+                width: 20px;
+                height: 2px;
+
+                transform: translateX(-50%);
+            }
+
+            .nav-item span:not(.nav-icon) {
+                font-size: 8px;
+            }
+
+            .main {
+                width: 100%;
+                margin-left: 0;
+
+                padding-bottom: 64px;
+            }
+
+            .topbar {
+                height: 70px;
+
+                padding: 0 18px;
+            }
+
+            .page-label,
+            .topbar-divider {
+                display: none;
+            }
+
+            .page-title {
+                font-size: 12px;
+            }
+
+            .client-info {
+                display: none;
+            }
+
+            .content {
+                padding: 30px 18px 50px;
+            }
+
+            .dashboard-heading {
+                display: block;
+            }
+
+            .dashboard-description {
+                margin-top: 16px;
+            }
+
+            .active-package {
+                grid-template-columns: 1fr;
+                gap: 13px;
+
+                padding: 20px 0;
+            }
+
+            .package-name {
+                padding-left: 0;
+
+                border-left: 0;
+
+                font-size: 14px;
+            }
+
+            .metrics {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .metric {
+                min-height: 115px;
+                padding: 18px;
+            }
+
+            .metric-value {
+                font-size: 22px;
+            }
+
+            .chart-area {
+                height: 270px;
+            }
+
+            .campaign-table {
+                min-width: 650px;
+            }
+
+            .campaign-panel {
+                overflow-x: auto;
+            }
+
+            .payment-summary {
+                grid-template-columns: 1fr;
+            }
+
+            .payment-summary-item {
+                border-right: 0;
+                border-bottom: 1px solid var(--line);
+            }
+
+            .payment-summary-item:last-child {
+                border-bottom: 0;
+            }
+
+            .payments-list {
+                overflow-x: auto;
+            }
+
+            .payment-row {
+                min-width: 720px;
+            }
+        }
+
+
+        @media (max-width: 430px) {
+
+            .metrics {
+                grid-template-columns: 1fr;
+            }
+
+            .metric {
+                border-right: 0 !important;
+                border-bottom: 1px solid var(--line);
+            }
+
+            .metric:last-child {
+                border-bottom: 0;
+            }
+
+            .panel-header {
+                padding: 0 16px;
+            }
+
+            .chart-area {
+                height: 240px;
+            }
+        }
+
+
+        /* =====================================================
+           REDUCED MOTION
+        ===================================================== */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition: none !important;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="app">
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ===================================================== -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-mark">
+                P
+            </div>
+
+            <div class="brand-name">
+                PrestAgora <span>360</span>
+            </div>
+
+        </div>
+
+
+        <div class="nav-label">
+            Portal do cliente
+        </div>
+
+
+        <nav class="nav">
+
+            <a
+                href="#dashboard"
+                class="nav-item active"
+                data-section="dashboard"
+            >
+
+                <span class="nav-icon">
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.6"
+                    >
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                    </svg>
+
+                </span>
+
+                <span>
+                    Dashboard
+                </span>
+
+            </a>
+
+
+            <a
+                href="#pagamento"
+                class="nav-item"
+                data-section="pagamento"
+            >
+
+                <span class="nav-icon">
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.6"
+                    >
+                        <rect
+                            x="3"
+                            y="5"
+                            width="18"
+                            height="14"
+                            rx="2"
+                        ></rect>
+
+                        <path d="M3 10h18"></path>
+
+                        <path d="M7 15h4"></path>
+                    </svg>
+
+                </span>
+
+                <span>
+                    Pagamento
+                </span>
+
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="support">
+
+                <div class="support-label">
+                    Atendimento
+                </div>
+
+                <div class="support-text">
+                    Precisa de ajuda?
+                    Entre em contato com a PrestAgora.
+                </div>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN
+    ===================================================== -->
+
+    <main class="main">
+
+
+        <!-- =================================================
+             TOPBAR
+        ================================================= -->
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <span class="page-label">
+                    Portal
+                </span>
+
+                <span class="topbar-divider"></span>
+
+                <span
+                    class="page-title"
+                    id="pageTitle"
+                >
+                    Dashboard
+                </span>
+
+            </div>
+
+
+            <div class="client-area">
+
+                <div class="client-info">
+
+                    <div
+                        class="client-name"
+                        id="clientName"
+                    >
+                        João da Silva
+                    </div>
+
+                    <div class="client-role">
+                        Cliente PrestAgora
+                    </div>
+
+                </div>
+
+                <div
+                    class="client-avatar"
+                    id="clientAvatar"
+                >
+                    JS
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =================================================
+             CONTEÚDO
+        ================================================= -->
+
+        <div class="content">
+
+
+            <!-- =============================================
+                 DASHBOARD
+            ============================================= -->
+
+            <section
+                id="dashboard"
+                class="dashboard-section"
+            >
+
+
+                <div class="dashboard-heading">
+
+                    <div>
+
+                        <div class="eyebrow">
+                            Acompanhamento
+                        </div>
+
+                        <h1 class="dashboard-title">
+                            Visão geral.
+                        </h1>
+
+                    </div>
+
+
+                    <p class="dashboard-description">
+                        Acompanhe os principais indicadores,
+                        serviços contratados e evolução das
+                        suas campanhas através da PrestAgora.
+                    </p>
+
+                </div>
+
+
+
+                <!-- PACOTE -->
+
+                <div class="active-package">
+
+                    <div class="package-label">
+                        Pacote ativo
+                    </div>
+
+                    <div
+                        class="package-name"
+                        id="activePackage"
+                    >
+                        Tráfego Pago + SDR + Landing Page
+                    </div>
+
+                    <div class="package-status">
+
+                        <span class="status-dot"></span>
+
+                        Ativo
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- INDICADORES -->
+
+                <div class="metrics">
+
+
+                    <div class="metric">
+
+                        <div class="metric-label">
+                            Investimento em mídia
+                        </div>
+
+                        <div class="metric-value">
+                            R$ 4.820
+                        </div>
+
+                        <div class="metric-detail">
+                            Período atual
+                        </div>
+
+                    </div>
+
+
+                    <div class="metric">
+
+                        <div class="metric-label">
+                            Leads gerados
+                        </div>
+
+                        <div class="metric-value">
+                            186
+                        </div>
+
+                        <div class="metric-detail positive">
+                            +18,4% vs. período anterior
+                        </div>
+
+                    </div>
+
+
+                    <div class="metric">
+
+                        <div class="metric-label">
+                            CPL médio
+                        </div>
+
+                        <div class="metric-value">
+                            R$ 25,91
+                        </div>
+
+                        <div class="metric-detail positive">
+                            -8,2% vs. período anterior
+                        </div>
+
+                    </div>
+
+
+                    <div class="metric">
+
+                        <div class="metric-label">
+                            Campanhas ativas
+                        </div>
+
+                        <div class="metric-value">
+                            04
+                        </div>
+
+                        <div class="metric-detail">
+                            Em acompanhamento
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- GRÁFICO + SERVIÇOS -->
+
+                <div class="dashboard-grid">
+
+
+                    <!-- GRÁFICO -->
+
+                    <div class="panel">
+
+                        <div class="panel-header">
+
+                            <div>
+
+                                <div class="panel-title">
+                                    Evolução de leads
+                                </div>
+
+                                <div class="panel-subtitle">
+                                    Volume de leads gerados no período
+                                </div>
+
+                            </div>
+
+                            <div class="period">
+                                JUN — SET 2026
+                            </div>
+
+                        </div>
+
+
+                        <div class="chart-area">
+
+                            <div class="chart-grid">
+
+                                <div class="chart-grid-line"></div>
+                                <div class="chart-grid-line"></div>
+                                <div class="chart-grid-line"></div>
+                                <div class="chart-grid-line"></div>
+                                <div class="chart-grid-line"></div>
+
+                            </div>
+
+
+                            <div class="chart">
+
+                                <svg
+                                    viewBox="0 0 700 230"
+                                    preserveAspectRatio="none"
+                                >
+
+                                    <defs>
+
+                                        <linearGradient
+                                            id="chartFill"
+                                            x1="0"
+                                            x2="0"
+                                            y1="0"
+                                            y2="1"
+                                        >
+
+                                            <stop
+                                                offset="0%"
+                                                stop-color="#1769ff"
+                                                stop-opacity=".18"
+                                            />
+
+                                            <stop
+                                                offset="100%"
+                                                stop-color="#1769ff"
+                                                stop-opacity="0"
+                                            />
+
+                                        </linearGradient>
+
+                                    </defs>
+
+
+                                    <path
+                                        d="M0 185
+                                           C55 178 70 166 105 172
+                                           C145 178 158 151 205 157
+                                           C245 163 258 128 305 137
+                                           C350 146 366 113 408 119
+                                           C450 126 466 99 510 105
+                                           C550 110 573 70 610 82
+                                           C650 94 670 48 700 42
+                                           L700 230
+                                           L0 230 Z"
+                                        fill="url(#chartFill)"
+                                    />
+
+
+                                    <path
+                                        d="M0 185
+                                           C55 178 70 166 105 172
+                                           C145 178 158 151 205 157
+                                           C245 163 258 128 305 137
+                                           C350 146 366 113 408 119
+                                           C450 126 466 99 510 105
+                                           C550 110 573 70 610 82
+                                           C650 94 670 48 700 42"
+                                        fill="none"
+                                        stroke="#1769ff"
+                                        stroke-width="2"
+                                        vector-effect="non-scaling-stroke"
+                                    />
+
+                                </svg>
+
+                            </div>
+
+
+                            <div class="chart-labels">
+
+                                <span>JUN</span>
+                                <span>JUL</span>
+                                <span>AGO</span>
+                                <span>SET</span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- SERVIÇOS -->
+
+                    <div class="panel services-panel">
+
+                        <div class="panel-header">
+
+                            <div>
+
+                                <div class="panel-title">
+                                    Serviços contratados
+                                </div>
+
+                                <div class="panel-subtitle">
+                                    Status atual
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="service-status">
+
+                            <div>
+
+                                <div class="service-name">
+                                    Tráfego Pago
+                                </div>
+
+                                <div class="service-description">
+                                    Gestão de campanhas
+                                </div>
+
+                            </div>
+
+                            <div class="service-badge">
+                                Ativo
+                            </div>
+
+                        </div>
+
+
+                        <div class="service-status">
+
+                            <div>
+
+                                <div class="service-name">
+                                    SDR
+                                </div>
+
+                                <div class="service-description">
+                                    Qualificação de leads
+                                </div>
+
+                            </div>
+
+                            <div class="service-badge">
+                                Ativo
+                            </div>
+
+                        </div>
+
+
+                        <div class="service-status">
+
+                            <div>
+
+                                <div class="service-name">
+                                    Landing Page
+                                </div>
+
+                                <div class="service-description">
+                                    Página de conversão
+                                </div>
+
+                            </div>
+
+                            <div class="service-badge">
+                                Ativo
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CAMPANHAS -->
+
+                <div class="panel campaign-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <div class="panel-title">
+                                Campanhas em acompanhamento
+                            </div>
+
+                            <div class="panel-subtitle">
+                                Dados demonstrativos
+                            </div>
+
+                        </div>
+
+                        <div class="period">
+                            SET 2026
+                        </div>
+
+                    </div>
+
+
+                    <table class="campaign-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Campanha
+                                </th>
+
+                                <th>
+                                    Investimento
+                                </th>
+
+                                <th>
+                                    Leads
+                                </th>
+
+                                <th>
+                                    CPL
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                            <tr>
+
+                                <td class="campaign-name">
+                                    Campanha Institucional
+                                </td>
+
+                                <td>
+                                    R$ 1.200
+                                </td>
+
+                                <td>
+                                    54
+                                </td>
+
+                                <td class="campaign-result">
+                                    R$ 22,22
+                                </td>
+
+                                <td>
+                                    <span class="campaign-status">
+                                        Ativa
+                                    </span>
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td class="campaign-name">
+                                    Captação de Leads
+                                </td>
+
+                                <td>
+                                    R$ 1.650
+                                </td>
+
+                                <td>
+                                    72
+                                </td>
+
+                                <td class="campaign-result">
+                                    R$ 22,91
+                                </td>
+
+                                <td>
+                                    <span class="campaign-status">
+                                        Ativa
+                                    </span>
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td class="campaign-name">
+                                    Remarketing
+                                </td>
+
+                                <td>
+                                    R$ 980
+                                </td>
+
+                                <td>
+                                    38
+                                </td>
+
+                                <td class="campaign-result">
+                                    R$ 25,79
+                                </td>
+
+                                <td>
+                                    <span class="campaign-status">
+                                        Ativa
+                                    </span>
+                                </td>
+
+                            </tr>
+
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =============================================
+                 PAGAMENTO
+            ============================================= -->
+
+            <section
+                id="pagamento"
+                class="payment-section"
+            >
+
+
+                <div class="section-heading">
+
+                    <div class="eyebrow">
+                        Financeiro
+                    </div>
+
+                    <h1>
+                        Pagamento.
+                    </h1>
+
+                    <p>
+                        Consulte os pagamentos relacionados
+                        ao seu contrato com a PrestAgora.
+                    </p>
+
+                </div>
+
+
+
+                <!-- RESUMO -->
+
+                <div class="payment-summary">
+
+
+                    <div class="payment-summary-item">
+
+                        <div class="summary-label">
+                            Próximo pagamento
+                        </div>
+
+                        <div class="summary-value">
+                            R$ 2.490,00
+                        </div>
+
+                    </div>
+
+
+                    <div class="payment-summary-item">
+
+                        <div class="summary-label">
+                            Vencimento
+                        </div>
+
+                        <div class="summary-value">
+                            10 OUT 2026
+                        </div>
+
+                    </div>
+
+
+                    <div class="payment-summary-item">
+
+                        <div class="summary-label">
+                            Status
+                        </div>
+
+                        <div class="summary-value">
+
+                            <span class="payment-status pending">
+                                Pendente
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- PAGAMENTOS -->
+
+                <div class="payments-list">
+
+
+                    <div class="payment-row">
+
+                        <div>
+
+                            <div class="payment-reference">
+                                Mensalidade — Setembro 2026
+                            </div>
+
+                            <div class="payment-description">
+                                Contrato PrestAgora
+                            </div>
+
+                        </div>
+
+
+                        <div>
+
+                            <div class="payment-info-label">
+                                Valor
+                            </div>
+
+                            <div class="payment-info-value payment-value">
+                                R$ 2.490,00
+                            </div>
+
+                        </div>
+
+
+                        <div>
+
+                            <div class="payment-info-label">
+                                Vencimento
+                            </div>
+
+                            <div class="payment-info-value">
+                                10/09/2026
+                            </div>
+
+                        </div>
+
+
+                        <div>
+
+                            <div class="payment-info-label">
+                                Status
+                            </div>
+
+                            <span class="payment-status paid">
+                                Pago
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="payment-row">
+
+                        <div>
+
+                            <div class="payment-reference">
+                                Mensalidade — Outubro 2026
+                            </div>
+
+                            <div class="payment-description">
+                                Contrato PrestAgora
+                            </div>
+
+                        </div>
+
+
+                        <div>
+
+                            <div class="payment-info-label">
+                                Valor
+                            </div>
+
+                            <div class="payment-info-value payment-value">
+                                R$ 2.490,00
+                            </div>
+
+                        </div>
+
+
+                        <div>
+
+                            <div class="payment-info-label">
+                                Vencimento
+                            </div>
+
+                            <div class="payment-info-value">
+                                10/10/2026
+                            </div>
+
+                        </div>
+
+
+                        <div>
+
+                            <div class="payment-info-label">
+                                Status
+                            </div>
+
+                            <span class="payment-status pending">
+                                Pendente
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="payment-row">
+
+                        <div>
+
+                            <div class="payment-reference">
+                                Mensalidade — Agosto 2026
+                            </div>
+
+                            <div class="payment-description">
+                                Contrato PrestAgora
+                            </div>
+
+                        </div>
+
+
+                        <div>
+
+                            <div class="payment-info-label">
+                                Valor
+                            </div>
+
+                            <div class="payment-info-value payment-value">
+                                R$ 2.490,00
+                            </div>
+
+                        </div>
+
+
+                        <div>
+
+                            <div class="payment-info-label">
+                                Vencimento
+                            </div>
+
+                            <div class="payment-info-value">
+                                10/08/2026
+                            </div>
+
+                        </div>
+
+
+                        <div>
+
+                            <div class="payment-info-label">
+                                Status
+                            </div>
+
+                            <span class="payment-status paid">
+                                Pago
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="payment-row">
+
+                        <div>
+
+                            <div class="payment-reference">
+                                Mensalidade — Julho 2026
+                            </div>
+
+                            <div class="payment-description">
+                                Contrato PrestAgora
+                            </div>
+
+                        </div>
+
+
+                        <div>
+
+                            <div class="payment-info-label">
+                                Valor
+                            </div>
+
+                            <div class="payment-info-value payment-value">
+                                R$ 2.490,00
+                            </div>
+
+                        </div>
+
+
+                        <div>
+
+                            <div class="payment-info-label">
+                                Vencimento
+                            </div>
+
+                            <div class="payment-info-value">
+                                10/07/2026
+                            </div>
+
+                        </div>
+
+
+                        <div>
+
+                            <div class="payment-info-label">
+                                Status
+                            </div>
+
+                            <span class="payment-status paid">
+                                Pago
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+</div>
+
+
+
+<script>
+
+    /* =====================================================
+       DADOS MOCKADOS
+       Futuramente poderão ser substituídos por API.
+    ===================================================== */
+
+    const clientData = {
+
+        client: {
+            name: "João da Silva",
+            initials: "JS"
+        },
+
+        package: {
+            name: "Tráfego Pago + SDR + Landing Page",
+            status: "Ativo"
+        },
+
+        services: [
+            {
+                name: "Tráfego Pago",
+                status: "Ativo"
+            },
+            {
+                name: "SDR",
+                status: "Ativo"
+            },
+            {
+                name: "Landing Page",
+                status: "Ativo"
+            }
+        ],
+
+        metrics: {
+            mediaInvestment: 4820,
+            leads: 186,
+            cpl: 25.91,
+            activeCampaigns: 4
+        },
+
+        payments: [
+            {
+                reference: "Mensalidade — Setembro 2026",
+                value: 2490,
+                dueDate: "10/09/2026",
+                status: "Pago"
+            },
+            {
+                reference: "Mensalidade — Outubro 2026",
+                value: 2490,
+                dueDate: "10/10/2026",
+                status: "Pendente"
+            }
+        ]
+
+    };
+
+
+    /* =====================================================
+       ELEMENTOS
+    ===================================================== */
+
+    const navItems = document.querySelectorAll(".nav-item");
+
+    const dashboardSection =
+        document.querySelector(".dashboard-section");
+
+    const paymentSection =
+        document.querySelector(".payment-section");
+
+    const pageTitle =
+        document.getElementById("pageTitle");
+
+
+    /* =====================================================
+       NAVEGAÇÃO
+    ===================================================== */
+
+    navItems.forEach(function (item) {
+
+        item.addEventListener("click", function (event) {
+
+            event.preventDefault();
+
+            const section =
+                item.dataset.section;
+
+
+            navItems.forEach(function (nav) {
+                nav.classList.remove("active");
+            });
+
+            item.classList.add("active");
+
+
+            if (section === "dashboard") {
+
+                dashboardSection.classList.remove("hidden");
+                paymentSection.classList.remove("active");
+
+                pageTitle.textContent = "Dashboard";
+
+            }
+
+
+            if (section === "pagamento") {
+
+                dashboardSection.classList.add("hidden");
+                paymentSection.classList.add("active");
+
+                pageTitle.textContent = "Pagamento";
+
+            }
+
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        });
+
+    });
+
+
+    /* =====================================================
+       FUTURA ESTRUTURA DE DADOS
+    ===================================================== */
+
+    console.log("PrestAgora Client Portal", clientData);
+
+</script>
+
+
+</body>
+
+</html>
