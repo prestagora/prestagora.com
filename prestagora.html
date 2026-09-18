@@ -1374,6 +1374,35 @@
 
 }
 
+        /* NOVO: ANIMAÇÃO DO ÍCONE DE CLIQUE */
+
+.click-icon {
+    width: 22px;
+    height: 22px;
+    color: #ffffff;
+    display: block;
+    animation: clickHint 2.2s ease-in-out infinite;
+}
+
+@keyframes clickHint {
+
+    0%,
+    65%,
+    100% {
+        transform: translateY(0);
+    }
+
+    72% {
+        transform: translateY(3px);
+    }
+
+    78% {
+        transform: translateY(0);
+    }
+}
+
+        
+
         .service h3 {
 
             position: absolute;
