@@ -841,6 +841,36 @@
             display: none;
         }
 
+        .tutorial-section {
+            display: none;
+        }
+
+        .tutorial-section.active {
+            display: block;
+        }
+
+        .tutorial-video-wrapper {
+            width: 100%;
+            max-width: 1100px;
+            margin: 42px auto 0;
+        }
+
+        .tutorial-video {
+            display: block;
+
+            width: 100%;
+            aspect-ratio: 16 / 9;
+
+            background: #000000;
+
+            border: 1px solid var(--line);
+            border-radius: 8px;
+
+            object-fit: contain;
+
+            box-shadow: 0 12px 35px rgba(0, 0, 0, .12);
+        }
+
         .section-heading {
             margin-bottom: 34px;
         }
@@ -1377,6 +1407,39 @@
 
                 <span>
                     Pagamento
+                </span>
+
+            </a>
+
+                        <a
+                href="#como-funciona"
+                class="nav-item"
+                data-section="como-funciona"
+            >
+
+                <span class="nav-icon">
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.6"
+                    >
+                        <rect
+                            x="3"
+                            y="4"
+                            width="18"
+                            height="16"
+                            rx="2"
+                        ></rect>
+
+                        <path d="M9 9l5 3-5 3V9z"></path>
+                    </svg>
+
+                </span>
+
+                <span>
+                    Como funciona?
                 </span>
 
             </a>
@@ -2324,6 +2387,54 @@
 
     </main>
 
+            <!-- =============================================
+                 COMO FUNCIONA
+            ============================================= -->
+
+            <section
+                id="como-funciona"
+                class="tutorial-section"
+            >
+
+                <div class="section-heading">
+
+                    <div class="eyebrow">
+                        Tutorial exclusivo
+                    </div>
+
+                    <h1>
+                        Como funciona?
+                    </h1>
+
+                    <p>
+                        Assista ao vídeo para entender como utilizar
+                        e acompanhar todas as informações disponíveis
+                        na sua área do cliente PrestAgora.
+                    </p>
+
+                </div>
+
+
+                <div class="tutorial-video-wrapper">
+
+                    <video
+                        class="tutorial-video"
+                        controls
+                        preload="metadata"
+                        aria-label="Tutorial de utilização da área do cliente PrestAgora"
+                    >
+                        <source
+                            src="comofuncionavideo.mp4"
+                            type="video/mp4"
+                        >
+
+                        Seu navegador não suporta a reprodução de vídeos.
+                    </video>
+
+                </div>
+
+            </section>
+    
 </div>
 
 
@@ -2408,6 +2519,9 @@
     const paymentSection =
         document.querySelector(".payment-section");
 
+    const tutorialSection =
+        document.querySelector(".tutorial-section");
+
     const pageTitle =
         document.getElementById("pageTitle");
 
@@ -2437,6 +2551,7 @@
 
                 dashboardSection.classList.remove("hidden");
                 paymentSection.classList.remove("active");
+                tutorialSection.classList.remove("active");
 
                 pageTitle.textContent = "Dashboard";
 
@@ -2447,8 +2562,20 @@
 
                 dashboardSection.classList.add("hidden");
                 paymentSection.classList.add("active");
+                tutorialSection.classList.remove("active");
 
                 pageTitle.textContent = "Pagamento";
+
+            }
+
+
+            if (section === "como-funciona") {
+
+                dashboardSection.classList.add("hidden");
+                paymentSection.classList.remove("active");
+                tutorialSection.classList.add("active");
+
+                pageTitle.textContent = "Como funciona?";
 
             }
 
