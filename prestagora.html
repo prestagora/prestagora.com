@@ -1272,6 +1272,8 @@
 
             gap: 15px;
 
+            align-items: start;
+
         }
 
         .service {
@@ -2226,7 +2228,17 @@
 
 .service-wrapper-full {
     grid-column: 1 / -1;
-}        
+    width: 100%;
+}
+
+.service-wrapper-full .service {
+    width: 100%;
+    min-width: 100%;
+}
+
+.service-wrapper-full .service-packages {
+    width: 100%;
+}
 
 .service-packages {
     width: 100%;
