@@ -1187,6 +1187,18 @@
                 padding: 18px;
             }
 
+            .metric {
+            border-right: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            }
+
+           .metric:nth-child(2n) {
+            border-right: 0;
+            }
+
+          .metric:nth-child(n+5) {
+           border-bottom: 0;
+           }
             .metric-value {
                 font-size: 22px;
             }
